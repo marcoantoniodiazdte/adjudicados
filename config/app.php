@@ -185,6 +185,8 @@ return [
 
         //Views Service Provider
 
+        // Provider de CompanyProvider and DataServiceProvider
+        App\Providers\CompanyServiceProvider::class,
 
 
     ],
@@ -241,6 +243,11 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+
+
+        // Facade de Company and Data
+        'Company'      => App\Facades\Company::class,
 
     ],
 

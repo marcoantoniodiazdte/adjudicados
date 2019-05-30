@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Company;
+use App\Http\Requests\TipoCaracteristicaRequest;
 use App\TiposCaracteristicas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class TipoCaracteristicaController extends Controller
@@ -39,7 +42,7 @@ class TipoCaracteristicaController extends Controller
                 ->rawColumns(['edit','view'])
                 ->make(true);
         }
-        return view('crm.bancos.list');
+        return view('crm.propiedades.tipos_caracteristicas.list');
     }
 
     /**
@@ -49,7 +52,8 @@ class TipoCaracteristicaController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('crm.propiedades.tipos_caracteristicas.create');
     }
 
     /**
@@ -58,9 +62,11 @@ class TipoCaracteristicaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TipoCaracteristicaRequest $request)
     {
-        //
+        Company::getInfo()->tipos_caracteristicas()->create($request->all());
+
+        return redirect(route('tipos_caracteristicas.index'));
     }
 
     /**
@@ -69,7 +75,7 @@ class TipoCaracteristicaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TiposCaracteristicas $tipos_caracteristica)
     {
         //
     }
@@ -80,9 +86,9 @@ class TipoCaracteristicaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TiposCaracteristicas $tipos_caracteristica)
     {
-        //
+        return view('crm.propiedades.tipos_caracteristicas.edit',compact('tipos_caracteristica'));
     }
 
     /**
@@ -92,9 +98,10 @@ class TipoCaracteristicaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TipoCaracteristicaRequest $request, TiposCaracteristicas $tipos_caracteristica)
     {
-        //
+        $tipos_caracteristica->update($request->all());
+        return redirect(route('tipos_caracteristicas.index'));
     }
 
     /**
@@ -103,8 +110,8 @@ class TipoCaracteristicaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TiposCaracteristicas $tipos_caracteristica)
     {
-        //
+
     }
 }

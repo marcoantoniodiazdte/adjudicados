@@ -61,7 +61,7 @@ Route::prefix('admin')->group(function (){
     //Propiedades
     Route::resource('/propiedades','PropiedadesController');
         //Propiedades
-        Route::resource('/propiedades/tipos_caracteristicas','TipoCaracteristicaController');
+        Route::resource('/tipos_caracteristicas','TipoCaracteristicaController');
 
 
     Route::get('/bancos/mis_bancos','BancoController@mis_bancos_managment')->name('admin_mis_bancos_managment');
