@@ -41,33 +41,25 @@
 
 
             @if($modulos->contains('clase','propiedad_management') )
-
+                <li class="header">Propiedades</li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
-                        <i class="material-icons">person</i>
-                        <span >User Managment </span>
+                        <i class="material-icons">view_quilt</i>
+                        <span > Propiedades </span>
                     </a>
                     <ul class="ml-menu">
                         <li class="">
-                            @foreach($modulos->where('clase','user_management') as  $modulo)
-                                <a href="{{ route($modulo->base_url)}}">
-                                    <i class="material-icons {{$modulo->color}} ">{{$modulo->icon}}</i>
-                                    <span>{{$modulo->title}}</span>
-                                </a>
-                            @endforeach
+                            <a href="{{route('propiedades.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Propiedades</span>
+                            </a>
+                            <a href="{{route('tipos_caracteristicas.index')}}">
+                                <i class="material-icons col-blue">format_size</i>
+                                <span>Tipos Caracteristicas</span>
+                            </a>
                         </li>
                     </ul>
                 </li>
-
-
-
-                <li class="header">Propiedades</li>
-                    <li>
-                        <a href="{{route('propiedades.index')}}">
-                            <i class="material-icons col-black">view_quilt</i>
-                            <span>Propiedades</span>
-                        </a>
-                    </li>
             @endif
 
             @if($modulos->contains('clase','user_management') )

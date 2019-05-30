@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TiposCaracteristicas extends Model
 {
 
-    protected $fillable = ['nombre_tipo','descripcion','propiedad_id'];
+    protected $fillable = ['nombre_tipo','company_id'];
 
 
     public function caracteristica_propiedad(){

@@ -20,11 +20,11 @@
 @section('contenido_inmobiliaria')
     <div class="card">
         <div class="header">
-            <h2><i class="material-icons">list</i> Propiedades</h2>
+            <h2><i class="material-icons">list</i> Tipos Caracteristicas</h2>
             <ul class="header-dropdown">
-                @can('create.propiedades')
+                @can('create.tipos_caracteristicas')
                     <li>
-                        <a href="{{route('propiedades.create')}}" data-toggle="tooltip" data-original-title="Create">
+                        <a href="{{route('tipos_caracteristicas.create')}}" data-toggle="tooltip" data-original-title="Create">
                             <i class="material-icons col-blue">add</i>
                         </a>
                     </li>
@@ -42,7 +42,7 @@
                             <label class="m-b-0" for="check-all"></label>
                         </th>
                         <th class="exportar">ID</th>
-                        <th class="exportar">Nombre Tipo</th>
+                        <th class="exportar">Nombre</th>
                         <th>Opciones</th>
 
                     </tr>
@@ -80,8 +80,61 @@
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/select.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            if($('#tipos_caracteristicas_table').size() > 0 ){
+                $('#tipos_caracteristicas_table').DataTable(
+                  $.extend(true, {}, $.InmobiliariaSoft.options.DATATABLE_TEMPLATE,{
+                        ajax: '/admin/tipos_caracteristicas',
+                        type: 'GET',
+                        columns: [
+                            {
+                                data: function (data) {
+                                    return '<input type="checkbox" id="check-' + data.id + '" class="filled-in chk-col-teal" name="check[]" value="' + data.id + '">' +
+                                      '<label class="m-b-0" for="check-' + data.id + '"></label>';
+                                },
+                                orderable: false,
+                                searchable: false
+                            },
+                            { data: 'id', name: 'id' },
+                            { data: 'nombre_tipo', name: 'nombre_tipo' },
+                            {
+                                data: function (data) {
+                                    var buttons = '<div class="btn-group">';
+
+                                    if (data.view === true) {
+                                        buttons += '<a href="/admin/tipos_caracteristicas/' + data.id + '" target="_blank" class="btn btn-info btn-xs waves-effect" ' +
+                                          '  data-toggle="tooltip" data-original-title="Consultar"><i class="material-icons">remove_red_eye</i></a>';
+
+                                    }
+
+                                    if (data.edit === true) {
+                                        buttons +=
+                                          '<a href="/admin/tipos_caracteristicas/' + data.id + '/edit" target="_blank" class="btn btn-warning btn-xs waves-effect edit-brand" ' +
+                                          'data-toggle="tooltip" data-original-title="Editar"><i class="material-icons">edit</i></a>'
+                                        ;
+                                    }
+                                    buttons += '</div>';
+                                    return buttons;
+                                },
+                                orderable: false,
+                                searchable: false
+                            }
+
+                        ],
+                    }
+                  ));
+
+            }
+
+
+
+        });
+    </script>
 
     <script>
+
+
         $(document).ready(function () {
             if($('#tipos_caracteristicas_table').size() > 0){
                 $('#tipos_caracteristicas_table').DataTable();
