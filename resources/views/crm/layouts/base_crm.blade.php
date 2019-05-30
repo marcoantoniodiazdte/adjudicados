@@ -30,7 +30,7 @@
     <!-- Datepicker -->
     <link href="{{ asset('plugins/jquery-datepicker/datepicker.css') }}" rel="stylesheet">
     <!-- Custom Css -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('css/themes/theme-blue.min.css') }}" rel="stylesheet"/>
 

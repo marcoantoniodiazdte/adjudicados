@@ -86,3 +86,72 @@ Route::prefix('admin')->group(function (){
 });
 
 
+
+
+
+
+/////////////////////////////////////////////////////
+
+
+// LANDING PAGE //
+Route::get('/', function () {
+    return view('welcome.index');
+})->name('welcome.index');
+
+Route::get('/buscar', function () {
+    return view('welcome.search');
+})->name('welcome.search');
+// LANDING PAGE //
+
+
+
+
+
+
+
+// PROYECTO //
+Route::get('/proyecto/1',function(){
+    return view('welcome.projects.view1');
+});
+
+Route::get('/proyecto/2',function(){
+    return view('welcome.projects.view2');
+});
+
+ 
+
+// AGENTES//
+Route::get('/agente/1',function(){
+    return view('welcome.agends.show');
+});
+// AGENTES//
+
+Route::get('/inmobiliarias',function(){
+    return view('welcome.real_estate.index');
+});
+
+
+// CONTACTANOS//
+Route::get('/contacto',function(){
+    return view('welcome.company.contact');
+});
+// CONTACTANOS//
+
+Route::get('/perfil', function () {
+    return view('welcome.profile.show');
+});
+
+Route::get('/perfil/propiedades', function () {
+    return view('welcome.profile.properties');
+});
+
+Route::get('/perfil/propiedades/favoritas', function () {
+    return view('welcome.profile.favorities');
+});
+
+Route::get('/perfil/credenciales', function () {
+    return view('welcome.profile.password');
+});
+
+
+
