@@ -86,22 +86,13 @@ Route::prefix('admin')->group(function (){
 });
 
 
-
-
+Route::get('/login','WelcomeController@index')->name('login');
+Route::get('/','WelcomeController@index')->name('inicio');
+Route::get('/buscar','WelcomeController@search')->name('buscar');
 
 
 /////////////////////////////////////////////////////
 
-
-// LANDING PAGE //
-Route::get('/', function () {
-    return view('welcome.index');
-})->name('welcome.index');
-
-Route::get('/buscar', function () {
-    return view('welcome.search');
-})->name('welcome.search');
-// LANDING PAGE //
 
 
 
@@ -139,7 +130,7 @@ Route::get('/contacto',function(){
 
 Route::get('/perfil', function () {
     return view('welcome.profile.show');
-});
+})->middleware('auth')->name('profile');
 
 Route::get('/perfil/propiedades', function () {
     return view('welcome.profile.properties');

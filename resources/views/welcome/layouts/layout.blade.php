@@ -122,22 +122,39 @@
                             </a>
                         </li>
                         <li class="dropdown">
+                        @if(Auth::user())
+                            <a >{{Auth::user()->name}} <span class="caret"></span></a>
+                        @else
                             <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
-                                Perfil<span class="caret"></span>
+                                Ingrésa o Regístrate<span class="caret"></span>
                             </a>
+                        @endif
                             <ul class="dropdown-menu">
-                                <li><a href="agent-listing-grid.html">Configuración</a></li>
-                                <li><a href="agent-listing-grid.html">Cerrar Sesion</a></li>
+                                @if(Auth::user())
+                                    <li><a href="{{route('profile')}}">Mi Perfil</a></li>
+                                    <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            Cerrar Sesion</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                            </form>
+                                    </li>
+                                    
+                                @else
+                                    <li><a  onclick="$('#loginModal').modal('show')" class="button">Ingrésa</a></li>
+                                    <li><a  onclick="$('#registerModal').modal('show')" class="button">Regístrate</a></li>
+                                @endif
                             </ul>
                         </li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right rightside-navbar">
+                    <!-- <ul class="nav navbar-nav navbar-right rightside-navbar">
                         <li>
                             <a  onclick="$('#loginModal').modal('show')" class="button">
                                 Ingrésa o Regístrate
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </nav>
         </div>
@@ -162,15 +179,26 @@
                             <div class="form-content-box">
                                 <div class="details">
                                     <div class="main-title">
-                                        <h1>Inicia Sesión</h1>
+                                        <h1>Inicia Sesión </h1>
                                     </div>
-                                    <form action="index.html" method="GET">
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
                                         <div class="form-group">
                                             <input type="email" name="email" class="input-text" placeholder="Correo electrónico">
                                         </div>
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
                                         <div class="form-group">
-                                            <input type="password" name="Password" class="input-text" placeholder="Contraseña">
+                                            <input type="password" name="password" class="input-text" placeholder="Contraseña">
                                         </div>
+                                        @if ($errors->has('password'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                        @endif
                                         <div class="checkbox">
                                             <div class="ez-checkbox pull-left">
                                                 <label>
@@ -218,9 +246,10 @@
                                     <h1><span>Regístrate</span></h1>
                                 </div>
                                 <!-- Form start-->
-                                <form action="index.html" method="GET">
+                                <form action="guest/create" method="POST">
+                                @csrf
                                     <div class="form-group">
-                                        <input type="text" name="fullname" class="input-text" placeholder="Nombre">
+                                        <input type="text" name="name" class="input-text" placeholder="Nombre">
                                     </div>
                                     <div class="form-group">
                                         <input type="email" name="email" class="input-text" placeholder="Correo Electronico">

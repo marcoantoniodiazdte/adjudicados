@@ -17,8 +17,8 @@
                                 </div>
                             </div>
                         </div>
-                        <h3>John Doe</h3>
-                        <p>johndoe@gmail.com</p>
+                        <h3>{{Auth::user()->name}}</h3>
+                        <p>{{Auth::user()->email}}</p>
 
                         <ul class="social-list clearfix">
                             <li>
@@ -91,11 +91,7 @@
                     <form action="index.html" method="GET">
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" class="input-text" name="your name" placeholder="John Antony">
-                        </div>
-                        <div class="form-group">
-                            <label>Titulo</label>
-                            <input type="text" class="input-text" name="agent" placeholder="Your title">
+                            <input type="text" class="input-text" name="your name" value="{{Auth::user()->name}}" placeholder="John Antony">
                         </div>
                         <div class="form-group">
                             <label>Telefono</label>
@@ -103,11 +99,7 @@
                         </div>
                         <div class="form-group">
                             <label>Correo Electronico</label>
-                            <input type="email" class="input-text" name="email" placeholder="johndoe@gmail.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Sobre Mí</label>
-                            <textarea class="input-text" name="message" placeholder="Etiam luctus malesuada quam eu aliquet. Donec eget mollis tortor. Donec pellentesque eros a nisl euismod, ut congue orci ultricies. Fusce aliquet metus non arcu varius ullamcorper a sit amet nunc. Donec in lacus neque. Vivamus ullamcorper sed ligula vitae "></textarea>
+                            <input type="email" class="input-text" name="email" value="{{Auth::user()->email}}" >
                         </div>
                         <a href="#" class="btn button-md button-theme">Guardar Cambios</a>
                     </form>
