@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
     // return view('layouts.main_content');
-});
+})->name('home');
 
 Auth::routes();
 
@@ -91,6 +91,10 @@ Route::get('/','WelcomeController@index')->name('inicio');
 Route::get('/buscar','WelcomeController@search')->name('buscar');
 
 
+Route::post('/profile/update','GuestController@update')->name('update.profile');
+Route::post('/profile/password','GuestController@update_password')->name('update.password');
+
+
 /////////////////////////////////////////////////////
 
 
@@ -104,6 +108,14 @@ Route::get('/buscar','WelcomeController@search')->name('buscar');
 Route::get('/proyecto/1',function(){
     return view('welcome.projects.view1');
 });
+
+Route::get('/registro', function(){
+    return view('welcome.register');
+})->name('registro');
+
+Route::get('/ingresa', function(){
+    return view('welcome.login');
+})->name('ingresa');
 
 Route::get('/proyecto/2',function(){
     return view('welcome.projects.view2');
@@ -119,13 +131,13 @@ Route::get('/agente/1',function(){
 
 Route::get('/inmobiliarias',function(){
     return view('welcome.real_estate.index');
-});
+})->name('inmobiliarias');
 
 
 // CONTACTANOS//
 Route::get('/contacto',function(){
     return view('welcome.company.contact');
-});
+})->name('contacto');
 // CONTACTANOS//
 
 Route::get('/perfil', function () {
@@ -134,15 +146,15 @@ Route::get('/perfil', function () {
 
 Route::get('/perfil/propiedades', function () {
     return view('welcome.profile.properties');
-});
+})->name('profile.properties');
 
 Route::get('/perfil/propiedades/favoritas', function () {
     return view('welcome.profile.favorities');
-});
+})->name('profile.favorites');
 
 Route::get('/perfil/credenciales', function () {
     return view('welcome.profile.password');
-});
+})->name('credenciales');
 
 
 

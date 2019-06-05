@@ -53,29 +53,32 @@
                     <div class="content">
                         <ul>
                             <li>
-                                <a href="user-profile.html" >
+                                <a href="{{route('profile')}}"   >
                                     <i class="flaticon-social"></i>Perfil
                                 </a>
                             </li>
                             <li>
-                                <a href="my-properties.html" >
+                                <a href="{{route('profile.properties')}}" >
                                     <i class="flaticon-apartment"></i>Mis Propiedades
                                 </a>
                             </li>
                             <li>
-                                <a href="favorited-properties.html" class="active" >
+                                <a class="active" href="{{route('profile.favorites')}}">
                                     <i class="fa fa-heart"></i>Propiedades Favoritas
                                 </a>
                             </li>
                             <li>
-                                <a href="change-password.html">
+                                <a href="{{route('credenciales')}}">
                                     <i class="flaticon-security"></i>Cambiar Contraseña
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <i class="flaticon-sign-out-option"></i>Cerrar Sesion
-                                </a>
+                            <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            Cerrar Sesion</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                            </form>
                             </li>
                         </ul>
                     </div>

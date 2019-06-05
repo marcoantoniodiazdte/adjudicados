@@ -93,22 +93,22 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="navbar-collapse collapse" role="navigation" aria-expanded="true" id="app-navigation">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown active">
-                            <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
+                        <li class="dropdown {{ request()->is('buscar') ? 'active' : '' }}">
+                            <a tabindex="0" href="{{route('buscar')}}">
                                 Comprar
                             </a>
                         </li>
-                        <li class="dropdown" href="/buscar">
-                            <a tabindex="0"  data-toggle="dropdown" data-submenu="" aria-expanded="false">
+                        <li class="dropdown" href="{{route('inmobiliarias')}}">
+                            <a  href="{{('buscar')}}"  >
                                 Alquilar
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
+                        <li class="dropdown {{ request()->is('inmobiliarias') ? 'active' : '' }}">
+                            <a  href="{{route('inmobiliarias')}}"  aria-expanded="false">
                                 Inmobiliarias<span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="agent-listing-grid.html">EURO-DOM</a></li>
+                                <li > <a href="{{route('inmobiliarias')}}" >EURO-DOM</a></li>
                             </ul>
                         </li>
                         <li class="dropdown mega-dropdown">
@@ -116,22 +116,21 @@
                                 Únete 
                             </a>
                         </li>
-                        <li class="dropdown">
-                            <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
+                        <li class="dropdown {{ request()->is('contacto') ? 'active' : '' }}" >
+                            <a href="{{route('contacto')}}"  >
                                 Contacto
                             </a>
                         </li>
-                        <li class="dropdown">
+                        <li class=" dropdown {{ request()->is('perfil*') ? 'active' : '' }}">
                         @if(Auth::user())
-                            <a >{{Auth::user()->name}} <span class="caret"></span></a>
+                            <a  >{{Auth::user()->name}} <span class="caret"></span></a>
                         @else
-                            <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
-                                Ingrésa o Regístrate<span class="caret"></span>
-                            </a>
+                                    <li ><a class="dropdown-item" href="{{route('ingresa')}}" >Ingrésa</a></li>
+                                    <li><a  class="dropdown-item" href="{{route('registro')}}">Regístrate</a></li>
                         @endif
                             <ul class="dropdown-menu">
                                 @if(Auth::user())
-                                    <li><a href="{{route('profile')}}">Mi Perfil</a></li>
+                                    <li ><a class="dropdown-item" href="{{route('profile')}}">Mi Perfil</a></li>
                                     <li> <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
@@ -141,9 +140,6 @@
                                             </form>
                                     </li>
                                     
-                                @else
-                                    <li><a  onclick="$('#loginModal').modal('show')" class="button">Ingrésa</a></li>
-                                    <li><a  onclick="$('#registerModal').modal('show')" class="button">Regístrate</a></li>
                                 @endif
                             </ul>
                         </li>
@@ -187,6 +183,7 @@
                                             <input type="email" name="email" class="input-text" placeholder="Correo electrónico">
                                         </div>
                                         @if ($errors->has('email'))
+
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('email') }}</strong>
                                             </span>
@@ -246,17 +243,32 @@
                                     <h1><span>Regístrate</span></h1>
                                 </div>
                                 <!-- Form start-->
-                                <form action="guest/create" method="POST">
-                                @csrf
+                                <form action="{{ route('register') }}" method="POST">
+                                    @csrf
                                     <div class="form-group">
                                         <input type="text" name="name" class="input-text" placeholder="Nombre">
                                     </div>
+                                    @if ($errors->has('name'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
                                     <div class="form-group">
                                         <input type="email" name="email" class="input-text" placeholder="Correo Electronico">
                                     </div>
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
                                     <div class="form-group">
                                         <input type="password" name="password" class="input-text" placeholder="Contraseña">
                                     </div>
+                                    @if ($errors->has('password'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
                                     <div class="form-group">
                                         <input type="password" name="confirm_Password" class="input-text" placeholder="Confirmar contraseña">
                                     </div>
@@ -269,7 +281,7 @@
                             <!-- Footer -->
                             <div class="footer">
                                 <span>
-                                     <a data-toggle="modal" href="#loginModal">Volver al inicio de sesión.</a>
+                                     <a data-toggle="modal" href="{{route('ingresa')}}">Volver al inicio de sesión.</a>
                                 </span>
                             </div>
                         </div>
@@ -310,6 +322,8 @@
     <!-- Footer final -->
 
     <script>
+
+    
     var $li = $('li.active');
     $("#loginModal").on('show.bs.modal', function(){
         $("#registerModal").modal('hide');
