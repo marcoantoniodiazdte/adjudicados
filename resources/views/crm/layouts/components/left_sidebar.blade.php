@@ -7,7 +7,7 @@
             <img src="{{asset('img/users/user.png')}}" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
-            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}</div>
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->nombres}}</div>
             <div class="email">{{auth()->user()->email}}</div>
         </div>
     </div>
@@ -17,38 +17,34 @@
 
 
             @if($modulos->contains('clase','inmo_management') )
-
                 <li class="header">Inmobiliarias</li>
                 <li class="active">
                     <a href="{{route('inmobiliarias.index')}}">
                         <i class="material-icons">home</i>
                         <span>Inmobiliarias</span>
                     </a>
-
                     @if($modulos->contains('clase','agencia_management') )
-
                         <a href="{{route('agencias.index')}}">
                             <i class="material-icons col-black">work</i>
                             <span>Agencias</span>
                         </a>
-
                     @endif
-
                 </li>
             @endif
 
-
-
-
             @if($modulos->contains('clase','propiedad_management') )
-                <li class="header">Propiedades</li>
+                <li class="header">Inmuebles</li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">view_quilt</i>
-                        <span > Propiedades </span>
+                        <span > Inmuebles </span>
                     </a>
                     <ul class="ml-menu">
                         <li class="">
+                            <a href="{{route('proyectos.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Proyectos</span>
+                            </a>
                             <a href="{{route('propiedades.index')}}">
                                 <i class="material-icons col-blue">view_quilt</i>
                                 <span>Propiedades</span>
@@ -56,6 +52,10 @@
                             <a href="{{route('tipos_caracteristicas.index')}}">
                                 <i class="material-icons col-blue">format_size</i>
                                 <span>Tipos Caracteristicas</span>
+                            </a>
+                            <a href="{{route('tipos_atributos.index')}}">
+                                <i class="material-icons col-blue">format_size</i>
+                                <span>Tipos Atributos</span>
                             </a>
                         </li>
                     </ul>
@@ -82,7 +82,6 @@
                     </li>
             @endif
 
-
             @if($modulos->contains('clase','banco_management') )
                 <li class="header">Bancos</li>
                 @hasrole('superadmin')
@@ -97,13 +96,9 @@
                         <a href="{{route('admin_mis_bancos_managment')}}">
                             <i class="material-icons col-light-blue">account_balance_wallet</i>
                             <span>Mis Bancos</span>
-
                         </a>
                     </li>
-
             @endif
-
-
         </ul>
     </div>
     <!-- #Menu -->

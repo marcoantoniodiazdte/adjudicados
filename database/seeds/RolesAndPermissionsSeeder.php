@@ -31,10 +31,14 @@ class RolesAndPermissionsSeeder extends Seeder
         // Create a superadmin for the admin users
         $super_admin = Admin::create([
             'company_id'          => 1,
-            'name'          => 'Super Admin',
+            'nombres'          => 'Super Admin',
             'email'         => 'superadmin@gmail.com',
             'password'      => 'superadmin@gmail.com',
         ]);
+
+        //Grupos_modelos_bloques
+
+
 
         Module::create(['name' => 'inmobiliarias','title' => 'Inmobiliaras','description' => 'Inmobiliaras','clase' => 'inmo_management','icon' => 'home' ,'color' => 'col-light-blue' ,'base_url' => 'admin/inmobiliarias']); // Modulo 1
         Module::create(['name' => 'users','title' => 'Usuarios','description' => 'Usuarios','clase' => 'user_management','icon' => 'person' ,'color' => 'col-light-blue' ,'base_url' => 'admin_users_managment']); // Modulo 2
@@ -97,6 +101,13 @@ class RolesAndPermissionsSeeder extends Seeder
                 Permission::create(['guard_name' => 'admin','name' => 'update.tipos_caracteristicas' , 'title'=>'Editar Tipos Caracteristicas', 'modulo_id' => 4]);
                 Permission::create(['guard_name' => 'admin','name' => 'delete.tipos_caracteristicas', 'title'=>'Eliminar Tipos Caracteristicas' , 'modulo_id' => 4]);
 
+                //Tipos Atrinuots
+                Permission::create(['guard_name' => 'admin','name' => 'list.tipos_atributos', 'title'=>'Listar Tipos Atributos' , 'modulo_id' => 4]);
+                Permission::create(['guard_name' => 'admin','name' => 'create.tipos_atributos', 'title'=>'Crear Tipos Atributos' , 'modulo_id' => 4]);
+                Permission::create(['guard_name' => 'admin','name' => 'show.tipos_atributos', 'title'=>'Consultar Tipos Atributos' , 'modulo_id' => 4]);
+                Permission::create(['guard_name' => 'admin','name' => 'update.tipos_atributos' , 'title'=>'Editar Tipos Atributos', 'modulo_id' => 4]);
+                Permission::create(['guard_name' => 'admin','name' => 'delete.tipos_atributos', 'title'=>'Eliminar Tipos Atributos' , 'modulo_id' => 4]);
+
 
         // create permissions Bancos
         Permission::create(['guard_name' => 'admin','name' => 'list.bancos', 'title'=>'Listar Bancos' , 'modulo_id' => 5]);
@@ -153,6 +164,15 @@ class RolesAndPermissionsSeeder extends Seeder
         TiposPropiedades::create(['name' => 'Apartamento']);
         TiposPropiedades::create(['name' => 'Edificio']);
         TiposPropiedades::create(['name' => 'Casa']);
+        TiposPropiedades::create(['name' => 'Finca']);
+        TiposPropiedades::create(['name' => 'Hotel']);
+        TiposPropiedades::create(['name' => 'Locales y Oficinas']);
+        TiposPropiedades::create(['name' => 'Naves']);
+        TiposPropiedades::create(['name' => 'Negocios']);
+        TiposPropiedades::create(['name' => 'PentHouse']);
+        TiposPropiedades::create(['name' => 'Prop. Turisticas']);
+        TiposPropiedades::create(['name' => 'Solares']);
+        TiposPropiedades::create(['name' => 'Villas']);
         /*factory(TiposPropiedades::class,5)->create();*/
 
     }

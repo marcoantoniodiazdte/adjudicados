@@ -33,11 +33,45 @@
                    <section>
                        <div class="body">
                            <div class="row ">
+
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
                                            <input type="text" class="form-control validate" name="name" required minlength="10">
-                                           <label class="form-label">Name</label>
+                                           <label class="form-label">Nombre</label>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="text" class="form-control validate" name="RNC" required minlength="10">
+                                           <label class="form-label">RNC</label>
+                                       </div>
+                                   </div>
+                               </div>
+
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="text" class="form-control validate" name="razon_social" required minlength="10">
+                                           <label class="form-label">Razón Social</label>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-8">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="text" class="form-control validate" name="direccion" required minlength="10">
+                                           <label class="form-label">Dirección</label>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="tel" class="form-control validate" name="telefono_company" required minlength="10">
+                                           <label class="form-label">Teléfono</label>
                                        </div>
                                    </div>
                                </div>
@@ -45,23 +79,29 @@
                                <div class="col-xs-12 col-sm-12 col-md-8">
                                    <div class="form-group form-float">
                                        <div class="form-line">
-                                           <input type="text" class="form-control validate" name="description" required minlength="10">
-                                           <label class="form-label">Description</label>
+                                           <input type="text" class="form-control validate" name="correo_company" required minlength="10">
+                                           <label class="form-label">Correo Electrónico</label>
                                        </div>
                                    </div>
                                </div>
-                               <div class="col-lg-2 col-md-2 col-md-offset-0 col-sm-3 col-sm-offset-5 col-xs-5 col-xs-offset-4">
-                                   <div class="avatar" style="background-image: url('{{ storage_path('public/default.jpg') }}')">
-                                       <a class="avatar-edit" href="javascript:void(0);"><i class="material-icons">edit</i></a>
-                                       <input class="avatar-input" type="file" accept=".jpg,.jpeg" name="picture_file" value="">
+
+                               <div class="col-xs-12 col-sm-12 col-md-12">
+                                   <div class="form-group form-float">
+                                       <div class="form-line focused">
+                                           <textarea rows="4" name="description" id="description" class="form-control no-resize auto-growth"></textarea>
+                                           <label class="form-label">Descripción</label>
+                                       </div>
                                    </div>
                                </div>
 
 
+
+                               <input type="hidden" name="company_type" value="{{$company_type}}">
 
 
                            </div>
                        </div>
+
 
                    </section>
                    <h3>Modulos Inmobiliaria</h3>
@@ -85,28 +125,46 @@
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
-                                           <input type="text" class="form-control validate" name="name" required minlength="10">
-                                           <label class="form-label">Name</label>
+                                           <input type="text" class="form-control validate" name="nombres" required >
+                                           <label class="form-label">Nombres</label>
+                                       </div>
+                                   </div>
+                               </div>
+
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="text" class="form-control validate" name="apellidos" required >
+                                           <label class="form-label">Apellidos</label>
                                        </div>
                                    </div>
                                </div>
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
-                                           <input type="email" class="form-control validate" name="email" required minlength="10">
-                                           <label class="form-label">Email</label>
+                                           <input type="text" class="form-control validate" name="telefono_principal" required >
+                                           <label class="form-label">Teléfono</label>
                                        </div>
                                    </div>
                                </div>
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
-                                           <input type="password" class="form-control validate" name="password" required minlength="10">
+                                           <input type="email" class="form-control validate" name="email" required >
+                                           <label class="form-label">Correo Electrónico</label>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="password" class="form-control validate" name="password" required>
                                            <label class="form-label">Password</label>
                                        </div>
                                    </div>
                                </div>
                            </div>
+
                            <div class="row">
                                <div class="col-xs-12 col-sm-12 col-md-12">
                                    <select id="roles_administrador" name="roles_administrador[]" class="ms validate" multiple="multiple">
@@ -115,7 +173,6 @@
                                        @endforeach
                                    </select>
 
-                                   <input type="hidden" name="company_type" value="{{$company_type}}">
 
                                </div>
                            </div>
@@ -169,6 +226,7 @@
     <script src="{{ asset('plugins/multi-select/js/jquery.multi-select.js') }}"></script>
     <script src="{{ asset('plugins/materialize-stepper/js/mstepper.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-validation/jquery.validate.js') }}"></script>
-    <script src="{{ asset('js/src/inmbiliaria.js') }}"></script>
+    <script src="{{ asset('public/plugins/autosize/autosize.js') }}"></script>
+    <script src="{{ asset('js/src/inmobiliaria.js') }}"></script>
 
 @stop

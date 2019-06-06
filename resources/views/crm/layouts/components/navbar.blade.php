@@ -24,11 +24,17 @@
 --}}
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ route('logout') }}"
-                       onclick="event.preventDefault();document.getElementById('logout-form').submit();"
-                    ><i class="material-icons">input</i> <span class="hidden-sm visible-md-inline visible-lg-inline">Log Out</span></a></li>
+                <li><a id="logout" href="javascript:void(0);"><i class="material-icons">input</i> <span class="hidden-sm visible-md-inline visible-lg-inline">Log Out</span></a></li>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+
+                <script>
+                    $('#logout').on('click',function (event) {
+                        event.preventDefault();
+                        $('#logout-form').submit();
+                    });
+                </script>
+
+                <form id="logout-form" action="{{ route('admin.logoutAdmin') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
 

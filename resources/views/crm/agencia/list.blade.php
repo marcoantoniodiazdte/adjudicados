@@ -39,7 +39,11 @@
                         <label class="m-b-0" for="check-all"></label>
                     </th>
                     <th class="exportar">ID</th>
-                    <th class="exportar">Name</th>
+                    <th class="exportar">Nombre</th>
+                    <th class="exportar">RNC</th>
+                    <th class="exportar">Razón Social</th>
+                    <th class="exportar">Teléfono</th>
+                    <th class="exportar">Email</th>
                     <th>Opciones</th>
 
                 </tr>

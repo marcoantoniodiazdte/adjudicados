@@ -41,16 +41,34 @@
                    <div class="col-xs-12 col-sm-12 col-md-4">
                        <div class="form-group form-float">
                            <div class="form-line">
-                               <input type="text" class="form-control validate" name="name" required >
-                               <label class="form-label">Name</label>
+                               <input type="text" class="form-control validate" name="nombres" required >
+                               <label class="form-label">Nombres</label>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="col-xs-12 col-sm-12 col-md-4">
+                       <div class="form-group form-float">
+                           <div class="form-line">
+                               <input type="text" class="form-control validate" name="apellidos" required >
+                               <label class="form-label">Apellidos</label>
                            </div>
                        </div>
                    </div>
                    <div class="col-xs-12 col-sm-12 col-md-4">
                        <div class="form-group form-float">
                            <div class="form-line">
+                               <input type="text" class="form-control validate" name="telefono_principal" required >
+                               <label class="form-label">Teléfono</label>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="col-xs-12 col-sm-12 col-md-4">
+                       <div class="form-group form-float">
+                           <div class="form-line">
                                <input type="email" class="form-control validate" name="email" required >
-                               <label class="form-label">Email</label>
+                               <label class="form-label">Correo Electrónico</label>
                            </div>
                        </div>
                    </div>

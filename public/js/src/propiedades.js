@@ -1,9 +1,9 @@
 $(document).ready(function () {
-    if($('#inmobiliarias_table').size() > 0){
+    if($('#propiedades_table').size() > 0){
 
-        $('#inmobiliarias_table').DataTable(
+        $('#propiedades_table').DataTable(
             $.extend(true, {}, $.InmobiliariaSoft.options.DATATABLE_TEMPLATE,{
-                ajax: '/admin/inmobiliarias',
+                ajax: '/admin/propiedades',
                 type: 'GET',
                 columns: [
                     {
@@ -16,13 +16,12 @@ $(document).ready(function () {
                     },
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
-                    { data: 'description', name: 'description' },
                     {
                         data: function (data) {
                             var buttons = '<div class="btn-group">';
 
                             if (data.view === true) {
-                                buttons += '<a href="/admin/inmobiliarias/' + data.id + '" target="_blank" class="btn btn-info btn-xs waves-effect" ' +
+                                buttons += '<a href="/admin/propiedades/' + data.slug + '" target="_blank" class="btn btn-info btn-xs waves-effect" ' +
                                     '  data-toggle="tooltip" data-original-title="Consultar"><i class="material-icons">remove_red_eye</i></a>';
 
                             }
@@ -30,7 +29,7 @@ $(document).ready(function () {
 
                             if (data.edit === true) {
                                 buttons +=
-                                    '<a href="/admin/inmobiliarias/' + data.id + '/edit" target="_blank" class="btn btn-warning btn-xs waves-effect edit-brand" ' +
+                                    '<a href="/admin/propiedades/' + data.slug + '/edit" target="_blank" class="btn btn-warning btn-xs waves-effect edit-brand" ' +
                                     'data-toggle="tooltip" data-original-title="Editar"><i class="material-icons">edit</i></a>'
                                 ;
                             }
@@ -48,8 +47,12 @@ $(document).ready(function () {
     };
 
 
-    
+    //autosize($('textarea.auto-growth'));
     if($('#inmobiliaria_new_form').size() > 0){
+
+        //Textarea auto growth
+
+
         var inmobiliaria_new_form = $('#inmobiliaria_new_form').show();
         var loanding_inmobiliaria_new_form = $('#loanding_inmobiliaria_new_form');
 
@@ -78,6 +81,8 @@ $(document).ready(function () {
                     data:inmobiliaria_new_form.serialize(),
                     type:"POST",
                     success:function (response) {
+
+
 
                     },
                     error: function(errorResponse) {

@@ -9,12 +9,14 @@ class Company extends Model
 {
     use HasRoles;
 
-    protected $fillable = ['name','description','company_type'];
+    protected $fillable = ['name','RNC','razon_social','direccion','correo_company',
+        'telefono_company','active','description','company_type'];
     protected $guard_name = 'admin';
 
 
+
     public function admin(){
-        return $this->hasOne('App\Admin','company_id')->withoutGlobalScopes();;
+        return $this->hasOne('App\Admin','company_id')->withoutGlobalScopes();
     }
 
 
@@ -44,6 +46,10 @@ class Company extends Model
 
     public function tipos_caracteristicas(){
         return $this->hasMany('App\TiposCaracteristicas','company_id');
+    }
+
+    public function tipos_atributos(){
+        return $this->hasMany(TiposAtributos::class,'company_id');
     }
     public function bancos(){
         return $this->belongsToMany('App\Banco')->withPivot('id','tipo_cuenta', 'tipo_moneda','numero_cuenta')->withTimestamps();

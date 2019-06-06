@@ -7,7 +7,6 @@ use App\Http\Requests\TipoCaracteristicaRequest;
 use App\TiposCaracteristicas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class TipoCaracteristicaController extends Controller
@@ -17,7 +16,7 @@ class TipoCaracteristicaController extends Controller
     {
         $this->middleware('auth:admin');
 
-        $this->middleware('permission:list.tipos_caracteristicas')->only(['index','mis_bancos_managment']);
+        $this->middleware('permission:list.tipos_caracteristicas')->only(['index']);
         $this->middleware('permission:create.tipos_caracteristicas')->only(['create','store']);
         $this->middleware('permission:show.tipos_caracteristicas')->only('show');
         $this->middleware('permission:update.tipos_caracteristicas')->only(['edit','update']);

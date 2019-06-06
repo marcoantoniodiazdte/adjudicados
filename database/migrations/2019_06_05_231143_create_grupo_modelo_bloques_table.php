@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoAtributosTable extends Migration
+class CreateGrupoModeloBloquesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateTipoAtributosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_atributos', function (Blueprint $table) {
+        Schema::create('grupo_modelo_bloques', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('numbre_grupo_modelo_bloque');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateTipoAtributosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_atributos');
+        Schema::dropIfExists('grupo_modelo_bloques');
     }
 }

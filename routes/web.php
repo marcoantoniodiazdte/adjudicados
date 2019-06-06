@@ -25,7 +25,9 @@ Route::prefix('admin')->group(function (){
 
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login.form');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::post('/logoutAdmin', 'Auth\AdminLoginController@logoutAdmin')->name('admin.logoutAdmin');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
 
 
 
@@ -59,9 +61,19 @@ Route::prefix('admin')->group(function (){
     ]]);
 
     //Propiedades
-    Route::resource('/propiedades','PropiedadesController');
+    Route::resource('/propiedades','PropiedadesController',['parameters' => ['propiedades' => 'propiedades']]);
         //Propiedades
         Route::resource('/tipos_caracteristicas','TipoCaracteristicaController');
+        Route::resource('/tipos_atributos','TipoAtributoController');
+
+    Route::resource('/propiedades.atributos','AtributosPropiedadesController');
+
+    //Proyectos
+    Route::resource('/proyectos','ProyectosController');
+
+
+
+
 
 
     Route::get('/bancos/mis_bancos','BancoController@mis_bancos_managment')->name('admin_mis_bancos_managment');
@@ -71,16 +83,20 @@ Route::prefix('admin')->group(function (){
     Route::patch('/bancos/mis_bancos/{banco}', 'BancoController@mis_bancos_managment_update')->name('admin_mis_bancos_managment_update');
     Route::resource('/bancos','BancoController');
 
-
     /*//Bancos
     Route::get('/bancos', 'BancoController@index')->name('bancos.index');
     Route::get('/bancos/create', 'BancoController@create')->name('bancos.create');
     Route::post('/bancos', 'BancoController@store')->name('bancos.store');
     Route::get('/bancos/{banco}/edit', 'BancoController@edit')->name('bancos.edit');*/
 
+   //Get Municipios by provincia
+
+    Route::get('/provincia/{provincia_id}/municipios','MunicipioController@get_municipios_by_pronvicia')->name('municipios_by_provincia');
 
 
-    //Users Managment
+    //Get Sectores by municipio
+
+    Route::get('/municipio/{municipio_id}/sectores','SectorController@get_sectores_by_municipio')->name('sectores_by_municipios');
 
 
 });

@@ -8,6 +8,7 @@ use App\Http\Requests\CreateInmobiliariaRequest;
 use App\Inmobiliaria;
 use App\Module;
 use App\Role;
+use App\TiposAtributos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class CompanyController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -43,20 +45,18 @@ class CompanyController extends Controller
     public function create($company_type = null,$vista = null)
     {
 
-        $imagenes = Storage::get('CompanyDefault/default.jpg');
-
 
         $modulos = Module::orderBy('name')->get();
         $roles = Role::all();
-        return view($vista,compact(['modulos','roles','company_type','imagenes']));
+        return view($vista,compact(['modulos','roles','company_type']));
     }
 
     public function store(CompanyRequestForm $request)
     {
         $company =  Company::create($request->all());
-        if ($company){
+       /* if ($company){
             Storage::makeDirectory($company->name);
-        }
+        }*/
 
         // $company =  Inmobiliaria::find(2);
         // Create a Inmobiliara  admin
@@ -84,7 +84,9 @@ class CompanyController extends Controller
             /* $company->roles()->sync($request->input('roles_administrador'));
              $admin->assignRole($request->input('roles_administrador'));*/
         }
-        //return redirect(route('companys.index'));
+
+
+        return redirect(route('companys.index'));
     }
 
 
@@ -107,14 +109,12 @@ class CompanyController extends Controller
     {
         $company->update($request->all());
 
+
         if($request->has('modulos')){
 
             $company->modules()->sync($request->input('modulos'));
         }
-
-        if($request->has('email')){
-            $company->admin->update($request->all());
-        }
+        $company->admin->update($request->all());
 
         /*"_method" => "PATCH"
           "name" => "Admin Tercera Inmobiliaria Updated"

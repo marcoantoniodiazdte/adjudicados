@@ -16,6 +16,8 @@ class CreateArchivosPropiedadesTable extends Migration
         Schema::create('archivos_propiedades', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre_archivo');
+            $table->string('ubicacion');
+            $table->enum('clase_archivo',['galeria']);
             $table->unsignedBigInteger('propiedad_id');
             $table->timestamps();
         });
