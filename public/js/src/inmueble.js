@@ -2,8 +2,6 @@ $(document).ready(function () {
     //autosize($('textarea.auto-growth'));
     if($('#inmueble_form').size() > 0){
 
-        $('.currency').inputmask('99,99 $', { placeholder: '__,__ $' });
-
 
         autosize($('textarea.auto-growth'));
 

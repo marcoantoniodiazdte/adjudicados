@@ -200,7 +200,7 @@
                         </div>
 
                         <div class="col-sm-8 col-md-12">
-                            <h2 class="card-inside-title">Tipos Propiedad</h2>
+                            <h2 class="card-inside-title">Tipo Propiedad</h2>
                             <div class="demo-checkbox">
                                 @foreach($tipos_propiedades as $tipo_propiedad)
                                     <input  type="checkbox" name="tipos_propiedad[]" id="{{ $tipo_propiedad->id }}"
@@ -209,8 +209,26 @@
                                 @endforeach
                             </div>
                         </div>
+
+                        <div class="col-sm-12 col-md-12">
+                            <h2 class="card-inside-title">Comodidades</h2>
+                            <div class="demo-checkbox">
+
+                                @foreach($tipos_caracteristicas as $caracteristicas)
+                                    <div class="col-sm-4 col-md-4 col-lg-4">
+                                        <div class="form-group form-float m-b-0">
+                                            <input  type="checkbox" name="tipos_caracteristicas[]" id="{{ $caracteristicas->nombre_tipo . $caracteristicas->id }}" value="{{ $caracteristicas->id }}"/>
+                                            <label for="{{ $caracteristicas->nombre_tipo . $caracteristicas->id  }}">{{ $caracteristicas->nombre_tipo }}</label>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
 
+                @include('crm.inmuebles.partials.atributos_pro')
+                {{$propiedades->atributos}}
+                <span id="propiedades_atributos" data-atributos="@json($propiedades->atributos)" ></span>
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12">
 
@@ -234,6 +252,7 @@
 
                    </div>
 
+
                     <div class="row">
 
                         <div class="col-xs-12 align-center">
@@ -252,7 +271,13 @@
 
 
 @section('pages_css_files')
+    <link href="{{ asset('plugins/materialize-stepper/css/mstepper.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/multi-select/css/multi-select.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/select2/css/select2-bootstrap.css') }}" rel="stylesheet">
+
     <link href="{{ asset('plugins/bootstrap-fileinput/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css">
 
 @stop
@@ -262,7 +287,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
 
     <script src="{{ asset('plugins/jquery-select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('js/src/inmueble.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-sheepIt/jquery.sheepItPlugin.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-maskMoney/jquery.maskMoney.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-maskMoney/jquery.region.maskMoney.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
+
+    <script src="{{ asset('plugins/autosize/autosize.js') }}"></script>
+    </script><script src="{{ asset('js/src/proyectos.js') }}"></script>
+    </script><script src="{{ asset('js/src/inmueble.js') }}"></script>
 
     <script>
         // DELETE PROPERTY GALLERY IMAGE

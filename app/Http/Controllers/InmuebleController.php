@@ -137,8 +137,15 @@ class InmuebleController extends Controller
         $tipos_propiedades = TiposPropiedades::all();
         $municipio_prop = Municipio::where('municipio_id',$propiedades->municipio_id)->first();
         $sector_pro = Sector::where('sector_id',$propiedades->sector_id)->first();
-        $propiedades->load(['arhivosPropiedad','tiposPropiedad','provincia','municipio','sector']);
-        return view($vista,compact(['propiedades','provincias','tipos_propiedades','municipio_prop','sector_pro']));
+
+        $tipos_atributos = TiposAtributos::all();
+        $tipos_caracteristicas = TiposCaracteristicas::all();
+
+        $propiedades->load(['arhivosPropiedad','atributos','caracteristicas','tiposPropiedad','provincia','municipio','sector']);
+
+
+
+        return view($vista,compact(['propiedades','provincias','tipos_propiedades','municipio_prop','sector_pro','tipos_atributos','tipos_caracteristicas']));
 
     }
 
