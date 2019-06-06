@@ -656,9 +656,6 @@ $( '.dropdown-menu a' ).on( 'click', function( event ) {
    }
 
    $( event.target ).blur();
-      
-   console.log( options );
-   return false;
 });
 </script>
 @endsection

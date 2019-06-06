@@ -97,7 +97,7 @@
                     </span>
                 @endif
                 <div class="form-group">
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                    <input id="password-confirm" type="password" class="input-text" placeholder="Confirmar Contraseña" name="password_confirmation" required>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="button-md button-theme btn-block">Regístrate</button>
