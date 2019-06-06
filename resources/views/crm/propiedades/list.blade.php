@@ -34,10 +34,8 @@
 
         <div class="body">
 
-            {{ $propiedades }}
 
-
-           {{-- <table id="propiedades_table" class="table table-bordered table-striped table-hover dataTable js-exportable" style="width: 100%;">
+           <table id="propiedades_table" class="table table-bordered table-striped table-hover dataTable js-exportable" style="width: 100%;">
                 <thead>
                 <tr>
 
@@ -47,13 +45,12 @@
                     </th>
                     <th class="exportar">ID</th>
                     <th class="exportar">Name</th>
-                    <th class="exportar">Desc</th>
                     <th>Opciones</th>
 
                 </tr>
                 </thead>
 
-            </table>--}}
+            </table>
         </div>
     </div>
 
@@ -83,16 +80,10 @@
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-datatable/extensions/export/select.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datatable/extensions/export/select.min.js') }}">
 
-    <script>
-        $(document).ready(function () {
-            if($('#propiedades_table').size() > 0){
-                $('#propiedades_table').DataTable();
-            }
+    </script><script src="{{ asset('js/src/propiedades.js') }}"></script>
 
-        });
-    </script>
 
 @stop
 

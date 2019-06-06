@@ -16,6 +16,11 @@ $(document).ready(function () {
                     },
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
+
+                    { data: 'RNC', name: 'RNC' },
+                    { data: 'razon_social', name: 'razon_social' },
+                    { data: 'telefono_principal', name: 'telefono_principal' },
+                    { data: 'email', name: 'email' },
                     {
                         data: function (data) {
                             var buttons = '<div class="btn-group">';

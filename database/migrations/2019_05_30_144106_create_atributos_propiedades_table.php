@@ -17,15 +17,7 @@ class CreateAtributosPropiedadesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('propiedad_id');
             $table->unsignedBigInteger('tipo_atributo_id');
-            $table->integer('valor');
-            $table->integer('unidad');
-            $table->timestamps();
-        });
-
-        Schema::create('tipos_atributos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('icono');
-            $table->string('nombre');
+            $table->text('valor');
             $table->timestamps();
         });
     }
@@ -38,6 +30,5 @@ class CreateAtributosPropiedadesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('atributos_propiedades');
-        Schema::dropIfExists('tipos_atributos');
     }
 }

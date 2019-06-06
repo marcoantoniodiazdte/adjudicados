@@ -24,8 +24,11 @@ class CompanyRequestForm extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required',
-            'description'   => 'required',
+            'name'                  => 'required|unique:companies|max:100',
+            'RNC'                   => 'required|unique:companies|max:100',
+            'razon_social'          => 'unique:companies|max:100',
+            'correo_electronico'    => 'unique:companies,correo_electronico|max:100',
+            'description'           => 'required',
         ];
     }
 }

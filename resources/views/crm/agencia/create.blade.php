@@ -34,11 +34,45 @@
                    <section>
                        <div class="body">
                            <div class="row ">
+
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
                                            <input type="text" class="form-control validate" name="name" required minlength="10">
-                                           <label class="form-label">Name</label>
+                                           <label class="form-label">Nombre</label>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="text" class="form-control validate" name="RNC" required minlength="10">
+                                           <label class="form-label">RNC</label>
+                                       </div>
+                                   </div>
+                               </div>
+
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="text" class="form-control validate" name="razon_social" required minlength="10">
+                                           <label class="form-label">Razón Social</label>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-8">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="text" class="form-control validate" name="direccion" required minlength="10">
+                                           <label class="form-label">Dirección</label>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="tel" class="form-control validate" name="telefono_principal" required minlength="10">
+                                           <label class="form-label">Teléfono</label>
                                        </div>
                                    </div>
                                </div>
@@ -46,11 +80,26 @@
                                <div class="col-xs-12 col-sm-12 col-md-8">
                                    <div class="form-group form-float">
                                        <div class="form-line">
-                                           <input type="text" class="form-control validate" name="description" required minlength="10">
-                                           <label class="form-label">Description</label>
+                                           <input type="text" class="form-control validate" name="correo_electronico" required minlength="10">
+                                           <label class="form-label">Correo Electrónico</label>
                                        </div>
                                    </div>
                                </div>
+
+                               <div class="col-xs-12 col-sm-12 col-md-12">
+                                   <div class="form-group form-float">
+                                       <div class="form-line focused">
+                                           <textarea rows="4" name="description" id="description" class="form-control no-resize auto-growth"></textarea>
+                                           <label class="form-label">Descripción</label>
+                                       </div>
+                                   </div>
+                               </div>
+
+
+
+                               <input type="hidden" name="company_type" value="{{$company_type}}">
+
+
                            </div>
                        </div>
 
@@ -77,23 +126,40 @@
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
-                                           <input type="text" class="form-control validate" name="name" required minlength="10">
-                                           <label class="form-label">Name</label>
+                                           <input type="text" class="form-control validate" name="nombres" required >
+                                           <label class="form-label">Nombres</label>
+                                       </div>
+                                   </div>
+                               </div>
+
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="text" class="form-control validate" name="apellidos" required >
+                                           <label class="form-label">Apellidos</label>
                                        </div>
                                    </div>
                                </div>
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
-                                           <input type="email" class="form-control validate" name="email" required minlength="10">
-                                           <label class="form-label">Email</label>
+                                           <input type="text" class="form-control validate" name="telefono_principal" required >
+                                           <label class="form-label">Teléfono</label>
                                        </div>
                                    </div>
                                </div>
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
-                                           <input type="password" class="form-control validate" name="password" required minlength="10">
+                                           <input type="email" class="form-control validate" name="email" required >
+                                           <label class="form-label">Correo Electrónico</label>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                   <div class="form-group form-float">
+                                       <div class="form-line">
+                                           <input type="password" class="form-control validate" name="password" required>
                                            <label class="form-label">Password</label>
                                        </div>
                                    </div>

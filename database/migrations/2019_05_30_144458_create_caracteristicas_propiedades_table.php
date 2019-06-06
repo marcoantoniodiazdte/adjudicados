@@ -17,8 +17,6 @@ class CreateCaracteristicasPropiedadesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('propiedad_id');
             $table->unsignedBigInteger('tipos_caracteristica_id');
-            $table->string('titulo');
-            $table->text('descripcion');
             $table->timestamps();
         });
 

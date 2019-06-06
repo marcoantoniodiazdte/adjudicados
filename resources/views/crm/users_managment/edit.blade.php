@@ -32,32 +32,50 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="form-group form-float">
                             <div class="form-line focused">
-                                <input type="text" class="form-control validate" value="{{ $admin->name }}" name="name" required >
-                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control validate" name="nombres" value="{{$admin->nombres}}" required >
+                                <label class="form-label">Nombres</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <input type="text" class="form-control validate" name="apellidos" value="{{$admin->apellidos}}" required >
+                                <label class="form-label">Apellidos</label>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="form-group form-float">
                             <div class="form-line focused">
-                                <input type="email" class="form-control validate" value="{{ $admin->email }}" name="email" required >
-                                <label class="form-label">Email</label>
+                                <input type="text" class="form-control validate" name="telefono_principal" value="{{$admin->telefono_principal}}"  required >
+                                <label class="form-label">Teléfono</label>
                             </div>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="form-group form-float">
                             <div class="form-line focused">
-                                <input type="password" class="form-control validate"  name="password" required>
+                                <input type="email" class="form-control validate" name="email" value="{{$admin->correo_electronico}}" required >
+                                <label class="form-label">Correo Electrónico</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <input type="password" class="form-control validate" name="password" required>
                                 <label class="form-label">Password</label>
                             </div>
                         </div>
                     </div>
 
+
                     <div class="col-sm-8 col-md-12">
                         <h4>Roles</h4>
                         <select id="roles_suario" name="roles_suario[]" class="ms validate" multiple="multiple">
-                            @foreach($inmobiliaria_roles as $role)
+                            @foreach($company_roles as $role)
                                 <option value="{{$role->id}}" {{ $admin->roles->contains($role) ?  'selected' : ''  }}>   {{$role->name}}</option>
                             @endforeach
                         </select>

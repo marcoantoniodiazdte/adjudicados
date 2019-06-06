@@ -97,8 +97,8 @@
                         searchable: false
                       },
                       { data: 'id', name: 'id' },
-                      { data: 'name', name: 'name' },
-                      { data: 'email', name: 'email' },
+                      { data: 'nombres', name: 'nombres' },
+                      { data: 'correo_electronico', name: 'correo_electronico' },
                       {
                         data: function (data) {
                           var buttons = '<div class="btn-group">';

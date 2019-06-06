@@ -17,7 +17,8 @@ class Admin extends Authenticatable
     protected $guard_name = 'admin';
 
     protected $fillable = [
-        'name', 'email', 'password','company_id'
+        'nombres', 'apellidos', 'telefono_principal',
+        'email', 'password','company_id'
     ];
 
     protected $hidden = [
@@ -32,6 +33,5 @@ class Admin extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
-
 
 }

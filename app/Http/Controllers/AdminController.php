@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Http\Requests\AdminFormRequest;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +51,7 @@ class AdminController extends Controller
         return view('crm.users_managment.create',compact('roles'));
     }
 
-    public function store(Request $request)
+    public function store(AdminFormRequest $request)
     {
 
 
@@ -92,8 +93,8 @@ class AdminController extends Controller
     public function edit(Admin $admin)
     {
         $admin->load('roles');
-        $inmobiliaria_roles = Role::all();
-        return view('crm.users_managment.edit',compact(['admin','inmobiliaria_roles']));
+        $company_roles = Role::all();
+        return view('crm.users_managment.edit',compact(['admin','company_roles']));
     }
 
     public function update(Request $request, Admin $admin)

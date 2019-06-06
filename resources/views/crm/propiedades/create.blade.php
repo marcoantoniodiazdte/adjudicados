@@ -11,16 +11,11 @@
     @include('crm.layouts.components.left_sidebar')
 @endsection
 
-@section('pages_css_files')
-    <link href="{{ asset('plugins/materialize-stepper/css/mstepper.css') }}" rel="stylesheet">
-    <link href="{{ asset('plugins/multi-select/css/multi-select.css') }}" rel="stylesheet">
-@stop
-
 
 @section('contenido_inmobiliaria')
    <div class="card">
        <div class="header">
-           <h2><i class="material-icons">add</i>Create Propiedad</h2>
+           <h2><i class="material-icons">add</i>Crear Propiedad</h2>
        </div>
 
        @if ($errors->any())
@@ -35,40 +30,14 @@
            </div>
        @endif
 
-
-
        <div class="body">
-           <div class="row">
 
+               {!! Form::open(['route' => 'propiedades.store', 'method' => 'post' , 'id' => 'inmueble_form','enctype' => 'multipart/form-data']) !!}
 
-               {!! Form::open(['route' => 'propiedades.store', 'method' => 'post']) !!}
-               <div class="col-sm-8 col-md-12">
-                   <div class="form-group form-float m-b-0">
-                       <div class="form-line">
-                           <input type="text" class="form-control" name="name"  maxlength="100" />
-                           <label class="form-label">Nombre</label>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-sm-8 col-md-12">
-                   <h2 class="card-inside-title">Tipos Propiedad</h2>
-                   <div class="demo-checkbox">
-                       @foreach($tipos_propiedades as $tipo_propiedad)
-
-                           <input  type="checkbox" name="tipos_propiedad[]" id="{{ $tipo_propiedad->id }}" value="{{ $tipo_propiedad->id }}"/>
-                           <label for="{{ $tipo_propiedad->id }}">{{ $tipo_propiedad->name }}</label>
-                       @endforeach
-
-                   </div>
-               </div>
-
-
-               <div class="col-xs-12 align-center">
-                   <button type="submit" class="btn btn-primary m-t-15 waves-effect">Crear Propiedad</button>
-               </div>
+                    @include('crm.inmuebles.partials._form_inmueble',['clase_proyecto' => 'propiedad'])
 
                {!! Form::close() !!}
-           </div>
+
 
 
        </div>
@@ -76,7 +45,37 @@
    </div>
 @endsection
 
+@section('pages_css_files')
+    <link href="{{ asset('plugins/materialize-stepper/css/mstepper.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/multi-select/css/multi-select.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('plugins/bootstrap-select/css/bootstrap-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/select2/css/select2-bootstrap.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('plugins/bootstrap-fileinput/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css">
+
+@stop
+
+
+
 @section('pages_js_files')
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
+
+    <script src="{{ asset('plugins/jquery-select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-sheepIt/jquery.sheepItPlugin.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-maskMoney/jquery.maskMoney.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-maskMoney/jquery.region.maskMoney.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
+
+    <script src="{{ asset('plugins/autosize/autosize.js') }}"></script>
+    </script><script src="{{ asset('js/src/proyectos.js') }}"></script>
+    </script><script src="{{ asset('js/src/inmueble.js') }}"></script>
+    <script>
+        $(document).on('ready', function() {
+            $("#garleria_propiedad").fileinput({'showUpload':false, 'previewFileType':'jpeg,jpg,png'});
+        });
+    </script>
 
 @stop

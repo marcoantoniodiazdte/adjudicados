@@ -39,8 +39,11 @@
                         <label class="m-b-0" for="check-all"></label>
                     </th>
                     <th class="exportar">ID</th>
-                    <th class="exportar">Name</th>
-                    <th class="exportar">Desc</th>
+                    <th class="exportar">Nombre</th>
+                    <th class="exportar">RNC</th>
+                    <th class="exportar">Razón Social</th>
+                    <th class="exportar">Teléfono</th>
+                    <th class="exportar">Email</th>
                     <th>Opciones</th>
 
                 </tr>
@@ -77,6 +80,6 @@
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-datatable/extensions/export/select.min.js') }}"></script>
-    <script src="{{ asset('js/src/inmbiliaria.js') }}"></script>
+    <script src="{{ asset('js/src/inmobiliaria.js') }}"></script>
 
 @stop

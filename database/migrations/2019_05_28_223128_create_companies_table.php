@@ -20,20 +20,10 @@ class CreateCompaniesTable extends Migration
             $table->string('RNC')->unique()->nullable();
             $table->string('razon_social')->unique()->nullable();
             $table->string('direccion')->unique()->nullable();
-
-            $table->string('nombres_principal')->unique()->nullable();
-            $table->string('apellidos_principal')->unique()->nullable();
-            $table->string('telefono_principal')->unique()->nullable();
-            $table->string('correos_principal')->unique()->nullable();
-
-            $table->string('nombres_secundario')->unique()->nullable();
-            $table->string('apellidos_secundario')->unique()->nullable();
-            $table->string('telefono_secundario')->unique()->nullable();
-            $table->string('correos_secundario')->unique()->nullable();
-
+            $table->string('correo_company')->unique()->nullable();
+            $table->string('telefono_company')->unique()->nullable();
             $table->enum('active',['true','false'])->default('true');
             $table->enum('company_type',['inmobiliaria','agencia'])->nullable();
-
             $table->string('description');
 
             $table->timestamps();
