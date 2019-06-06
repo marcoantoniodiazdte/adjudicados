@@ -30,7 +30,7 @@
     <!-- Datepicker -->
     <link href="{{ asset('plugins/jquery-datepicker/datepicker.css') }}" rel="stylesheet">
     <!-- Custom Css -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{ asset('css/themes/theme-blue.min.css') }}" rel="stylesheet"/>
 
@@ -45,20 +45,20 @@
         <div class="login-page" style="overflow-x: visible">
             <div class="login-box">
                 <div class="logo">
+                    <img src="{{asset('img/logos/logo.png')}}" href="{{route('home')}}" style="height: 56px!important;" alt="logo">
                     <a href="javascript:void(0);">Admin<b>Inmobiliaria</b></a>
-                    <small>Admin BootStrap Based - Material Design</small>
 
                 </div>
                 <div class="card">
                     <div class="body">
                         {!! Form::open(['route' => 'admin.login.submit', 'method' => 'post']) !!}
-                        <div class="msg">Sign in to start your session</div>
+                        <div class="msg">Ingrése sus credenciales para iniciar sesión</div>
                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">person</i>
                                             </span>
                             <div class="form-line">
-                                <input type="text" class="form-control" name="email" placeholder="Email" required autofocus>
+                                <input type="text" class="form-control" name="email" placeholder="Correo Electronico" required autofocus>
                             </div>
                         </div>
                         <div class="input-group">
@@ -66,7 +66,7 @@
                                                 <i class="material-icons">lock</i>
                                             </span>
                             <div class="form-line">
-                                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
                             </div>
                         </div>
                         <div class="row">
