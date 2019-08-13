@@ -28,9 +28,6 @@ Route::prefix('admin')->group(function (){
     Route::post('/logoutAdmin', 'Auth\AdminLoginController@logoutAdmin')->name('admin.logoutAdmin');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
-
-
-
     //Route::resource('/users_managment','RoleController',['as' =>'admin']);
     Route::get('/users_managment', 'AdminController@users_managment')->name('admin_users_managment');
     Route::get('/users_managment/user/create', 'AdminController@create')->name('admin_users_managment_create');
@@ -38,19 +35,14 @@ Route::prefix('admin')->group(function (){
     Route::get('/users_managment/user/{admin}', 'AdminController@show')->name('admin_users_managment_show');
     Route::patch('/users_managment/user/{admin}', 'AdminController@update')->name('admin_users_managment_update');
     Route::get('/users_managment/user/{admin}/edit', 'AdminController@edit')->name('admin_users_managment_edit');
-
     //Roles
-
     Route::get('/roles_managment', 'RoleController@index')->name('admin_roles_managment');
     Route::get('/roles_managment/role/create', 'RoleController@create')->name('admin_roles_managment_create');
     Route::post('/roles_managment/store', 'RoleController@store')->name('admin_roles_managment_store');
     Route::get('/roles_managment/role/{role}', 'RoleController@show')->name('admin_roles_managment_show');
     Route::patch('/roles_managment/role/{role}', 'RoleController@update')->name('admin_roles_managment_update');
     Route::get('/roles_managment/role/{role}/edit', 'RoleController@edit')->name('admin_roles_managment_edit');
-
-
     Route::resource('/modules','ModuleController');
-
     //Agencias
     Route::resource('/agencias','AgenciaController', ['parameters' => [
         'agencias' => 'company',
@@ -59,23 +51,14 @@ Route::prefix('admin')->group(function (){
     Route::resource('inmobiliarias', 'InmobiliariaController', ['parameters' => [
         'inmobiliarias' => 'company',
     ]]);
-
     //Propiedades
     Route::resource('/propiedades','PropiedadesController',['parameters' => ['propiedades' => 'propiedades']]);
         //Propiedades
         Route::resource('/tipos_caracteristicas','TipoCaracteristicaController');
         Route::resource('/tipos_atributos','TipoAtributoController');
-
     Route::resource('/propiedades.atributos','AtributosPropiedadesController');
-
     //Proyectos
     Route::resource('/proyectos','ProyectosController');
-
-
-
-
-
-
     Route::get('/bancos/mis_bancos','BancoController@mis_bancos_managment')->name('admin_mis_bancos_managment');
     Route::get('/bancos/mis_bancos/create','BancoController@mis_bancos_managment_create')->name('admin_mis_bancos_managment_create');
     Route::post('/bancos/mis_bancos/store','BancoController@mis_bancos_managment_store')->name('admin_mis_bancos_managment_store');
@@ -92,19 +75,20 @@ Route::prefix('admin')->group(function (){
    //Get Municipios by provincia
 
     Route::get('/provincia/{provincia_id}/municipios','MunicipioController@get_municipios_by_pronvicia')->name('municipios_by_provincia');
-
-
     //Get Sectores by municipio
-
     Route::get('/municipio/{municipio_id}/sectores','SectorController@get_sectores_by_municipio')->name('sectores_by_municipios');
-
 
 });
 
 
 Route::get('/login','WelcomeController@index')->name('login');
 Route::get('/','WelcomeController@index')->name('inicio');
+Route::get('/municipios','WelcomeController@minicipalities');
+Route::get('/sectores','WelcomeController@sector');
 Route::get('/buscar','WelcomeController@search')->name('buscar');
+Route::get('/cambio','WelcomeController@exchangeEur')->name('buscar');
+Route::get('/cambio2','WelcomeController@exchangeUsd')->name('buscar');
+
 
 
 Route::post('/profile/update','GuestController@update')->name('update.profile');
@@ -135,6 +119,10 @@ Route::get('/ingresa', function(){
 
 Route::get('/proyecto/2',function(){
     return view('welcome.projects.view2');
+});
+
+Route::get('/perfil/propiedad/1', function(){
+    return view('welcome.profile.properties_details');
 });
 
  

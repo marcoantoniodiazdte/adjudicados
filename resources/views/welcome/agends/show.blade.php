@@ -12,9 +12,9 @@
                         <img src="http://placehold.it/312x350" alt="agent-1" class="img-responsive">
                     </div>
                     <div class="col-lg-7 col-md-6 col-sm-7 agent-content clearfix">
-                        <h5>Agente Inmobiliario</h5>
+                        <h5>EURO-DOM</h5>
                         <h3>
-                            <a href="#">Cristian Almanzar</a>
+                            <a href="#">Inmobiliaria</a>
                         </h3>
                         <!-- Address list -->
                         <ul class="address-list">
@@ -22,13 +22,13 @@
                                 <span>
                                     <i class="fa fa-tag"></i>Nombre:
                                 </span>
-                                Cristian Almanzar
+                                EURO DM Proyectos
                             </li>
                             <li>
                                 <span>
                                     <i class="fa fa-envelope"></i>Email:
                                 </span>
-                                cristian.almanzar@gmail.com
+                                dm.proyectos@gmail.com
                             </li>
                             <li>
                                 <span>
@@ -46,7 +46,7 @@
                                 <span>
                                     <i class="fa fa-skype"></i>Skype:
                                 </span>
-                                cris.almanzar
+                                dm.proyectos
                             </li>
                         </ul>
 
@@ -94,7 +94,7 @@
                                         Featured
                                     </div>
                                     <div class="price-ratings">
-                                        <div class="price">$150,000</div>
+                                        <div class="price"> <p usd="150000" class="price" dop="7,650,000‬" eur="149000"> RD$7,650,000.00</p></div>
                                         <div class="ratings">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -105,7 +105,7 @@
                                     </div>
                                     <img src="http://placehold.it/360x240" alt="rp" class="img-responsive">
                                     <div class="property-overlay">
-                                        <a href="properties-details.html" class="overlay-link">
+                                        <a href="" class="overlay-link">
                                             <i class="fa fa-link"></i>
                                         </a>
                                         <a class="overlay-link property-video" title="Lexus GS F">
@@ -124,11 +124,11 @@
                                 <div class="content">
                                     <!-- title -->
                                     <h4 class="title">
-                                        <a href="properties-details.html">Big Head House</a>
+                                        <a href="">Big Head House</a>
                                     </h4>
                                     <!-- Property address -->
                                     <h3 class="property-address">
-                                        <a href="properties-details.html">
+                                        <a href="">
                                             <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
                                         </a>
                                     </h3>
@@ -164,7 +164,7 @@
                                         Featured
                                     </div>
                                     <div class="price-ratings">
-                                        <div class="price">$150,000</div>
+                                        <div class="price"> <p usd="150000" class="price" dop="7,650,000‬" eur="149000"> RD$7,650,000.00</p></div>
                                         <div class="ratings">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -175,7 +175,7 @@
                                     </div>
                                     <img src="http://placehold.it/360x240" alt="rp" class="img-responsive">
                                     <div class="property-overlay">
-                                        <a href="properties-details.html" class="overlay-link">
+                                        <a href="" class="overlay-link">
                                             <i class="fa fa-link"></i>
                                         </a>
                                         <a class="overlay-link property-video" title="Lexus GS F">
@@ -194,11 +194,11 @@
                                 <div class="content">
                                     <!-- title -->
                                     <h4 class="title">
-                                        <a href="properties-details.html">Beautiful Single Home</a>
+                                        <a href="">Beautiful Single Home</a>
                                     </h4>
                                     <!-- Property address -->
                                     <h3 class="property-address">
-                                        <a href="properties-details.html">
+                                        <a href="">
                                             <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
                                         </a>
                                     </h3>
@@ -234,7 +234,7 @@
                                         Featured
                                     </div>
                                     <div class="price-ratings">
-                                        <div class="price">$150,000</div>
+                                        <div class="price"> <p usd="150000" class="price" dop="7,650,000‬" eur="149000"> RD$7,650,000.00</p></div>
                                         <div class="ratings">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -245,7 +245,7 @@
                                     </div>
                                     <img src="http://placehold.it/360x240" alt="rp" class="img-responsive">
                                     <div class="property-overlay">
-                                        <a href="properties-details.html" class="overlay-link">
+                                        <a href="" class="overlay-link">
                                             <i class="fa fa-link"></i>
                                         </a>
                                         <a class="overlay-link property-video" title="Lexus GS F">
@@ -264,11 +264,11 @@
                                 <div class="content">
                                     <!-- title -->
                                     <h4 class="title">
-                                        <a href="properties-details.html">Park Avenue</a>
+                                        <a href="">Park Avenue</a>
                                     </h4>
                                     <!-- Property address -->
                                     <h3 class="property-address">
-                                        <a href="properties-details.html">
+                                        <a href="">
                                             <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
                                         </a>
                                     </h3>
@@ -304,7 +304,7 @@
                                         Featured
                                     </div>
                                     <div class="price-ratings">
-                                        <div class="price">$150,000</div>
+                                        <div class="price"> <p usd="150000" class="price" dop="7,650,000‬" eur="149000"> RD$7,650,000.00</p></div>
                                         <div class="ratings">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -315,7 +315,7 @@
                                     </div>
                                     <img src="http://placehold.it/360x240" alt="rp" class="img-responsive">
                                     <div class="property-overlay">
-                                        <a href="properties-details.html" class="overlay-link">
+                                        <a href="" class="overlay-link">
                                             <i class="fa fa-link"></i>
                                         </a>
                                         <a class="overlay-link property-video" title="Lexus GS F">
@@ -334,11 +334,11 @@
                                 <div class="content">
                                     <!-- title -->
                                     <h4 class="title">
-                                        <a href="properties-details.html">Sweet Family Home</a>
+                                        <a href="">Sweet Family Home</a>
                                     </h4>
                                     <!-- Property address -->
                                     <h3 class="property-address">
-                                        <a href="properties-details.html">
+                                        <a href="">
                                             <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
                                         </a>
                                     </h3>
@@ -373,7 +373,7 @@
                 <div class="sidebar">
                     <div class="sidebar-widget contact-1">
                         <div class="main-title-2">
-                            <h1><span>Contactar</span> Agente</h1>
+                            <h1><span>Contactar</span> Inmobiliaria</h1>
                         </div>
                         <div class="contact-form">
                             <form id="agent_form" action="index.html" method="GET" enctype="multipart/form-data">
@@ -417,7 +417,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="properties-details.html">Modern Family Home</a>
+                                    <a href="">Modern Family Home</a>
                                 </h3>
                                 <p>February 27, 2018</p>
                                 <div class="price">
@@ -431,7 +431,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="properties-details.html">Modern Family Home</a>
+                                    <a href="">Modern Family Home</a>
                                 </h3>
                                 <p>February 27, 2018</p>
                                 <div class="price">
@@ -445,7 +445,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="properties-details.html">Beautiful Single Home</a>
+                                    <a href="">Beautiful Single Home</a>
                                 </h3>
                                 <p>February 27, 2018</p>
                                 <div class="price">

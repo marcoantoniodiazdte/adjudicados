@@ -103,11 +103,9 @@
                                 <span class="table-property-price">$900 / monthly</span>
                             </div>
                         </td>
-                        <td class="expire-date hidden-xs">December 17 2017</td>
+                        <td class="expire-date hidden-xs">17 de Enero del 2020</td>
                         <td class="action">
-                            <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                            <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                            <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                            <a href="#"><i class="fa  fa-eye-slash"></i> Ver</a>
                         </td>
                     </tr>
 
@@ -120,11 +118,9 @@
                                 <span class="table-property-price">$900 / monthly</span>
                             </div>
                         </td>
-                        <td class="expire-date hidden-xs">December 17 2017</td>
+                        <td class="expire-date hidden-xs">17 de Enero del 2020</td>
                         <td class="action">
-                            <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                            <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                            <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                            <a href="#"><i class="fa  fa-eye-slash"></i> Ver</a>
                         </td>
                     </tr>
 
@@ -137,11 +133,9 @@
                                 <span class="table-property-price">$900 / monthly</span>
                             </div>
                         </td>
-                        <td class="expire-date hidden-xs">December 17 2017</td>
+                        <td class="expire-date hidden-xs">17 de Enero del 2020</td>
                         <td class="action">
-                            <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                            <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                            <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                            <a href="#"><i class="fa  fa-eye-slash"></i> Ver</a>
                         </td>
                     </tr>
 
@@ -154,11 +148,9 @@
                                 <span class="table-property-price">$900 / monthly</span>
                             </div>
                         </td>
-                        <td class="expire-date hidden-xs">December 17 2017</td>
+                        <td class="expire-date hidden-xs">17 de Enero del 2020</td>
                         <td class="action">
-                            <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                            <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                            <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                            <a href="#"><i class="fa  fa-eye-slash"></i> Ver</a>
                         </td>
                     </tr>
 
@@ -171,11 +163,9 @@
                                 <span class="table-property-price">$900 / monthly</span>
                             </div>
                         </td>
-                        <td class="expire-date hidden-xs">December 17 2017</td>
+                        <td class="expire-date hidden-xs">17 de Enero del 2020</td>
                         <td class="action">
-                            <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                            <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                            <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                            <a href="#"><i class="fa  fa-eye-slash"></i> Ver</a>
                         </td>
                     </tr>
 

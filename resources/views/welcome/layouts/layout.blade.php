@@ -20,7 +20,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('fonts/linearicons/style.css')}}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('css/jquery.mCustomScrollbar.css')}}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('css/dropzone.css')}}">
+    <link rel="stylesheet" type="text/css"  href="{{ asset('css/multiselect.css')}}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('css/magnific-popup.css')}}">
+    <link rel="stylesheet" type="text/css"  href="{{ asset('plugins\ion-rangeslider\css\ion.rangeSlider.css')}}">
+    <link rel="stylesheet" type="text/css"  href="{{ asset('plugins\ion-rangeslider\css\ion.rangeSlider.skinHTML5.css')}}">
+
 
     <!-- Custom stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
@@ -34,16 +38,16 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/ie10-viewport-bug-workaround.css')}}">
-
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script type="text/javascript" src="js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{{ asset('js/welcome/ie-emulation-modes-warning.js')}}"></script>
+    
     
     <!-- JS FILES-->
     <script src="{{ asset('js/welcome/jquery-2.2.0.min.js')}}"></script>
     <script src="{{ asset('js/welcome/bootstrap.min.js')}}"></script>
     <script src="{{ asset('js/welcome/bootstrap-submenu.js')}}"></script>
-    <script src="{{ asset('js/welcome/rangeslider.js')}}"></script>
+    <script src="{{ asset('plugins/ion-rangeslider/js/ion.rangeSlider.js')}}"></script>
     <script src="{{ asset('js/welcome/jquery.mb.YTPlayer.js')}}"></script>
     <script src="{{ asset('js/welcome/wow.min.js')}}"></script>
     <script src="{{ asset('js/welcome/bootstrap-select.min.js')}}"></script>
@@ -57,6 +61,7 @@
     <script src="{{ asset('js/welcome/jquery.filterizr.js')}}"></script>
     <script src="{{ asset('js/welcome/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{ asset('js/welcome/maps.js')}}"></script>
+    <script src="{{ asset('js/welcome/multiselect.js')}}"></script>
     <script src="{{ asset('js/welcome/app.js')}}"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -93,27 +98,19 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="navbar-collapse collapse" role="navigation" aria-expanded="true" id="app-navigation">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown {{ request()->is('buscar') ? 'active' : '' }}">
+                        <!-- <li class="dropdown {{ request()->is('buscar') ? 'active' : '' }}">
                             <a tabindex="0" href="{{route('buscar')}}">
                                 Comprar
                             </a>
-                        </li>
+                        </li>-->
                         <li class="dropdown" href="{{route('inmobiliarias')}}">
                             <a  href="{{('buscar')}}"  >
-                                Alquilar
+                                Buscar
                             </a>
-                        </li>
+                        </li> 
                         <li class="dropdown {{ request()->is('inmobiliarias') ? 'active' : '' }}">
                             <a  href="{{route('inmobiliarias')}}"  aria-expanded="false">
-                                Inmobiliarias<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li > <a href="{{route('inmobiliarias')}}" >EURO-DOM</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown mega-dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Únete 
+                                Inmobiliarias</span>
                             </a>
                         </li>
                         <li class="dropdown {{ request()->is('contacto') ? 'active' : '' }}" >
@@ -121,7 +118,7 @@
                                 Contacto
                             </a>
                         </li>
-                        <li class=" dropdown {{ request()->is('perfil*') ? 'active' : '' }}">
+                        <!-- <li class=" dropdown {{ request()->is('perfil*') ? 'active' : '' }}">
                         @if(Auth::user())
                             <a  >{{Auth::user()->name}} <span class="caret"></span></a>
                         @else
@@ -142,15 +139,45 @@
                                     
                                 @endif
                             </ul>
+                        </li> -->
+                        <li class="dropdown">
+                            @if(Auth::user())
+                                <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
+                                {{Auth::user()->name}} <span class="caret"></span>
+                                </a>
+                            @else
+                            <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
+                                Inicia sesión o Regístrate <span class="caret"></span>
+                            </a>
+                            @endif
+                            @if(Auth::user())
+                                <ul class="dropdown-menu">
+                                    <li ><a class="dropdown-item" href="{{route('profile')}}">Mi Perfil</a></li>
+                                    <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            Cerrar Sesion</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                            </form>
+                                    </li> 
+                                </ul>
+                            @else
+                                <ul class="dropdown-menu">
+                                    <li ><a class="dropdown-item" href="{{route('ingresa')}}" >Ingrésa</a></li>
+                                    <li><a  class="dropdown-item" href="{{route('registro')}}">Regístrate</a></li>
+                                </ul>
+                            @endif
+                         </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right rightside-navbar">
+                        <li>
+                            <span>Moneda:</span>
+                            <img title="DOP" class="currency" currency='dop' symbol="RD$" src="{{URL::asset('/images/republica-dominicana.png')}}" style="width: 25px;" alt="">
+                            <img title="USD" class="currency" currency='usd' symbol="US$" src="{{URL::asset('/images/estados-unidos.png')}}" style="width: 25px;" alt="">
+                            <img title="EUR" class="currency" currency="eur" symbol="€" src="{{URL::asset('/images/union-europea.png')}}" style="width: 25px;" alt="">
                         </li>
                     </ul>
-                    <!-- <ul class="nav navbar-nav navbar-right rightside-navbar">
-                        <li>
-                            <a  onclick="$('#loginModal').modal('show')" class="button">
-                                Ingrésa o Regístrate
-                            </a>
-                        </li>
-                    </ul> -->
                 </div>
             </nav>
         </div>
@@ -162,7 +189,7 @@
     <!-- Contenido inicio  -->
     <div>
         
-            <div class="modal property-modal animated bounceInDown" id="loginModal" style="z-index: 999999;" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
+            <!-- <div class="modal property-modal animated bounceInDown" id="loginModal" style="z-index: 999999;" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
 
@@ -224,7 +251,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="modal property-modal animated bounceInDown" id="registerModal" style="z-index: 999999;" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -322,7 +349,91 @@
     <!-- Footer final -->
 
     <script>
+    $(".js-range-slider").ionRangeSlider({
+        min: 0,
+        max: 10000000,
+        type: 'double',
+        step: 1000,
+        prefix: "RD$",
+    });
 
+    function GET(str) {
+        var obj = {};
+        var query = str || document.location.search;
+        query = query.replace(/(^\?)/,'').split('&');
+        for(var i=0; i< query.length; i++) {
+            var n = query[i].split('=');
+            if(n[0]) {
+                obj[n[0]] = n[1];
+            }
+        }
+        return obj;
+    }
+    // $('img.currency').click(function(){
+    //     window.location.href = location.href +'?currency='+$(this).attr('currency');
+    // });
+    $('img.currency').click(function(){
+       $currency = $(this).attr('currency');
+       $('.price').each(function(){
+			if($currency == 'dop')
+			{
+                $(this).text("RD"+ Number($(this).attr('dop')).toLocaleString("en-US", { style: "currency", currency: "USD"}))
+			}
+			if($currency == 'usd')
+			{
+				$(this).text("US" +Number($(this).attr('usd')).toLocaleString("en-US", { style: "currency", currency: "USD"}))
+            }
+            if($currency == 'eur')
+			{
+				$(this).text("€" +Number($(this).attr('usd')).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}))
+			}
+       })
+
+       $('.js-range-slider').data("ionRangeSlider").destroy();
+       if($currency == 'dop')
+        {
+            $(".js-range-slider").ionRangeSlider({
+                min: 0,
+                max: 10000000,
+                type: 'double',
+                step: 1000,
+                prefix: "RD$",
+                from: 0,
+                to: 10000000,
+            });
+        }
+        if($currency == 'usd')
+        {
+            $(".js-range-slider").ionRangeSlider({
+                min: 0,
+                max: 400000,
+                type: 'double',
+                step: 1000,
+                prefix: "US$",
+                from: 0,
+                to: 400000,
+            });
+        }
+        if($currency == 'eur')
+        {
+            $(".js-range-slider").ionRangeSlider({
+                min: 0,
+                max: 400000,
+                type: 'double',
+                step: 1000,
+                prefix: "€",
+                from: 0,
+                to: 400000,
+            });
+        }
+               
+    });
+    $('#inmobiliaria').multipleSelect();
+    
+    $('#venta').multipleSelect();
+    $('#tipo').multipleSelect();
+    $('#bathroom').multipleSelect();
+    $('#bedroom').multipleSelect();
     
     var $li = $('li.active');
     $("#loginModal").on('show.bs.modal', function(){
@@ -345,6 +456,29 @@
     });
     </script>
 
+    <style>
+    .multiselect {
+    min-width: 300px;
+}
+
+select {
+  width: 100%!important;
+}
+.multiselect-container {
+    min-width: inherit;
+}
+.multiselect-button {
+    min-width: 85%;
+}
+.multiselect-container li {
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+img {
+    cursor: pointer;
+}
     
+    </style>
 </body>
 </html>

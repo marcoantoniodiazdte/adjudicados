@@ -187,6 +187,8 @@ return [
 
         // Provider de CompanyProvider and DataServiceProvider
         App\Providers\CompanyServiceProvider::class,
+        Fadion\Fixerio\ExchangeServiceProvider::class,
+        Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
 
 
     ],
@@ -243,11 +245,10 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-
-
-
         // Facade de Company and Data
         'Company'      => App\Facades\Company::class,
+        'Exchange' => Fadion\Fixerio\Facades\Exchange::class,
+        'GoogleCalendar' => Spatie\GoogleCalendar\GoogleCalendarFacade::class,
 
     ],
 

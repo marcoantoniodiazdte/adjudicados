@@ -626,7 +626,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="properties-details.html">Sweet Family Home</a>
+                                    <a href="">Sweet Family Home</a>
                                 </h3>
                                 <p>February 27, 2018</p>
                                 <div class="price">
@@ -640,7 +640,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="properties-details.html">Modern Family Home</a>
+                                    <a href="">Modern Family Home</a>
                                 </h3>
                                 <p>February 27, 2018</p>
                                 <div class="price">
@@ -654,7 +654,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="properties-details.html">Beautiful Single Home</a>
+                                    <a href="">Beautiful Single Home</a>
                                 </h3>
                                 <p>February 27, 2018</p>
                                 <div class="price">

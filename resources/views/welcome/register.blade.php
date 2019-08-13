@@ -114,3 +114,62 @@
     </div>
 </body>
 </html>
+
+<style>
+@media  (min-height: 480px) {
+  
+  .form-content-box {
+      margin: 0 auto!important;
+  }
+  .details {
+    padding: 0px 20px!important;
+  }
+
+}
+
+@media (min-height: 568px) {
+  
+  .form-content-box {
+      margin: 0 auto!important;
+  }
+  .details {
+    padding: 42px 20px!important;
+  }
+
+}
+
+@media (min-height: 667px) {
+  
+  .details {
+    padding: 91px 20px!important;
+  }
+
+}
+@media (min-height: 640px) {
+    .form-content-box {
+      margin: 0 auto!important;
+  }
+
+.details {
+    padding: 80px 20px!important;
+}
+
+}
+
+@media (min-height: 731px) {
+
+    .form-content-box {
+        margin: 0px auto!important;
+    }
+
+    .details {
+        padding: 124px 20px!important;
+    }
+}
+@media  (min-height: 812px) {
+ .details {
+    padding: 170px 20px!important;
+ }
+
+}
+</style>

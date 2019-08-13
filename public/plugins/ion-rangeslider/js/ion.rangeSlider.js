@@ -293,7 +293,7 @@
             to_shadow: false,
 
             prettify_enabled: true,
-            prettify_separator: " ",
+            prettify_separator: ",",
             prettify: null,
 
             force_edges: false,

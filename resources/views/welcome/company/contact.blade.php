@@ -8,17 +8,21 @@
             <p class="lead">La motivación nos impulsa a comenzar y el hábito nos permite continuar.</p>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="display: flex;justify-content: center;">
                 <!-- Contact details start -->
                 <div class="contact-info">
-                    <h3>Información</h3>
+                <div class="main-title mb-60">
+                    <h1>Información</h1>
+                </div>
                     <ul class="contact-list">
                         <li><i class="fa fa-map-marker"></i> 20/F Green Road, Dhaka</li>
                         <li><i class="fa fa-phone"></i> +55 417 634 7071</li>
                         <li><i class="mr-3 fa fa-envelope"></i> info@themevessel.com</li>
                     </ul>
-                    <h3>Síguenos</h3>
-                    <ul class="social-list clearfix">
+                    <div class="main-title mb-60">
+                        <h1>Síguenos</h1>
+                    </div>
+                    <ul class="social-list clearfix" style="display: flex; justify-content: flex-end">
                         <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>

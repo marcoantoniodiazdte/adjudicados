@@ -3,7 +3,6 @@
 @section('content')
 <!-- Banner start -->
 <div class="banner">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item item-100vh active">
@@ -12,6 +11,7 @@
                     <div class="banner-content banner-content-left">
                         <div class="text-center hidden-md hidden-lg">
                             <h1 data-animation="animated fadeInDown delay-05s"><span>Encuentra la </span> propiedad de tus sueños</h1>
+
                             
                             <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <div class="form-group">
@@ -168,11 +168,9 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                         <div class="form-group">
                                                             <div class="range-slider">
-                                                                <div data-min="0" data-max="150000" data-unit="USD" data-min-name="min_price" data-max-name="max_price" class="range-slider-ui ui-slider" aria-disabled="false"></div>
-                                                                <div class="clearfix"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,7 +188,6 @@
                               <a href="#" class="btn button-md button-theme" data-animation="animated fadeInUp delay-15s">Buscar</a>
                             <!-- <a href="#" class="btn button-md border-button-theme" data-animation="animated fadeInUp delay-15s">Learn More</a>  -->
                         </div>
-
                         <div class="banner-search-box hidden-xs hidden-sm">
                             <!-- Search area start -->
                             <div class="search-area animated fadeInDown delay-1s">
@@ -199,51 +196,69 @@
                                         <form method="GET">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="form-group">
-                                                    <select class="form-control search-fields" style="color:#989898;" name="area-from"  data-live-search-placeholder="Busqueda">
-                                                        <option>Inmobiliaria</option>
-                                                        <option>Euro-Dom</option>
-                                                        <option>Remax</option>
-                                                        <option>Garrido</option>
+                                                    <span class="pull-left">Inmobiliaria:</span>
+                                                    <!-- <select class="form-control search-fields" style="color:#989898;" name="area-from"  data-live-search-placeholder="Busqueda">
+                                                        @foreach($inmobiliarias as $inmobiliaria)
+                                                        <option value="{{$inmobiliaria->id}}" >{{$inmobiliaria->name}}</option>
+                                                        @endforeach
+                                                    </select> -->
+                                                    <select class="form-control search-fields " multiple="multiple" id="inmobiliaria">
+                                                        @foreach($inmobiliarias as $inmobiliaria)
+                                                            <option class="pull-left" value="{{$inmobiliaria->id}}" >{{$inmobiliaria->name}}</option>
+                                                        @endforeach
                                                     </select>
+                                                   
                                                 </div>
                                             </div>
                                             
                                 
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="form-group">
-                                                    <select class="form-control search-fields" style="color:#989898;"style="color:#989898;">
-                                                        <option>Comprar</option>
-                                                        <option>Alquilar</option>
+                                                    <span class="pull-left">Tipo:</span>
+                                                    <select class="form-control search-fields" style="text-align: left;" style="color:#989898;" id="venta" multiple="multiple">
+                                                        <option style="text-align: left;">Comprar</option>
+                                                        <option style="text-align: left;">Alquilar</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="form-group">
-                                                    <select class="form-control search-fields" style="color:#989898;" name="location"  data-live-search-placeholder="Busqueda">
-                                                        <option>Ubicación</option>
-                                                        <option>United States</option>
-                                                        <option>United Kingdom</option>
-                                                        <option>American Samoa</option>
-                                                        <option>Belgium</option>
-                                                        <option>Cameroon</option>
-                                                        <option>Canada</option>
+                                                    <span class="pull-left">Provincia:</span>
+                                                    <select class="form-control search-fields" style="color:#989898;" name="location"  id="provincia" multiple="multiple"  data-live-search-placeholder="Busqueda">
+                                                        @foreach($provincias as $provincia)
+                                                            <option class="pull-left" value="{{$provincia->provincia_id}}">{{$provincia->provincia}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="form-group">
-                                                    <select class="form-control search-fields" style="color:#989898;"  data-live-search-placeholder="Busqueda">
-                                                        <option>Apartamento</option>
-                                                        <option>Casa</option>
-                                                        <option>Villa</option>
-                                                        <option>Edificio</option>
+                                                    <span class="pull-left">Municipio:</span>
+                                                    <select class="form-control search-fields" style="color:#989898;" name="location" id="municipio"  multiple='multiple' data-live-search-placeholder="Busqueda">  
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="form-group">
-                                                    <select class="form-control search-fields" style="color:#989898;" name="bedrooms"  data-live-search-placeholder="Busqueda" >
-                                                        <option>Habitaciones</option>
+                                                    <span class="pull-left">Sector:</span>
+                                                    <select class="form-control search-fields" style="color:#989898;" id="sector" name="location" multiple="multiple" data-live-search-placeholder="Busqueda">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <span class="pull-left">Tipo:</span>    
+                                                    <select class="form-control search-fields" style="color:#989898;"  multiple="multiple" id="tipo"  data-live-search-placeholder="Busqueda">
+                                                        @foreach($tipo_propiedades as $tipo)
+                                                            <option class="" style="width:100%;" value="{{$tipo->id}}">{{$tipo->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                <div class="form-group">
+                                                    <label class="pull-left" for="">Habitaciones</label>
+                                                    <select class="form-control search-fields" style="color:#989898;" name="bedrooms"  multiple="multiple" id="bedroom"  data-live-search-placeholder="Busqueda" >
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -256,8 +271,8 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="form-group ">
-                                                    <select class="form-control search-fields" style="color:#989898;" name="bathrooms"  data-live-search-placeholder="Busqueda" >
-                                                        <option>Baños</option>
+                                                    <label class="pull-left" for="">Baños</label>
+                                                    <select class="form-control search-fields" style="color:#989898;" name="bathrooms"  multiple="multiple" id="bathroom" data-live-search-placeholder="Busqueda" >
                                                         <option>1</option>
                                                         <option>2</option>
                                                         <option>3</option>
@@ -268,28 +283,18 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                                <div class="row">
-                                                    <div class="col-lg-12" style="">
-                                                        <div class="btn-group bootstrap-select search-fields">
-                                                            <button type="button" class="btn btn-default dropdown-toggle" style="text-align: start;" data-toggle="dropdown">Tipo Inmueble  <span class="caret"></span></button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a class="small" style="padding:1px;" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;Apartamento</a></li>
-                                                                <li><a class="small" style="padding:1px;" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Casas</a></li>
-                                                                <li><a class="small" style="padding:1px;" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Hoteles</a></li>
-                                                                <li><a class="small" style="padding:1px;" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Edificio</a></li>
-                                                                <li><a class="small" style="padding:1px;" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Fincas</a></li>
-                                                                <li><a class="small" style="padding:1px;" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Locales</a></li>
-                                                            </ul>
-                                                        </div>
+                                            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                                    <!-- <label class="pull-left" for="">Precio</label> -->
+                                                    <div class="range-slider">
+                                                        <!-- <input type="text" class="js-range-slider" name="my_range" value="" /> -->
+                                                        <input type="text" class="js-range-slider" name="my_range" value=""/>
                                                     </div>
-                                                </div>    
-                                            </div>                                           
+                                            </div>
+                                           
                                             
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="form-group mb-0">
-                                                    <button class="search-button">Buscar</button>
+                                                    <button type="submit" class="search-button">Buscar</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -337,16 +342,19 @@
         </ul> -->
         <div class="row">
             <div class="filtr-container">
+                @foreach($propiedades as $propiedad)
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  filtr-item" data-category="1, 2, 3">
                     <div class="property">
                         <!-- Property img -->
                         <div class="property-img">
                             <div class="property-tag button alt featured">destacada</div>
                             <div class="property-tag button sale">Venta</div>
-                            <div class="property-price">$150,000</div>
+                            <div class="property-price">
+                                <p usd="{{$propiedad->precio_us}}" class="price" dop="{{$propiedad->precio_rd}}" eur="{{$propiedad->precio_us}}"> RD${{number_format($propiedad->precio_rd)}}</p>
+                            </div>
                             <img src="http://placehold.it/360x240" alt="fp" class="img-responsive">
                             <div class="property-overlay">
-                                <a href="properties-details.html" class="overlay-link">
+                                <a href="" class="overlay-link">
                                     <i class="fa fa-link"></i>
                                 </a>
                                 <a class="overlay-link property-video" title="Lexus GS F">
@@ -365,7 +373,7 @@
                         <div class="property-content">
                             <!-- title -->
                             <h1 class="title">
-                                <a href="properties-details.html">Juan Dolio</a>
+                                <a href="">{{$propiedad->name}}</a>
                             </h1>
                             <!-- Property address -->
                             <!-- Facilities List -->
@@ -386,258 +394,17 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  filtr-item" data-category="1">
-                    <div class="property">
-                        <!-- Property img -->
-                        <div class="property-img">
-                            <div class="property-tag button alt featured">Featured</div>
-                            <div class="property-tag button sale">Venta</div>
-                            <div class="property-price">$150,000</div>
-                            <img src="http://placehold.it/360x240" alt="fp" class="img-responsive">
-                            <div class="property-overlay">
-                                <a href="properties-details.html" class="overlay-link">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                                <a class="overlay-link property-video" title="Lexus GS F">
-                                    <i class="fa fa-video-camera"></i>
-                                </a>
-                                <div class="property-magnify-gallery">
-                                    <a href="http://placehold.it/750x540" class="overlay-link">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Property content -->
-                        <div class="property-content">
-                            <!-- title -->
-                            <h1 class="title">
-                                <a href="properties-details.html">Modern Family Home</a>
-                            </h1>
-                            <!-- Facilities List -->
-                            <ul class="facilities-list clearfix">
-                                <li>
-                                    <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                    <span>4800 mt2</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-bed"></i>
-                                    <span>3 Hab.</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-monitor"></i>
-                                    <span>TV </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  filtr-item" data-category="2, 3">
-                    <div class="property">
-                        <!-- Property img -->
-                        <div class="property-img">
-                            <div class="property-tag button alt featured">Destacada</div>
-                            <div class="property-tag button sale">Venta</div>
-                            <div class="property-price">$150,000</div>
-                            <img src="http://placehold.it/360x240" alt="fp" class="img-responsive">
-                            <div class="property-overlay">
-                                <a href="properties-details.html" class="overlay-link">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                                <a class="overlay-link property-video" title="Lexus GS F">
-                                    <i class="fa fa-video-camera"></i>
-                                </a>
-                                <div class="property-magnify-gallery">
-                                    <a href="http://placehold.it/750x540" class="overlay-link">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Property content -->
-                        <div class="property-content">
-                            <!-- title -->
-                            <h1 class="title">
-                                <a href="properties-details.html">Sweet Family Home</a>
-                            </h1>
-                            <!-- Facilities List -->
-                            <ul class="facilities-list clearfix">
-                                <li>
-                                    <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                    <span>4800 mt2</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-bed"></i>
-                                    <span>3 Hab.</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-monitor"></i>
-                                    <span>TV </span>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  filtr-item" data-category="3, 4">
-                    <div class="property">
-                        <!-- Property img -->
-                        <div class="property-img">
-                            <div class="property-tag button alt featured">destacada</div>
-                            <div class="property-tag button sale">Venta</div>
-                            <div class="property-price">$150,000</div>
-                            <img src="http://placehold.it/360x240" alt="fp" class="img-responsive">
-                            <div class="property-overlay">
-                                <a href="properties-details.html" class="overlay-link">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                                <a class="overlay-link property-video" title="Lexus GS F">
-                                    <i class="fa fa-video-camera"></i>
-                                </a>
-                                <div class="property-magnify-gallery">
-                                    <a href="http://placehold.it/750x540" class="overlay-link">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Property content -->
-                        <div class="property-content">
-                            <!-- title -->
-                            <h1 class="title">
-                                <a href="properties-details.html">Big Head House</a>
-                            </h1>
-                            <!-- Property address -->
-                            <!-- Facilities List -->
-                            <ul class="facilities-list clearfix">
-                                <li>
-                                    <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                    <span>4800 mt2</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-bed"></i>
-                                    <span>3 Hab.</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-monitor"></i>
-                                    <span>TV </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  filtr-item" data-category="4">
-                    <div class="property">
-                        <!-- Property img -->
-                        <div class="property-img">
-                            <div class="property-tag button alt featured">destacada</div>
-                            <div class="property-tag button sale">Venta</div>
-                            <div class="property-price">$150,000</div>
-                            <img src="http://placehold.it/360x240" alt="fp" class="img-responsive">
-                            <div class="property-overlay">
-                                <a href="properties-details.html" class="overlay-link">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                                <a class="overlay-link property-video" title="Lexus GS F">
-                                    <i class="fa fa-video-camera"></i>
-                                </a>
-                                <div class="property-magnify-gallery">
-                                    <a href="http://placehold.it/750x540" class="overlay-link">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Property content -->
-                        <div class="property-content">
-                            <!-- title -->
-                            <h1 class="title">
-                                <a href="properties-details.html">Park Avenue</a>
-                            </h1>
-
-                            <!-- Facilities List -->
-                            <ul class="facilities-list clearfix">
-                                <li>
-                                    <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                    <span>4800 mt2</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-bed"></i>
-                                    <span>3 Hab.</span>
-                                </li>
-                         
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12  filtr-item" data-category="1">
-                    <div class="property">
-                        <!-- Property img -->
-                        <div class="property-img">
-                            <div class="property-tag button alt featured">destacada</div>
-                            <div class="property-tag button sale">Venta</div>
-                            <div class="property-price">$150,000</div>
-                            <img src="http://placehold.it/360x240" alt="fp" class="img-responsive">
-                            <div class="property-overlay">
-                                <a href="properties-details.html" class="overlay-link">
-                                    <i class="fa fa-link"></i>
-                                </a>
-                                <a class="overlay-link property-video" title="Lexus GS F">
-                                    <i class="fa fa-video-camera"></i>
-                                </a>
-                                <div class="property-magnify-gallery">
-                                    <a href="http://placehold.it/750x540" class="overlay-link">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                    <a href="http://placehold.it/750x540" class="hidden"></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Property content -->
-                        <div class="property-content">
-                            <!-- title -->
-                            <h1 class="title">
-                                <a href="properties-details.html">Masons Villas</a>
-                            </h1>
-
-                            <!-- Facilities List -->
-                            <ul class="facilities-list clearfix">
-                                <li>
-                                    <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                    <span>4800 mt2</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-bed"></i>
-                                    <span>3 Hab.</span>
-                                </li>
-                                <li>
-                                    <i class="flaticon-monitor"></i>
-                                    <span>TV </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Featured properties end -->
+
+
 <script>
+
 var options = [];
 
 $( '.dropdown-menu a' ).on( 'click', function( event ) {
@@ -657,5 +424,69 @@ $( '.dropdown-menu a' ).on( 'click', function( event ) {
 
    $( event.target ).blur();
 });
+
+$('#provincia').multipleSelect({
+    width: 265,
+    dropWidth: 200
+});
+$('#municipio').multipleSelect({
+    width: 265
+});
+$('#sector').multipleSelect({
+    width: 265
+});
+
+    
+$('#provincia').on('change',function(){
+    $.get( "/municipios",{data:$(this).val()}, function( data ) {
+        $('#sector').empty();
+        var $select = $('#municipio').empty();
+        $select.multipleSelect('destroy')
+        $('#sector').multipleSelect('destroy');
+        $('#sector').multipleSelect({
+            width: 265
+        });
+        $.each(data,function(key,value){
+            $.each(value, function(k,v){
+                $select.append('<option value=' + v['municipio_id'] + '>' + v['municipio'] + '</option>');
+            })
+        });
+        $('#municipio').multipleSelect({
+            width: 265
+        });
+    });
+});
+
+
+$("#municipio").on('change',function(){
+    $.get( "/sectores",{data: $(this).val()}, function( data ) {
+        var $select = $('#sector').empty();
+        $select.multipleSelect('destroy');
+        $.each(data,function(key,value){
+            $.each(value, function(k,v){
+                $select.append('<option value=' + v['sector_id'] + '>' + v['sector'] + '</option>');
+            })
+        });
+        $('#sector').multipleSelect({
+            width: 265
+        });
+    });
+});
+
 </script>
+
+<style>
+.ms-parent {
+    width: 275px;
+}
+
+.banner-search-box .search-fields {
+    width: 265px;
+    min-height: 40px;
+    padding: 4px 0;
+    box-shadow: none;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+</style>
 @endsection

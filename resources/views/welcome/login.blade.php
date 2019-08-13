@@ -60,7 +60,7 @@
     <script src="{{ asset('js/welcome/ie10-viewport-bug-workaround.js')}}"></script>
     <title>Ingrésa</title>
 </head>
-<body>
+<body style="background-color:#fefefe!important;">
     <div class="form-content-box">
         <!-- details -->
         <div class="details">
@@ -112,7 +112,7 @@
             <!-- Form end-->
         </div>
         <!-- Footer -->
-        <div class="footer">
+        <div class="footer" style="background-color:#fefefe;">
             <span>
             ¿No tienes una cuenta? <a href="{{route('registro')}}" >Regístrate</a>
             </span>
@@ -120,3 +120,63 @@
     </div>
 </body>
 </html>
+
+
+<style>
+@media  (min-height: 480px) {
+  
+  .form-content-box {
+      margin: 0 auto!important;
+  }
+  .details {
+    padding: 0px 20px!important;
+  }
+
+}
+
+@media (min-height: 568px) {
+  
+  .form-content-box {
+      margin: 0 auto!important;
+  }
+  .details {
+    padding: 42px 20px!important;
+  }
+
+}
+
+@media (min-height: 667px) {
+  
+  .details {
+    padding: 91px 20px!important;
+  }
+
+}
+@media (min-height: 640px) {
+    .form-content-box {
+      margin: 0 auto!important;
+  }
+
+.details {
+    padding: 80px 20px!important;
+}
+
+}
+
+@media (min-height: 731px) {
+
+    .form-content-box {
+        margin: 0px auto!important;
+    }
+
+    .details {
+        padding: 124px 20px!important;
+    }
+}
+@media  (min-height: 812px) {
+ .details {
+    padding: 170px 20px!important;
+ }
+
+}
+</style>

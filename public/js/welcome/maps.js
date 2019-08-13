@@ -372,7 +372,7 @@ function drawInfoWindow(property) {
         "<img src='" + image + "'/>" +
         "</div>" +
         "<div class='map-content'>" +
-        "<h4><a href='properties-details.html'>" + title + "</a></h4>" +
+        "<h4><a href=''>" + title + "</a></h4>" +
         "<p class='address'> <i class='fa fa-map-marker'></i>" + address + "</p>" +
         "<p class='description'>" + description + "</p>" +
         "<div class='map-properties-fetures'> " +
@@ -381,7 +381,7 @@ function drawInfoWindow(property) {
         "<span><i class='flaticon-holidays'></i>  " + bathroom + " Bath</span> " +
         "<span><i class='flaticon-vehicle'></i>    " + garage + " Garages</span> " +
         "</div>" +
-        "<div class='map-properties-btns'><a href='properties-details.html' class='border-button-sm border-button-theme' style='margin-right:5px;'>$" + price + "</a><a href='properties-details.html' class='button-sm button-theme'>Details</a></div>" +
+        "<div class='map-properties-btns'><a href='' class='border-button-sm border-button-theme' style='margin-right:5px;'>$" + price + "</a><a href='' class='button-sm button-theme'>Details</a></div>" +
         "</div>";
     return ibContent;
 }
@@ -467,7 +467,7 @@ function insertPropertyToArray(property, layout) {
     if(layout == 'grid_layout'){
         element = '<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><div class="property">' +
             '<!-- Property img --> ' +
-            '<a href="properties-details.html" class="property-img">' +
+            '<a href="" class="property-img">' +
             is_featured +
             '<div class="property-tag button sale">'+listing_for+'</div> ' +
             '<div class="property-price">$'+price+'</div> ' +
@@ -477,11 +477,11 @@ function insertPropertyToArray(property, layout) {
             '<div class="property-content"> ' +
             '<!-- title --> ' +
             '<h1 class="title">' +
-            '<a href="properties-details.html">'+title+'</a> ' +
+            '<a href="">'+title+'</a> ' +
             '</h1> ' +
             '<!-- Property address --> ' +
             '<h3 class="property-address"> ' +
-            '<a href="properties-details.html"> ' +
+            '<a href=""> ' +
             '<i class="fa fa-map-marker"></i>'+address+' ' +
             '</a> ' +
             '</h3> ' +
@@ -527,7 +527,7 @@ function insertPropertyToArray(property, layout) {
         element = '' +
             '<div class="property map-properties-list clearfix"> ' +
             '<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 col-pad"> ' +
-            '<a href="properties-details.html" class="property-img height"> ' +
+            '<a href="" class="property-img height"> ' +
             is_featured +
             '<div class="property-tag button sale">'+listing_for+'</div> ' +
             '<div class="property-price">$'+price+'</div> ' +
@@ -537,10 +537,10 @@ function insertPropertyToArray(property, layout) {
             '<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 property-content "> ' +
             '<!-- title --> ' +
             '<h1 class="title"> ' +
-            '<a href="properties-details.html">'+title+'</a> </h1> ' +
+            '<a href="">'+title+'</a> </h1> ' +
             '<!-- Property address --> ' +
             '<h3 class="property-address"> ' +
-            '<a href="properties-details.html"> ' +
+            '<a href=""> ' +
             '<i class="fa fa-map-marker"></i>'+address+', ' +
             '</a>' +
             '</h3>' +
