@@ -66,7 +66,7 @@
         <div class="details">
             <!-- Main title -->
             <div class="main-title">
-                <a href="{{route('home')}}"><img src="{{asset('img/logos/logo.png')}}" style="height: 56px!important;" alt="logo"></a> 
+                <a href="{{route('home')}}"><img src="{{\App\Tema::where('activo',1)->first()->logo}}" style="height: 56px!important;" alt="logo"></a> 
                 <h1 style="margin-top: 15px;"><span>INICIA SESIÓN</span></h1>
             </div>
             <!-- Form start-->

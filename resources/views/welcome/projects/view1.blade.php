@@ -4,23 +4,10 @@
 <!-- Properties details page start -->
 <div class="content-area properties-details-page">
     <div class="">
-        <div class="carousel" data-flickity='{ "fullscreen": true, "lazyLoad": 1 }'>
-            <img class="carousel-image"
-            data-flickity-lazyload="https://www.cadiz4rentals.com/alquiler/fotos/2/152794648191d509eeadd977d43ed491d9eb5b28f2/152899309256804145f4ac611906f43565cf2b87f8.jpg" />
-            <img class="carousel-image"
-            data-flickity-lazyload="https://s-ec.bstatic.com/images/hotel/max1024x768/712/71260445.jpg" />
-            <img class="carousel-image"
-            data-flickity-lazyload="http://www.vivare.co/images/other_images/vivare-apartamentos-big-5.jpg" />
-            <img class="carousel-image"
-            data-flickity-lazyload="https://t-ec.bstatic.com/images/hotel/max1024x768/389/38977679.jpg" />
-            <img class="carousel-image"
-            data-flickity-lazyload="https://construccionesprisma.com.co/images/apartment_photos/22_41_pradoalto97.5m201.jpg" />
-            <img class="carousel-image"
-            data-flickity-lazyload="https://www.contex.com.co/wp-content/uploads/2017/06/Olivar_Apartamentos_Porteria.jpg" />
-            <img class="carousel-image"
-            data-flickity-lazyload="https://thumb.housinganywhere.com/images/room/1404100/afe7da81-d061-11e8-98db-42010af00008.jpg?kind=large&rotate=0" />
-            <img class="carousel-image"
-            data-flickity-lazyload="https://viewinmobiliario2.s3.sa-east-1.amazonaws.com/pictures/6881/Baluarte-apartamentos-sabaneta-loma-de-san-jose-apartamentos-en-medellin-esclusivos13_original.jpg?1515098676" />
+        <div class="carousel" data-flickity='{ "fullscreen": true, "lazyLoad": 1, "initialIndex":1}'>
+            @foreach($propiedad->archivos as $archivo)
+                <img class="carousel-image" data-flickity-lazyload="/abrirImagen/{{$archivo->id}}" />
+            @endforeach
         </div>
     </div>
     <div class="container">
@@ -34,28 +21,31 @@
 
                 <div class="heading-properties clearfix sidebar-widget">
                     <div class="pull-left">
-                        <h3>Proyecto Residencial</h3>
+                        {{-- <h3>{{$propiedad->name}}</h3> --}}
                         <p>
-                            <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
+                            <i class="fa fa-map-marker"></i>{{$propiedad->direccion}},
                         </p>
                     </div>
                     <div class="pull-left" style="margin-left: 20px;">
                         <span>Estado:</span>
                         <p>
-                            <label class="label label-default">EN CONSTRUCCION</label>
+                        <label class="label label-default">{{strtoupper($propiedad->estado)}}</label>
                         </p>
                     </div>
 
-                    <div class="pull-left" style="margin-left: 20px;">
+                    {{-- <div class="pull-left" style="margin-left: 20px;">
                         <span>Entrega:</span>
                         <p>
                             <label class="label label-default">11-03-2020</label>
                         </p>
-                    </div>
+                    </div> --}}
 
                     <div class="pull-right">
-                        <h3><span>RD$3,405,000</span></h3>
-                        <h5>
+                    <h3> Precio : <span class="price" usd="{{$propiedad->precio_us}}" dop="{{$propiedad->precio_rd}}" eur="{{$propiedad->precio_eur}}" >RD${{number_format($propiedad->precio_rd, 2)}}</span></h3>
+                    @if($propiedad->tipo_oferta == 'exclusiva')
+                    <h3>Oferta : <span class="price" style="color:red;" usd="{{$propiedad->precio_oferta_usd}}" dop="{{$propiedad->precio_oferta_rd}}" eur="{{$propiedad->precio_oferta_eu}}">RD$ {{number_format($propiedad->precio_oferta_rd, 2)}}</span></h3>
+                    @endif
+                        <h5>    
                             <!-- Per Manth -->
                         </h5>
                     </div>
@@ -185,10 +175,10 @@
                     <div class="panel-box properties-panel-box Property-description">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1default" data-toggle="tab" aria-expanded="true">Descripción</a></li>
-                            <li class=""><a href="#tab2default" data-toggle="tab" aria-expanded="false">Condiciones</a></li>
-                            <li class=""><a href="#tab3default" data-toggle="tab" aria-expanded="false">Comodidades</a></li>
-                            <li class=""><a href="#tab4default" data-toggle="tab" aria-expanded="false">Planos</a></li>
-                            <li class=""><a href="#tab5default" data-toggle="tab" aria-expanded="false">Video</a></li>
+                            {{-- <li class=""><a href="#tab2default" data-toggle="tab" aria-expanded="false">Condiciones</a></li> --}}
+                            {{-- <li class=""><a href="#tab3default" data-toggle="tab" aria-expanded="false">Comodidades</a></li> --}}
+                            <li class=""><a href="#tab4default" data-toggle="tab" aria-expanded="false">Características</a></li>
+                            {{-- <li class=""><a href="#tab5default" data-toggle="tab" aria-expanded="false">Video</a></li> --}}
                         </ul>
                         <div class="panel with-nav-tabs panel-default">
                             <div class="panel-body">
@@ -197,11 +187,9 @@
                                         <div class="main-title-2">
                                             <h1><span>Descripción</span></h1>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra a. Aliquam pellentesque nibh et nibh feugiat gravida. Maecenas ultricies, diam vitae semper placerat, velit risus accumsan nisl, eget tempor lacus est vel nunc. Proin accumsan elit sed neque euismod fringilla. Curabitur lobortis nunc velit, et fermentum urna dapibus non. Vivamus magna lorem, elementum id gravida ac, laoreet tristique augue. Maecenas dictum lacus eu nunc porttitor, ut hendrerit arcu efficitur.</p>
-                                        <br>
-                                        <p>Nam mattis lobortis felis eu blandit. Morbi tellus ligula, interdum sit amet ipsum et, viverra hendrerit lectus. Nunc efficitur sem vel est laoreet, sed bibendum eros viverra. Vestibulum finibus, ligula sed euismod tincidunt, lacus libero lobortis ligula, sit amet molestie ipsum purus ut tortor. Nunc varius, dui et sollicitudin facilisis, erat felis imperdiet felis, et iaculis dui magna vitae diam. Donec mattis diam nisl, quis ullamcorper enim malesuada non. Curabitur lobortis eu mauris nec vestibulum. Nam efficitur, ex ac semper malesuada nisi odio consequat dui, hendrerit vulputate odio dui vitae massa. Aliquam tortor urna, tincidunt</p>
+                                        <p>{{$propiedad->descripcion}}</p>
                                     </div>
-                                    <div class="tab-pane fade features" id="tab2default">
+                                    {{-- <div class="tab-pane fade features" id="tab2default">
                                         <!-- Properties condition start -->
                                         <div class="properties-condition">
                                             <div class="main-title-2">
@@ -296,7 +284,7 @@
                                             </div>
                                         </div>
                                         <!-- Properties amenities end -->
-                                    </div>
+                                    </div> --}}
                                     <div class="tab-pane fade" id="tab4default">
                                         <!-- Floor Plans start -->
                                         <div class="floor-plans">
@@ -310,17 +298,25 @@
                                                     <td><strong>Baños</strong></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>1600</td>
-                                                    <td>3</td>
-                                                    <td>2</td>
+                                                    <td>{{$propiedad->area}} mt2</td>
+                                                    <td>{{$propiedad->habitaciones}}</td>
+                                                    <td>{{$propiedad->banos}}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                            <img src="http://placehold.it/708x359" alt="floor-plans" class="img-responsive">
+                                            {{-- <img src="http://placehold.it/708x359" alt="floor-plans" class="img-responsive"> --}}
+                                            {{-- <iframe src="https://goo.gl/maps/tUpLdP2mYp45jPk59"></iframe> --}}
+                                            {{-- <div id="googleMap" style="width:100%;height:400px;"></div> --}}
+                                            {{-- <iframe src="https://www.google.com/maps/embed?pb=https://goo.gl/maps/WFAs717PDpWUbM7N8" width="730" height="500" frameborder="0" style="border:0;" allowfullscreen=""></iframe> --}}
+                                            {{-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.672161634946!2d-69.95101118468781!3d18.45318847604669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ea5632e8fa879af%3A0x71a94d4c287ee6c7!2sDTE%20-%20Dise%C3%B1o%20y%20Tecnolog%C3%ADa%20Empresarial!5e0!3m2!1sen!2sdo!4v1580742039323!5m2!1sen!2sdo" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe> --}}
+                                            <iframe src="{{$propiedad->mapa_url}}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                            {{-- {{htmlspecialchars_decode($propiedad->mapa_url)}} --}}
+                                            {{-- <iframe src="https://goo.gl/maps/WFAs717PDpWUbM7N8" frameborder="0"></iframe> --}}
+
                                         </div>
                                         <!-- Floor Plans end -->
                                     </div>
-                                    <div class="tab-pane fade" id="tab5default">
+                                    {{-- <div class="tab-pane fade" id="tab5default">
                                         <!-- Inside properties start  -->
                                         <div class="inside-properties">
                                             <!-- Main Title 2 -->
@@ -330,7 +326,7 @@
                                             <iframe src="https://www.youtube.com/embed/5e0LxrLSzok" allowfullscreen=""></iframe>
                                         </div>
                                         <!-- Inside properties end -->
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -348,31 +344,32 @@
                             <div class="main-title-2">
                                 <h1><span>Formulario</span> de Contacto</h1>
                             </div>
-                            <form id="contact_form" action="index.html" method="GET" enctype="multipart/form-data">
+                            <form id="contact_form" action="{{route('contact')}}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group fullname">
-                                            <input type="text" name="full-name" class="input-text" placeholder="Nombre">
+                                            <input type="text" required name="nombre" class="input-text" placeholder="Nombre">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group enter-email">
-                                            <input type="email" name="email" class="input-text"  placeholder="Correo Electronico">
+                                            <input type="email" required name="email" class="input-text"  placeholder="Correo Electronico">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group subject">
-                                            <input type="text" name="subject" class="input-text" placeholder="Asusto">
+                                            <input type="text" required name="codigo" class="input-text" placeholder="Código de Referencia">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group number">
-                                            <input type="text" name="phone" class="input-text" placeholder="Telefono">
+                                            <input type="text" required name="telefono" class="input-text" placeholder="Telefono">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group message">
-                                            <textarea class="input-text" name="message" placeholder="Mensaje"></textarea>
+                                            <textarea  class="input-text" required name="mensaje" placeholder="Mensaje"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -394,24 +391,25 @@
                     <div class="sidebar-widget helping-box clearfix">
                         <div class="helping-center">
                             <div class="icon"><i class="fa fa-building"></i></div>
-                            <h4>Inmobiliaria</h4>
-                            <p><a href="">Euro-Dom</a> </p>
+                            <h4></h4>
+                            <p><a href="">{{\App\Tema::where('activo',1)->first()->logo}}</a> </p>
                         </div>
                         <div class="helping-center">
                             <div class="icon"><i class="fa fa-map-marker"></i></div>
                             <h4>Dirección</h4>
-                            <span>123 Kathal St. Tampa City,</span>
+                            <span>{{$propiedad->direccion}}</span>
                         </div>
                         <div class="helping-center">
                             <div class="icon"><i class="fa fa-phone"></i></div>
-                            <h4>Telefono</h4>
-                            <p><a href="tel:+55-417-634-7071">+55 417 634 7071</a> </p>
+                            <h4>Teléfono(s)</h4>
+                            <p><a href="tel:+55-417-634-7071">809-243-5198</a> </p>
+                            <p><a href="tel:+55-417-634-7071">809-243-3609</a> </p>
                         </div>
                     </div>
                      <!-- Mortgage calculator start -->
                      <div class="sidebar-widget contact-1 mortgage-calculator">
                         <div class="main-title-2">
-                            <h1><span><i class="fa fa-calculator"></i> Calculadora  </span>de Prestamos</h1>
+                            <h1><span><i class="fa fa-calculator"></i> Calculadora  </span>de Préstamos</h1>
                         </div>
                         <div class="contact-form">
                             <form id="agent_form" action="index.html" method="GET" enctype="multipart/form-data">
@@ -419,30 +417,69 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-label">Monto</label>
-                                            <input type="text" class="input-text" placeholder="$87.000">
+                                            <input type="number" class="input-text" value="10000" id="principal" placeholder="$87.000">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label class="form-label">Tasa (%)</label>
-                                            <input type="text" class="input-text" placeholder="10%">
+                                            <input type="number" class="input-text" value="10" id="interest" placeholder="10%">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group">
-                                            <label class="form-label">Periodo del Prestamo</label>
-                                            <input type="text" class="input-text" placeholder="10 meses">
+                                            <label class="form-label">Periodo del Prestamo en Meses</label>
+                                            <input type="number" class="input-text" value="12" id="terms" placeholder="10">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Pago Mensual</label>
+                                            <input type="text" class="input-text" disabled id="total">
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group mb-0">
-                                            <button class="search-button">Calcular</button>
+                                            <input type="button" value="Calcular" onclick="getValues()" class='search-button' id="">
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
-                    </div>                                 
+                    </div>
+                    
+                       <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog" style="width:600px;">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Tabla de Amortización</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-md-12">
+                                <div class="col-md-7">
+                                    <img src="{{\App\Tema::where('activo',1)->first()->logo}}" style="width: 200px!important; margin-top:9px; "  alt="logo">
+                                </div>
+                                <div class="col-md-5">
+                                    <p><b>Monto Préstamo:</b> <span id="lblMonto"></span> </p>
+                                    <p><b>Interés:</b> <span id="lblInteres"></span> </p>
+                                    <p><b>Cantidad de Meses:</b> <span id="lblCantidad"></span> </p>
+                                    <p><b>Total a Pagar:</b> <span id="lblTotal"></span> </p>
+                                </div>
+                                
+                            </div>
+                            <div id="Result"></div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                
+                    </div>
+                </div>
+                    
                   
 
                     <!-- Popular posts start -->
@@ -450,48 +487,29 @@
                         <div class="main-title-2">
                             <h1><span>Propiedades</span> Recientes</h1>
                         </div>
+                        @foreach($recientes as $prop)
                         <div class="media">
                             <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/90x63" alt="small-properties-1">
+                            @if(count($prop->archivos) > 0)
+                                {{-- <img class="media-object" width="75" style="height:65px;" style="height:20px!important;" src="/vehiculo/abrirImagen/{{$car->archivos[0]->id}}" alt="small-properties-1"> --}}
+                                <img class="media-object" width="75" style="height:65px;" src="/abrirImagen/{{$prop->archivos[0]->id}}" alt="small-properties-1">
+                            @else
+                                <img class="media-object" width="75" src="">
+                            @endif
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="">Sweet Family Home</a>
+                                    <a href="">{{$prop->name}}</a>
                                 </h3>
-                                <p>February 27, 2018</p>
-                                <div class="price">
-                                    $734,000
+                                <p> 27 de Febrero, 2018</p>
+                                <div class="">
+                                    <p class="price" usd="{{$prop->precio_oferta_usd}}"  dop="{{$prop->precio_oferta_rd}}" eur="{{$prop->precio_oferta_eu}}">
+                                        {{number_format($prop->precio_rd, 2)}}
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/90x63" alt="small-properties-2">
-                            </div>
-                            <div class="media-body">
-                                <h3 class="media-heading">
-                                    <a href="">Modern Family Home</a>
-                                </h3>
-                                <p>February 27, 2018</p>
-                                <div class="price">
-                                    $734,000
-                                </div>
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="http://placehold.it/90x63" alt="small-properties-3">
-                            </div>
-                            <div class="media-body">
-                                <h3 class="media-heading">
-                                    <a href="">Beautiful Single Home</a>
-                                </h3>
-                                <p>February 27, 2018</p>
-                                <div class="price">
-                                    $734,000
-                                </div>
-                            </div>
-                        </div>
+                    @endforeach
                     </div>
                     <!-- Popular posts end -->
 
@@ -521,6 +539,148 @@
 <!-- Properties details page end -->
 <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLAT_z9iGIafjfkMjlxv4GfXTkE5tR8jo&callback=initMap"type="text/javascript"></script>
+<script>
+    function initMap() {
+    var mapProp= {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    }
+
+    
+    function monthlyPayment() {
+        var m; //monthly mortgage payment
+        var p = $("#amount").val(); //principle / initial amount borrowed
+        var i = $('#interest').val(); //monthly interest rate
+        var n = $('#period').val(); //number of payments mont
+
+        var paid = (p / n) * (1 + (i / 100));
+        // alert('$'+ paid);
+        $("#total").val('$' + paid.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }))
+    }
+
+    function getValues()
+    {
+        //button click gets values from inputs
+        var balance = parseFloat(document.getElementById("principal").value);
+        var interestRate = 
+            parseFloat(document.getElementById("interest").value/100.0);
+        var terms = parseInt(document.getElementById("terms").value);
+        
+        //set the div string
+        var div = document.getElementById("Result");
+        
+        //in case of a re-calc, clear out the div!
+        div.innerHTML = "";
+        
+        //validate inputs - display error if invalid, otherwise, display table
+        var balVal = validateInputs(balance);
+        var intrVal = validateInputs(interestRate);
+
+        if (balVal && intrVal)
+        {
+            //Returns div string if inputs are valid
+            div.innerHTML += amort(balance, interestRate, terms);
+        }
+        else
+        {
+            //returns error if inputs are invalid
+            div.innerHTML += "Please Check your inputs and retry - invalid values.";
+        }
+    }
+
+
+    function amort(balance, interestRate, terms)
+    {
+        //Calculate the per month interest rate
+        var monthlyRate = interestRate/12;
+        
+        //Calculate the payment
+        var payment = balance * (monthlyRate/(1-Math.pow(
+            1+monthlyRate, -terms)));
+            
+        //begin building the return string for the display of the amort table
+        // var result = "<div><b>Monto Préstamo</b>: $" + balance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) +  "<br />" + 
+        //     "<b>Interés:</b>" + (interestRate*100).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) +  "%<br />" +
+        //     "<b>Cantidad de Meses:</b> " + terms + "<br />" +
+        //      "Pafo: $" + payment.toFixed(2) + "<br />" +
+        //     "<b>Total a Pagar:</b> $" + (payment * terms).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "<br /><br /><div>";
+        
+        $("#lblMonto").text(balance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+        $("#lblInteres").text((interestRate*100).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+        $("#lblCantidad").text(terms);
+        $("#lblTotal").text((payment * terms).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+            
+        //add header row for table to return string
+        result = "<table class='table' border='1'><tr><th>#</th><th>Balance</th>" + 
+            "<th>Interés</th><th>Capital</th><th>Cuota</th>";
+        
+        /**
+        * Loop that calculates the monthly Loan amortization amounts then adds 
+        * them to the return string 
+        */
+        for (var count = 0; count < terms; ++count)
+        { 
+            //in-loop interest amount holder
+            var interest = 0;
+            
+            //in-loop monthly principal amount holder
+            var monthlyPrincipal = 0;
+            
+            //start a new table row on each loop iteration
+            result += "<tr align=center>";
+            
+            //display the month number in col 1 using the loop count variable
+            result += "<td>" + (count + 1) + "</td>";
+            
+            
+            //code for displaying in loop balance
+            result += "<td style='text-align: right;'> $" + balance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "</td>";
+            
+            //calc the in-loop interest amount and display
+            interest = balance * monthlyRate;
+            result += "<td style='text-align: right;' > $" + interest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "</td>";
+            
+            //calc the in-loop monthly principal and display
+            monthlyPrincipal = payment - interest;
+            result += "<td style='text-align: right;'> $" + monthlyPrincipal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "</td>";
+
+            cuota = payment;
+            result += "<td style='text-align: right;'> $" + cuota.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "</td>";
+            
+            //end the table row on each iteration of the loop	
+            result += "</tr>";
+            
+            //update the balance for each loop iteration
+            balance = balance - monthlyPrincipal;		
+        }
+        
+        //Final piece added to return string before returning it - closes the table
+        result += "</table>";
+        
+        //returns the concatenated string to the page
+        $("#myModal").modal('show');
+        return result;
+    }
+
+    function validateInputs(value)
+    {
+        //some code here to validate inputs
+        if ((value == null) || (value == ""))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+</script>
 <!-- <script type="text/javascript" src="{{ URL::asset('js/user/user.js') }}"></script> -->
 <style>
 /* external css: flickity.css, fullscreen.css */

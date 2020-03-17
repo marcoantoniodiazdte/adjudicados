@@ -20,7 +20,7 @@
 @section('contenido_inmobiliaria')
     <div class="card">
         <div class="header">
-            <h2><i class="material-icons">add</i>Edit User</h2>
+            <h2><i class="material-icons">add</i>Editar Usuario</h2>
         </div>
         <div class="body">
             <div class="row">
@@ -57,7 +57,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="form-group form-float">
                             <div class="form-line focused">
-                                <input type="email" class="form-control validate" name="email" value="{{$admin->correo_electronico}}" required >
+                                <input type="email" class="form-control validate" name="email" value="{{$admin->email}}" required >
                                 <label class="form-label">Correo Electrónico</label>
                             </div>
                         </div>

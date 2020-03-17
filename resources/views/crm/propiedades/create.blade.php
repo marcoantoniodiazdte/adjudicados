@@ -70,8 +70,8 @@
     <script src="{{ asset('plugins/jquery-inputmask/jquery.inputmask.bundle.js') }}"></script>
 
     <script src="{{ asset('plugins/autosize/autosize.js') }}"></script>
-    </script><script src="{{ asset('js/src/proyectos.js') }}"></script>
-    </script><script src="{{ asset('js/src/inmueble.js') }}"></script>
+    <script src="{{ asset('js/src/proyectos.js') }}"></script>
+    <script src="{{ asset('js/src/inmueble.js') }}"></script>
     <script>
         $(document).on('ready', function() {
             $("#garleria_propiedad").fileinput({'showUpload':false, 'previewFileType':'jpeg,jpg,png'});

@@ -49,7 +49,7 @@ class InmuebleController extends Controller
      */
     public function index($clase_inmueble = null,$vista = null)    {
 
-
+        // dd(Propiedades::all());
 
         if (\Illuminate\Support\Facades\Request::ajax()) {
 
@@ -131,21 +131,29 @@ class InmuebleController extends Controller
 
 
 
-    public function edit(Propiedades $propiedades, $vista = '')
+    public function edit($id)
     {
+        $propiedad = Propiedades::findOrFail($id);
+        // $provincias = Provincia::all();
+        // $tipos_propiedades = TiposPropiedades::all();
+        // $municipio_prop = Municipio::where('municipio_id',$propiedades->municipio_id)->first();
+        // $sector_pro = Sector::where('sector_id',$propiedades->sector_id)->first();
+
+        // $tipos_atributos = TiposAtributos::all();
+        // $tipos_caracteristicas = TiposCaracteristicas::all();
+
+        // $propiedades->load(['atributos','caracteristicas','tiposPropiedad','provincia','municipio','sector']);
         $provincias = Provincia::all();
         $tipos_propiedades = TiposPropiedades::all();
-        $municipio_prop = Municipio::where('municipio_id',$propiedades->municipio_id)->first();
-        $sector_pro = Sector::where('sector_id',$propiedades->sector_id)->first();
-
         $tipos_atributos = TiposAtributos::all();
-        $tipos_caracteristicas = TiposCaracteristicas::all();
-
-        $propiedades->load(['arhivosPropiedad','atributos','caracteristicas','tiposPropiedad','provincia','municipio','sector']);
 
 
-
-        return view($vista,compact(['propiedades','provincias','tipos_propiedades','municipio_prop','sector_pro','tipos_atributos','tipos_caracteristicas']));
+        return view('crm.propiedades.edit',[
+            'propiedad'   => $propiedad,
+            'provincias'  => $provincias,
+            'tipos_propiedades' => $tipos_propiedades,
+            'tipos_atributos' => $tipos_atributos
+        ]);
 
     }
 
@@ -218,7 +226,7 @@ class InmuebleController extends Controller
                             'propiedad_id' => $propiedad->id,
                         ]
                     );
-                    $propiedad->arhivosPropiedad()->save($archivo_propiedad);
+                    // $propiedad->arhivosPropiedad()->save($archivo_propiedad);
                 }
             }
         }

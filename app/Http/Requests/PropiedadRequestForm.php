@@ -24,21 +24,35 @@ class PropiedadRequestForm extends FormRequest
     public function rules()
     {
         return [
-            'name'              => 'required|max:100',
-            'estado'            => 'required',
-            'clase'             => 'required',
-            'descripcion'       => 'required',
-            'direccion'         => 'required',
-            'tipo_oferta'        => 'required',
-            'precio_us'              => 'required',
-            'precio_rd'              => 'required',
-            'mostrar_precio'              => 'required',
-            'estado'              => 'required',
-            'estado_comercial'              => 'required',
-            'provincia_id'              => 'required',
-            'municipio_id'              => 'required',
-            'sector_id'              => 'required',
+            'name'                  => 'required|max:100',
+            'estado'                => 'required',
+            'clase'                 => 'required',
+            'descripcion'           => 'required',
+            'direccion'             => 'required',
+            'tipo_oferta'           => 'required',
+            'precio_us'             => 'required',
+            'precio_rd'             => 'required',
+            'precio_eur'            => 'required',
+            'precio_oferta_rd'      => 'required',
+            'precio_oferta_usd'     => 'required',
+            'precio_oferta_eu'      => 'required',
+            'mostrar_precio'        => 'required',
+            'estado'                => 'required',
+            'estado_comercial'      => 'required',
+            'provincia_id'          => 'required',
+            'municipio_id'          => 'required',
+            'sector_id'             => 'required',
+            'estado_publicacion'    => 'required',
+            'habitaciones'          => 'required',
+            'area'                  => 'required',
+            'banos'                 => 'required',
+            'habitaciones'          => 'required',
+            'codigo_referencia'     => '',
+            'mapa_url'              => '',
         ];
+
+
+        
     }
 }
 

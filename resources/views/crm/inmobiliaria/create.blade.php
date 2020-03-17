@@ -34,14 +34,14 @@
                        <div class="body">
                            <div class="row ">
 
-                               <div class="col-xs-12 col-sm-12 col-md-4">
+                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">
                                            <input type="text" class="form-control validate" name="name" required minlength="10">
                                            <label class="form-label">Nombre</label>
                                        </div>
                                    </div>
-                               </div>
+                                </div>
                                <div class="col-xs-12 col-sm-12 col-md-4">
                                    <div class="form-group form-float">
                                        <div class="form-line">

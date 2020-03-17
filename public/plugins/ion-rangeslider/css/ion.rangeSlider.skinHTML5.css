@@ -6,6 +6,10 @@
 
 /* =====================================================================================================================
 // Skin details */
+:root {
+    --main-color: #52b848;
+    --main-hover: #287a20;
+}
 
 .irs {
     height: 55px;
@@ -33,17 +37,17 @@
 
 .irs-bar {
     height: 10px; top: 33px;
-    border-top: 1px solid #12a89d;
-    border-bottom: 1px solid #12a89d;
-    background: #12a89d;
+    border-top: 1px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+    background: var(--main-color);
     /* background: linear-gradient(to top, rgba(66,139,202,1) 0%,rgba(127,195,232,1) 100%); W3C */
 }
     .irs-bar-edge {
         height: 10px; top: 33px;
         width: 15px;
-        border: 1px solid #12a89d;
+        border: 1px solid var(--main-color);
         border-right: 0;
-        background: #12a89d;
+        background: var(--main-color);
         background: linear-gradient(to top, rgba(66,139,202,1) 0%,rgba(127,195,232,1) 100%); /* W3C */
         border-radius: 16px 0 0 16px;
         -moz-border-radius: 16px 0 0 16px;
@@ -96,7 +100,7 @@
     font-size: 15px; line-height: 1.333;
     text-shadow: none;
     padding: 1px 5px;
-    background: #12a89d;
+    background: var(--main-color);
     border-radius: 3px;
     -moz-border-radius: 3px;
 }
@@ -109,7 +113,7 @@
 }
 .irs-grid-pol {
     opacity: 0.5;
-    background: #12a89d;
+    background: #52b848;
 }
 .irs-grid-pol.small {
     background: #999;

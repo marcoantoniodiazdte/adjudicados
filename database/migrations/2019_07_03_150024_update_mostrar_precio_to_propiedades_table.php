@@ -15,7 +15,7 @@ class UpdateMostrarPrecioToPropiedadesTable extends Migration
     {
         DB::statement("ALTER TABLE propiedades MODIFY mostrar_precio ENUM('DOP','USD','EUR') NOT NULL");
         Schema::table('propiedades', function($table) {
-            $table->decimal('precio_eur',13,2);
+            // $table->decimal('precio_eur',13,2);
             // $table->enum('mostrar_precio', ['DOP','USD','EUR'])->change(); 
         });
     }
@@ -27,9 +27,9 @@ class UpdateMostrarPrecioToPropiedadesTable extends Migration
      */
     public function down()
     {
-        DB::statement("ALTER TABLE propiedades MODIFY mostrar_precio ENUM('do','us') NOT NULL ");
+        // DB::statement("ALTER TABLE propiedades MODIFY mostrar_precio ENUM('do','us') NOT NULL ");
         Schema::table('propiedades', function($table) {
-            $table->dropColumn('precio_eur',13,2);
+            // $table->dropColumn('precio_eur',13,2);
             // $table->enum('mostrar_precio', ['do','us'])->change();
         });
     }

@@ -51,44 +51,66 @@ Route::prefix('admin')->group(function (){
     Route::resource('inmobiliarias', 'InmobiliariaController', ['parameters' => [
         'inmobiliarias' => 'company',
     ]]);
-    //Propiedades
-    Route::resource('/propiedades','PropiedadesController',['parameters' => ['propiedades' => 'propiedades']]);
+
         //Propiedades
         Route::resource('/tipos_caracteristicas','TipoCaracteristicaController');
         Route::resource('/tipos_atributos','TipoAtributoController');
     Route::resource('/propiedades.atributos','AtributosPropiedadesController');
     //Proyectos
     Route::resource('/proyectos','ProyectosController');
+    Route::resource('/vehiculos','VehiculoController');
+    Route::resource('/obras','ObraController');
+    Route::resource('/marcas','MarcaController');
+    Route::resource('/tipoObras','TipoObraController');
+    Route::resource('/tipoEquipos','TipoEquipoController');
+    Route::resource('/tipoPropiedades','TiposPropiedadesController');
     Route::get('/bancos/mis_bancos','BancoController@mis_bancos_managment')->name('admin_mis_bancos_managment');
     Route::get('/bancos/mis_bancos/create','BancoController@mis_bancos_managment_create')->name('admin_mis_bancos_managment_create');
     Route::post('/bancos/mis_bancos/store','BancoController@mis_bancos_managment_store')->name('admin_mis_bancos_managment_store');
     Route::get('/bancos/mis_bancos/{id}/edit', 'BancoController@mis_bancos_managment_edit')->name('admin_mis_bancos_managment_edit');
     Route::patch('/bancos/mis_bancos/{banco}', 'BancoController@mis_bancos_managment_update')->name('admin_mis_bancos_managment_update');
     Route::resource('/bancos','BancoController');
-
+    
     /*//Bancos
     Route::get('/bancos', 'BancoController@index')->name('bancos.index');
     Route::get('/bancos/create', 'BancoController@create')->name('bancos.create');
     Route::post('/bancos', 'BancoController@store')->name('bancos.store');
     Route::get('/bancos/{banco}/edit', 'BancoController@edit')->name('bancos.edit');*/
-
-   //Get Municipios by provincia
-
+    
+    //Get Municipios by provincia
+    
     Route::get('/provincia/{provincia_id}/municipios','MunicipioController@get_municipios_by_pronvicia')->name('municipios_by_provincia');
     //Get Sectores by municipio
     Route::get('/municipio/{municipio_id}/sectores','SectorController@get_sectores_by_municipio')->name('sectores_by_municipios');
-
+    Route::resource('/equipos','EquipoController');
+    
 });
 
 
 Route::get('/login','WelcomeController@index')->name('login');
 Route::get('/','WelcomeController@index')->name('inicio');
-Route::get('/municipios','WelcomeController@minicipalities');
-Route::get('/sectores','WelcomeController@sector');
+Route::post('/municipios','WelcomeController@minicipalities');
+Route::post('/provincias','WelcomeController@provincia');
+Route::post('/sectores','WelcomeController@sector');
 Route::get('/buscar','WelcomeController@search')->name('buscar');
 Route::get('/cambio','WelcomeController@exchangeEur')->name('buscar');
 Route::get('/cambio2','WelcomeController@exchangeUsd')->name('buscar');
-
+Route::get('abrirImagen/{id}','PropiedadesController@abrirImagenes');
+Route::get('vehiculo/abrirImagen/{id}','VehiculoController@abrirImagenes');
+Route::post('vehiculo/eliminarImagen/{id}','VehiculoController@eliminarImagen');
+Route::get('obra/abrirImagen/{id}','ObraController@abrirImagenes');
+Route::post('propiedades/buscar','WelcomeController@search')->name('buscar.propiedad');
+Route::get('propiedades/buscar','WelcomeController@search')->name('buscar.propiedad');
+Route::post('vehiculos/buscar','WelcomeController@searchVehiculos')->name('buscar.vehiculo');
+Route::get('vehiculos/buscar','WelcomeController@searchVehiculos');
+Route::post('equipos/buscar','WelcomeController@searchEquipos');
+Route::get('equipos/buscar','WelcomeController@searchEquipos');
+Route::get('equipo/abrirImagen/{id}','EquipoController@abrirImagenes');
+Route::get('equipos/{id}','EquipoController@show');
+Route::get('obras/buscar','WelcomeController@searchObras');
+Route::post('obras/buscar','WelcomeController@searchObras');
+Route::post('contact','WelcomeController@contact')->name('contact');
+Route::resource('/propiedades','PropiedadesController',['parameters' => ['propiedades' => 'propiedades']]);
 
 
 Route::post('/profile/update','GuestController@update')->name('update.profile');
@@ -98,16 +120,18 @@ Route::post('/profile/password','GuestController@update_password')->name('update
 /////////////////////////////////////////////////////
 
 
+// OBRA //
+Route::get('/obra/{id}','ObraController@show');
+// OBRA //
 
 
-
-
+//VEHICULO //
+Route::get('/vehiculo/{id}','VehiculoController@show');
+//VEHICULO  //
 
 
 // PROYECTO //
-Route::get('/proyecto/1',function(){
-    return view('welcome.projects.view1');
-});
+Route::get('/propiedad/{id}','PropiedadesController@show');
 
 Route::get('/registro', function(){
     return view('welcome.register');
@@ -117,9 +141,9 @@ Route::get('/ingresa', function(){
     return view('welcome.login');
 })->name('ingresa');
 
-Route::get('/proyecto/2',function(){
-    return view('welcome.projects.view2');
-});
+// Route::get('/propiedad/2',function(){
+//     return view('welcome.projects.view2');
+// });
 
 Route::get('/perfil/propiedad/1', function(){
     return view('welcome.profile.properties_details');

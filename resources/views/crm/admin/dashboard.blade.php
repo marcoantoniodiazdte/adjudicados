@@ -20,13 +20,16 @@
 @section('contenido_inmobiliaria')
     <div class="card">
         <div class="header">
-            <h2><i class="material-icons">add</i>Here goes everything about charts</h2>
+            <h2><i class="material-icons">add</i>Tablero</h2>
 
     {{--    {{ asset('storage/file.txt')}}
 --}}
         </div>
-        <div class="body">
+        <div class="body" style="display:flex; justify-content:center;">
+            <div class="center">
+                <img src="{{\App\Tema::where('activo',1)->first()->logo}}" alt="">
 
+            </div>
            {{-- <div class="row">
                 <div class="col-sm-4 m-b-10">
                     <div class="form-group form-float">

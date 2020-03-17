@@ -20,16 +20,16 @@ $(document).ready(function () {
                         data: function (data) {
                             var buttons = '<div class="btn-group">';
 
-                            if (data.view === true) {
-                                buttons += '<a href="/admin/proyectos/' + data.slug + '" target="_blank" class="btn btn-info btn-xs waves-effect" ' +
-                                    '  data-toggle="tooltip" data-original-title="Consultar"><i class="material-icons">remove_red_eye</i></a>';
+                            // if (data.view === true) {
+                            //     buttons += '<a href="/admin/proyectos/' + data.id + '" target="_blank" class="btn btn-info btn-xs waves-effect" ' +
+                            //         '  data-toggle="tooltip" data-original-title="Consultar"><i class="material-icons">remove_red_eye</i></a>';
 
-                            }
+                            // }
 
 
                             if (data.edit === true) {
                                 buttons +=
-                                    '<a href="/admin/proyectos/' + data.slug + '/edit" target="_blank" class="btn btn-warning btn-xs waves-effect edit-brand" ' +
+                                    '<a href="/admin/proyectos/' + data.id + '/edit" target="_blank" class="btn btn-warning btn-xs waves-effect edit-brand" ' +
                                     'data-toggle="tooltip" data-original-title="Editar"><i class="material-icons">edit</i></a>'
                                 ;
                             }

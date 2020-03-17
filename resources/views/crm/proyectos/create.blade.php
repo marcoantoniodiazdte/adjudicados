@@ -40,7 +40,7 @@
 
 
               {{-- {!! Form::open(['route' => 'propiedades.store', 'method' => 'post']) !!}--}}
-           <form method="POST" id="inmueble_new_form" action="{{ route('propiedades.store') }}">
+           <form method="POST" id="inmueble_new_form" enctype="multipart/form-data" action="{{ route('propiedades.store') }}">
 
                @csrf
 

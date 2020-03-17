@@ -90,7 +90,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="/" class="">
-                        <img src="{{asset('img/logos/logo.png')}}" style="height: 56px!important;" alt="logo">
+                    <img src="{{\App\Tema::where('activo',1)->first()->logo}}" style="width: 125px!important; margin-top:9px;" alt="logo">
                     </a>
                 </div>
 
@@ -103,20 +103,38 @@
                                 Comprar
                             </a>
                         </li>-->
-                        <li class="dropdown" href="{{route('inmobiliarias')}}">
-                            <a  href="{{('buscar')}}"  >
-                                Buscar
+                        <li class="dropdown {{ request()->is('propiedades/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
+                            <a  href="/propiedades/buscar"  >
+                                Bienes Raices
                             </a>
-                        </li> 
-                        <li class="dropdown {{ request()->is('inmobiliarias') ? 'active' : '' }}">
+                        </li>
+                        <li class="dropdown {{ request()->is('vehiculos/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
+                            <a  href="/vehiculos/buscar"  >
+                                Vehiculos
+                            </a>
+                        </li>
+                        <li class="dropdown {{ request()->is('obras/buscar') ? 'active' : '' }} " href="/obras/buscar">
+                            <a  href="/obras/buscar"  >
+                                Obras de Arte
+                            </a>
+                        </li>
+                        <li class="dropdown {{ request()->is('equipos/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
+                            <a  href="/equipos/buscar"  >
+                                Equipos
+                            </a>
+                        </li>
+                        {{-- <li class="dropdown {{ request()->is('inmobiliarias') ? 'active' : '' }}">
                             <a  href="{{route('inmobiliarias')}}"  aria-expanded="false">
                                 Inmobiliarias</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="dropdown {{ request()->is('contacto') ? 'active' : '' }}" >
                             <a href="{{route('contacto')}}"  >
                                 Contacto
                             </a>
+                        </li>
+                        <li>
+                            <img src="https://brolik.com/blog/wp-content/uploads/2013/05/BRO_ResponsiveDesign_Main2.png" width="95" alt="">
                         </li>
                         <!-- <li class=" dropdown {{ request()->is('perfil*') ? 'active' : '' }}">
                         @if(Auth::user())
@@ -141,7 +159,7 @@
                             </ul>
                         </li> -->
                         <li class="dropdown">
-                            @if(Auth::user())
+                            {{-- @if(Auth::user())
                                 <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
                                 {{Auth::user()->name}} <span class="caret"></span>
                                 </a>
@@ -149,7 +167,7 @@
                             <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
                                 Inicia sesión o Regístrate <span class="caret"></span>
                             </a>
-                            @endif
+                            @endif --}}
                             @if(Auth::user())
                                 <ul class="dropdown-menu">
                                     <li ><a class="dropdown-item" href="{{route('profile')}}">Mi Perfil</a></li>
@@ -321,7 +339,7 @@
     <!-- Contenido final -->
 
     <!-- Footer inicio -->
-    <footer class="main-footer clearfix">
+    {{-- <footer class="main-footer clearfix">
         <div class="container">
             <!-- Footer info-->
             <div class="footer-info">
@@ -345,8 +363,9 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
     <!-- Footer final -->
+    <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'f5cb0f1e-2915-4b61-b327-664a30ac0d4e', f: true }); done = true; } }; })();</script>
 
     <script>
     $(".js-range-slider").ionRangeSlider({
@@ -377,6 +396,7 @@
        $('.price').each(function(){
 			if($currency == 'dop')
 			{
+                // alert(Number($(this).attr('dop')))
                 $(this).text("RD"+ Number($(this).attr('dop')).toLocaleString("en-US", { style: "currency", currency: "USD"}))
 			}
 			if($currency == 'usd')
@@ -385,11 +405,11 @@
             }
             if($currency == 'eur')
 			{
-				$(this).text("€" +Number($(this).attr('usd')).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}))
+				$(this).text("€" +Number($(this).attr('eur')).toLocaleString(undefined, {minimumFractionDigits: 2,maximumFractionDigits: 2}))
 			}
        })
 
-       $('.js-range-slider').data("ionRangeSlider").destroy();
+    //    $('.js-range-slider').data("ionRangeSlider").destroy();
        if($currency == 'dop')
         {
             $(".js-range-slider").ionRangeSlider({
@@ -460,6 +480,16 @@
     .multiselect {
     min-width: 300px;
 }
+
+    :root {
+        --main-color: {{\App\Tema::where('activo',1)->first()->color}};
+        --main-hover: {{\App\Tema::where('activo',1)->first()->hover}};
+
+
+       
+    }
+
+
 
 select {
   width: 100%!important;

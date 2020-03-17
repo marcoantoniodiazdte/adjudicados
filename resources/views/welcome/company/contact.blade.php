@@ -5,7 +5,7 @@
     <div class="container">
         <div class="main-title mb-60">
             <h1>Contáctanos</h1>
-            <p class="lead">La motivación nos impulsa a comenzar y el hábito nos permite continuar.</p>
+            <p class="lead">Los valores nos mueven adelante.</p>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="display: flex;justify-content: center;">
@@ -15,9 +15,9 @@
                     <h1>Información</h1>
                 </div>
                     <ul class="contact-list">
-                        <li><i class="fa fa-map-marker"></i> 20/F Green Road, Dhaka</li>
-                        <li><i class="fa fa-phone"></i> +55 417 634 7071</li>
-                        <li><i class="mr-3 fa fa-envelope"></i> info@themevessel.com</li>
+                        {{-- <li><i class="fa fa-map-marker"></i> 20/F Green Road, Dhaka</li> --}}
+                        <li><i class="fa fa-phone"></i> 809-243-5198 / 809-243-3609</li>
+                        <li><i class="mr-3 fa fa-envelope"></i> {{\App\Tema::where('activo',1)->first()->email}}</li>
                     </ul>
                     <div class="main-title mb-60">
                         <h1>Síguenos</h1>

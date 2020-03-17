@@ -1,7 +1,7 @@
 <aside id="leftsidebar" class="sidebar">
     <!-- User Info -->
     {{--<div class="user-info" style="background: url({{asset('img/users/user-img-background.jpg')}}) no-repeat no-repeat;">--}}
-    <div class="user-info" style="background-color: #68C56C;">
+    <div class="user-info" style="background-color: #9e9e9e;">
 
         <div class="image">
             <img src="{{asset('img/users/user.png')}}" width="48" height="48" alt="User" />
@@ -16,7 +16,7 @@
         <ul class="list">
 
 
-            @if($modulos->contains('clase','inmo_management') )
+            {{-- @if($modulos->contains('clase','inmo_management') )
                 <li class="header">Inmobiliarias</li>
                 <li class="active">
                     <a href="{{route('inmobiliarias.index')}}">
@@ -30,10 +30,10 @@
                         </a>
                     @endif
                 </li>
-            @endif
+            @endif --}}
 
             @if($modulos->contains('clase','propiedad_management') )
-                <li class="header">Inmuebles</li>
+                <li class="header">Opciones</li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                         <i class="material-icons">view_quilt</i>
@@ -43,31 +43,101 @@
                         <li class="">
                             <a href="{{route('proyectos.index')}}">
                                 <i class="material-icons col-blue">view_quilt</i>
-                                <span>Proyectos</span>
-                            </a>
-                            <a href="{{route('propiedades.index')}}">
-                                <i class="material-icons col-blue">view_quilt</i>
                                 <span>Propiedades</span>
                             </a>
-                            <a href="{{route('tipos_caracteristicas.index')}}">
-                                <i class="material-icons col-blue">format_size</i>
-                                <span>Tipos Caracteristicas</span>
+                            <a href="{{route('tipoPropiedades.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Tipo de Propiedades</span>
                             </a>
-                            <a href="{{route('tipos_atributos.index')}}">
-                                <i class="material-icons col-blue">format_size</i>
-                                <span>Tipos Atributos</span>
-                            </a>
+
                         </li>
                     </ul>
                 </li>
             @endif
-
+            {{-- <li class="header">Vehiculos</li> --}}
+            @if($modulos->contains('clase','user_management') )
+                  {{--  <li class="header">User Managment</li>--}}
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                            <i class="material-icons">directions_car</i>
+                            <span >Vehículos </span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="">
+                                <a href="{{route('vehiculos.index')}}">
+                                    <i class="material-icons col-blue">directions_car</i>
+                                    <span>Vehículos</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="{{route('marcas.index')}}">
+                                    <i class="material-icons col-blue">view_quilt</i>
+                                    <span>Marca</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+            @endif
+            {{-- <li class="header">Obras de arte</li> --}}
+            @if($modulos->contains('clase','user_management') )
+            {{--  <li class="header">User Managment</li>--}}
+              <li>
+                  <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                      <i class="material-icons">brush</i>
+                      <span >Obras de arte </span>
+                  </a>
+                  <ul class="ml-menu">
+                    <li class="">
+                        <a href="{{route('obras.index')}}">
+                            <i class="material-icons col-blue">brush</i>
+                            <span>Obras de arte</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{route('tipoObras.index')}}">
+                            <i class="material-icons col-blue">view_quilt</i>
+                            <span>Tipo de Obras</span>
+                        </a>
+                    </li>
+                </ul>
+              </li>
+            @endif
+            @if($modulos->contains('clase','user_management') )
+            {{--  <li class="header">User Managment</li>--}}
+              <li>
+                  <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                      <i class="material-icons">format_paint</i>
+                      <span >Equipos </span>
+                  </a>
+                  <ul class="ml-menu">
+                    <li class="">
+                        <a href="{{route('equipos.index')}}">
+                            <i class="material-icons col-blue">settings</i>
+                            <span>Equipos</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{route('tipoEquipos.index')}}">
+                            <i class="material-icons col-blue">view_quilt</i>
+                            <span>Tipo de Equipos</span>
+                        </a>
+                    </li>
+                    {{-- <li class="">
+                        <a href="{{route('tipoObras.index')}}">
+                            <i class="material-icons col-blue">view_quilt</i>
+                            <span>Tipo de Obras</span>
+                        </a>
+                    </li> --}}
+                </ul>
+              </li>
+            @endif
+            {{-- <li class="header">Usuarios</li> --}}
             @if($modulos->contains('clase','user_management') )
                   {{--  <li class="header">User Managment</li>--}}
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
                             <i class="material-icons">person</i>
-                            <span >User Managment </span>
+                            <span >Usuarios </span>
                         </a>
                         <ul class="ml-menu">
                             <li class="">
@@ -82,7 +152,7 @@
                     </li>
             @endif
 
-            @if($modulos->contains('clase','banco_management') )
+            {{-- @if($modulos->contains('clase','banco_management') )
                 <li class="header">Bancos</li>
                 @hasrole('superadmin')
                     <li>
@@ -98,7 +168,7 @@
                             <span>Mis Bancos</span>
                         </a>
                     </li>
-            @endif
+            @endif --}}
         </ul>
     </div>
     <!-- #Menu -->

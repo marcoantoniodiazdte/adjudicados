@@ -41,7 +41,7 @@
                         <label class="m-b-0" for="check-all"></label>
                     </th>
                     <th class="exportar">ID</th>
-                    <th class="exportar">Name</th>
+                    <th class="exportar">Nombre</th>
                     <th class="exportar">Email</th>
                     <th>Opciones</th>
 
@@ -98,7 +98,7 @@
                       },
                       { data: 'id', name: 'id' },
                       { data: 'nombres', name: 'nombres' },
-                      { data: 'correo_electronico', name: 'correo_electronico' },
+                      { data: 'email', name: 'email' },
                       {
                         data: function (data) {
                           var buttons = '<div class="btn-group">';

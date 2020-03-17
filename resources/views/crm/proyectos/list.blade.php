@@ -44,7 +44,7 @@
                         <label class="m-b-0" for="check-all"></label>
                     </th>
                     <th class="exportar">ID</th>
-                    <th class="exportar">Name</th>
+                    <th class="exportar">Nombre</th>
                     <th>Opciones</th>
 
                 </tr>

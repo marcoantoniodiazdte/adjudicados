@@ -12,8 +12,8 @@
 
 
     <!-- Favicon-->
-{{-- <link href="{{ ('favicon.ico') }}" rel="icon" type="text/css">--}}
-<!-- Google Fonts -->
+    {{-- <link href="{{ ('favicon.ico') }}" rel="icon" type="text/css">--}}
+    <!-- Google Fonts -->
     <link href="{{ asset('fonts/roboto_regular/stylesheet.css') }}" rel="stylesheet">
     <link href="{{ asset('fonts/material_icons/stylesheet.css') }}" rel="stylesheet">
     <!-- Bootstrap Core Css -->
@@ -43,22 +43,22 @@
 <body class="theme-blue">
     <div class="text-center">
         <div class="login-page" style="overflow-x: visible">
-            <div class="login-box">
+            <div class="login-box" style="background: white;">
                 <div class="logo">
-                    <img src="{{asset('img/logos/logo.png')}}" href="{{route('home')}}" style="height: 56px!important;" alt="logo">
-                    <a href="javascript:void(0);">Admin<b>Inmobiliaria</b></a>
+                    <img src="{{\App\Tema::where('activo',1)->first()->logo}}" href="{{route('home')}}" style="height: 56px!important;" alt="logo">
+                    {{-- <a href="javascript:void(0);"><b>BHD LEON</b></a> --}}
 
                 </div>
                 <div class="card">
                     <div class="body">
                         {!! Form::open(['route' => 'admin.login.submit', 'method' => 'post']) !!}
-                        <div class="msg">Ingrése sus credenciales para iniciar sesión</div>
+                        {{-- <div class="msg">Ingrése sus credenciales para iniciar sesión</div> --}}
                         <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="material-icons">person</i>
                                             </span>
                             <div class="form-line">
-                                <input type="text" class="form-control" name="email" placeholder="Correo Electronico" required autofocus>
+                                <input type="text" class="form-control" name="email" placeholder="Correo Electrónico" required autofocus>
                             </div>
                         </div>
                         <div class="input-group">
@@ -75,7 +75,7 @@
                                 <label for="rememberme">Remember Me</label>
                             </div>--}}
                             <div class="col-xs-12">
-                                <button class="btn btn-block bg-blue waves-effect" type="submit">Log In</button>
+                                <button class="btn btn-block bg-blue waves-effect" type="submit">Entrar</button>
                             </div>
                         </div>
                       {{--  <div class="row m-t-15 m-b--20">

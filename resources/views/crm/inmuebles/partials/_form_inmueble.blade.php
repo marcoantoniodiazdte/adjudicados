@@ -1,10 +1,11 @@
 <div class="row m-t-10">
 
-    <div class="col-sm-8 col-md-6 col-lg-6">
+    <div class="col-sm-8 col-md-3 col-lg-3">
         <div class="form-group form-float m-b-0">
-            <div class="form-line {{ old('name') ? 'focused':'' }}">
-                <input type="text" class="form-control m-t-5 " name="name"  value="{{  old('name') }}" maxlength="100" />
+            <div class="form-line focused">
+                <input type="text" class="form-control m-t-5 " name="name"  value="{{  old('name') }}" required oninvalid="El" maxlength="100" />
                 <input type="hidden" class="form-control " name="clase" value="{{$clase_proyecto}}"  maxlength="100" />
+                <input type="hidden" class="form-control " name="slug" value="empty"  maxlength="100" />
                 <label class="form-label m-t--5">Nombre</label>
             </div>
         </div>
@@ -14,13 +15,34 @@
         <div class="form-group form-float">
             <div class="form-line focused">
                 <select  class="form-control  btn-group bootstrap-select show-tick m-t-5" data-live-search="true"   value="{{  old('estado') }}" name="estado" id="estado">
-                    <option value="" selected disabled>Elija Una Opción</option>
+                    <option value="" selected disabled>Elija una opción</option>
                     <option value="disponible">Disponible</option>
-                    <option value="contrucion">Construcción</option>
+                    <option value="contruccion">Construcción</option>
                     <option value="contrato">Contrato</option>
-                    <option value="vendida">Vendido</option>
+                    <option value="vendido">Vendido</option>
                 </select>
                 <label class="form-label m-t--5">Estado</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm- col-md-3 col-lg-3">
+        <div class="form-group form-float m-b-0  m-t-5">
+            <div class="form-line focused">
+                <input type="text" class="form-control " name="codigo_referencia" value="{{ old('codigo_referencia')}}" required maxlength="100" />
+                <label class="form-label  m-t--5">Código de ref. Bancaria</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-3">
+        <div class="form-group form-float">
+            <div class="form-line focused">
+                <select class="btn-group bootstrap-select form-control show-tick m-t-5"
+                        data-live-search="true" name="tipo_id" id="clase">
+                    @foreach($tipos_propiedades as $tipo)
+                        <option value="{{$tipo->id}}">{{$tipo->name}}</option>
+                    @endforeach
+                </select>
+                <label class="form-label m-t--5">Tipo de Propiedad</label>
             </div>
         </div>
     </div>
@@ -29,7 +51,7 @@
             <div class="form-line focused">
                 <select class="btn-group bootstrap-select form-control show-tick m-t-5"
                         data-live-search="true" name="estado_comercial" id="clase">
-                    <option value="" selected disabled>Elija Una Opción</option>
+                    <option value="" selected disabled>Elija una opción</option>
                     <option value="venta">Venta</option>
                     <option value="alquiler">Alquiler</option>
                 </select>
@@ -37,32 +59,92 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-4 col-md-3 col-lg-3">
+        <div class="form-group form-float">
+            <div class="form-line focused">
+                <select class="btn-group bootstrap-select form-control show-tick m-t-5"
+                        data-live-search="true" name="habitaciones" id="clase">
+                    <option value="" selected disabled>Elija una opción</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <label class="form-label m-t--5">Habitaciones</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-3 col-lg-3">
+        <div class="form-group form-float">
+            <div class="form-line focused">
+                <select class="btn-group bootstrap-select form-control show-tick m-t-5"
+                        data-live-search="true" name="banos" id="clase">
+                    <option value="" selected disabled>Elija una opción</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                </select>
+                <label class="form-label m-t--5">Baños</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3">
+        <div class="form-group form-float m-b-0  m-t-5">
+            <div class="form-line focused">
+                <input type="number" class="form-control " name="area" required value="{{ old('area')}}" maxlength="100" />
+                <label class="form-label  m-t--5">Area de construcción</label>
+            </div>
+        </div>
+    </div>
+    
 </div>
 <div class="row">
-    <div class="col-sm-4 col-md-4 col-lg-3">
+    <div class="col-sm-4 col-md-3 col-lg-3">
         <div class="form-group form-float m-b-0  m-t-5">
-            <div class="form-line {{ old('precio_us') ? 'focused':'' }}">
+            <div class="form-line focused">
                 <input type="number" class="form-control " name="precio_us" value="{{ old('precio_us')}}" maxlength="100" />
                 <label class="form-label  m-t--5">Precio USD</label>
             </div>
         </div>
     </div>
 
-    <div class="col-sm-4 col-md-4 col-lg-3">
+    <div class="col-sm-4 col-md-3 col-lg-3">
         <div class="form-group form-float m-b-0  m-t-5">
-            <div class="form-line {{ old('precio_rd') ? 'focused':'' }}" >
+            <div class="form-line focused" >
                 <input type="number" class="form-control" name="precio_rd" value="{{ old('precio_rd')}}"  maxlength="100" />
                 <label class="form-label  m-t--5">Precio DOP</label>
             </div>
         </div>
     </div>
+    <div class="col-sm-4 col-md-3 col-lg-3">
+        <div class="form-group form-float m-b-0  m-t-5">
+            <div class="form-line focused" >
+                <input type="number" class="form-control" name="precio_eur" value="{{ old('precio_rd')}}"  maxlength="100" />
+                <label class="form-label  m-t--5">Precio EUR</label>
+            </div>
+        </div>
+    </div>
 
-    <div class="col-sm-4 col-md-4 col-lg-3">
+    <div class="col-sm-4 col-md-3 col-lg-3">
         <div class="form-group form-float">
             <div class="form-line focused">
                 <select class="btn-group bootstrap-select form-control show-tick" data-live-search="true" name="mostrar_precio" id="clase">
-                    <option value="us">USD</option>
-                    <option value="do">DOP</option>
+                    <option value="USD">USD</option>
+                    <option value="DOP">DOP</option>
+                    <option value="EUR">DOP</option>
                 </select>
                 <label class="form-label m-t--5">Precio a Mostrar</label>
             </div>
@@ -70,22 +152,47 @@
     </div>
 
 </div>
+<div class="row">
+    <div class="col-sm-4 col-md-3 col-lg-3">
+        <div class="form-group form-float m-b-0  m-t-5">
+            <div class="form-line focused" >
+                <input type="number" class="form-control" name="precio_oferta_rd" required value="{{ old('precio_oferta_rd')}}"  maxlength="100" />
+                <label class="form-label  m-t--5">Precio Oferta DOP</label>
+            </div>
+        </div>
+    </div> 
+    <div class="col-sm-4 col-md-3 col-lg-3">
+        <div class="form-group form-float m-b-0  m-t-5">
+            <div class="form-line focused" >
+                <input type="number" class="form-control" name="precio_oferta_usd" required value="{{ old('precio_oferta_usd')}}"  maxlength="100" />
+                <label class="form-label  m-t--5">Precio Oferta USD</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-3 col-lg-3">
+        <div class="form-group form-float m-b-0  m-t-5">
+            <div class="form-line focused" >
+                <input type="number" class="form-control" name="precio_oferta_eu" required value="{{ old('precio_oferta_eu')}}"  maxlength="100" />
+                <label class="form-label  m-t--5">Precio Oferta EUR</label>
+            </div>
+        </div>
+    </div>     
+</div>
 
 <div class="row">
-
-    <div class="col-sm-4 col-md-4 col-lg-3">
+    <div class="col-sm-4 col-md-3 col-lg-3">
         <div class="form-group form-float">
             <div class="form-line focused">
-                <select class="btn-group bootstrap-select form-control show-tick" data-live-search="true" name="tipo_oferta" id="clase">
+                <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="tipo_oferta" id="clase">
                     <option value="exclusiva">Exclusiva</option>
-                    <option value="normal">Normal</option>
+                    <option value="normal">Sin Oferta</option>
                 </select>
                 <label class="form-label m-t--5">Tipo Oferta</label>
             </div>
         </div>
     </div>
 
-    <div class="col-sm-4 col-md-4 col-lg-3">
+    {{-- <div class="col-sm-4 col-md-4 col-lg-3">
         <div class="form-group form-float">
             <div class="form-line focused">
                 <select class="btn-group bootstrap-select form-control show-tick" data-live-search="true"  id="clase">
@@ -96,13 +203,13 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col-sm-4 col-md-12 col-lg-12">
         <div class="form-group form-float m-b-15">
             <label class="form-label">Descripción</label>
-            <div class="form-line {{ old('descripcion') ? 'focused':'' }}">
+            <div class="form-line focused">
                 {{--<input type="text" class="form-control" name="descripcion" value="{{ old('descripcion')}}"  maxlength="100" />--}}
-                <textarea rows="1" name="descripcion" id="annotations" class="form-control no-resize auto-growth" placeholder="Inserte Descripción">{{ old('descripcion')}}</textarea>
+                <textarea rows="1" name="descripcion" id="annotations" class="form-control no-resize auto-growth" required placeholder="Escribe una descripción">{{ old('descripcion')}}</textarea>
 
 
             </div>
@@ -114,8 +221,8 @@
     <div class="col-sm-4 col-md-4 col-lg-4">
         <div class="form-group form-float m-b-0 ">
             <div class="form-line focused">
-                <select class="btn-group bootstrap-select form-control show-tick" data-live-search="true" name="provincia_id" id="provincia_id">
-                    <option value="" selected disabled>Elija Una Opción</option>
+                <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="provincia_id" id="provincia_id">
+                    <option value="" selected disabled>Elija una opción</option>
                     @foreach($provincias as $provincia)
                     <option value="{{ $provincia->provincia_id }}">{{ Str::upper($provincia->provincia) }}</option>
                     @endforeach
@@ -129,8 +236,8 @@
         <div class="form-group form-float m-b-0 ">
             <div class="form-line focused">
 
-                <select class="btn-group bootstrap-select form-control show-tick" data-live-search="true" name="municipio_id" id="municipio_id">
-
+                <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="municipio_id" id="municipio_id">
+                    <option value="" selected disabled>Elija una opción</option>
                 </select>
 
                 <label class="form-label m-t--5">Municipio</label>
@@ -142,8 +249,8 @@
         <div class="form-group form-float m-b-0 ">
             <div class="form-line focused">
 
-                <select class="btn-group bootstrap-select form-control show-tick" data-live-search="true" name="sector_id" id="sector_id">
-
+                <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="sector_id" id="sector_id">
+                    <option value="" selected disabled>Elija una opción</option>
                 </select>
 
                 <label class="form-label m-t--5">Sector</label>
@@ -162,7 +269,28 @@
             </div>
         </div>
 
-    <div class="col-sm-12 col-md-12">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group form-float m-b-0">
+                <div class="form-line {{ old('direccion') ? 'focused':'' }}">
+                    <input type="text" class="form-control" name="mapa_url" value="{{ old('mapa_url')}}"  maxlength="590" />
+                    <label class="form-label">Google Maps Url</label>
+                </div>
+            </div>
+        </div>
+        <div class="" style="padding: 15px 20px 5px 20px;">
+            <div id="" class="list-unstyled row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 m-t-15">
+                    <div class="form-group form-float m-b-0">
+                        <div class="file-loading">
+                            <input id="archivos_salones"  name="path[]" class="file" type="file" data-preview-file-type="text"
+                                accept=".png,.jpg,.jpeg,.pdf" multiple>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="col-sm-12 col-md-12">
             <h2 class="card-inside-title">Tipo Propiedad</h2>
             <div class="demo-checkbox">
 
@@ -175,9 +303,9 @@
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div> --}}
 
-    <div class="col-sm-12 col-md-12">
+    {{-- <div class="col-sm-12 col-md-12">
         <h2 class="card-inside-title">Comodidades</h2>
         <div class="demo-checkbox">
 
@@ -190,14 +318,14 @@
                 </div>
             @endforeach
         </div>
-    </div>
+    </div> --}}
 
 
 </div>
 
-@include('crm.inmuebles.partials.atributos_pro',['atributo' => ['modo' => 'creacion','data' => null]])
+{{-- @include('crm.inmuebles.partials.atributos_pro',['atributo' => ['modo' => 'creacion','data' => null]]) --}}
 
-<div class="row">
+{{-- <div class="row">
 
     <div class="col-sm-8 col-md-12">
         <h2 class="card-inside-title">Galeria Propiedad</h2>
@@ -205,7 +333,7 @@
             <input id="garleria_propiedad" name="garleria_propiedad[]" class="file" type="file" data-preview-file-type="text" accept="image/*" multiple>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 
@@ -226,3 +354,6 @@
 </div>
 
 <span id="atributos_propiedad_pre" data-atributos='@json($tipos_atributos)' ></span>
+
+<script src="{{ asset('plugins/bootstrap-fileinput/js/fileinput.js') }}"></script>
+<link href="{{ asset('plugins/bootstrap-fileinput/css/fileinput.min.css') }}" media="all" rel="stylesheet" type="text/css">
