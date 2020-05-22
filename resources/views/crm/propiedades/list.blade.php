@@ -24,7 +24,7 @@
             <ul class="header-dropdown">
                 @can('create.propiedades')
                     <li>
-                        <a href="{{route('propiedades.create')}}" data-toggle="tooltip" data-original-title="Create">
+                        <a href="{{route('propiedades.create')}}" data-toggle="tooltip" data-original-title="Crear">
                             <i class="material-icons col-blue">add</i>
                         </a>
                     </li>
@@ -44,7 +44,7 @@
                         <label class="m-b-0" for="check-all"></label>
                     </th>
                     <th class="exportar">ID</th>
-                    <th class="exportar">Name</th>
+                    <th class="exportar">Nombre</th>
                     <th>Opciones</th>
 
                 </tr>

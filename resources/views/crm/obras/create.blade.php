@@ -1,6 +1,6 @@
 @extends('crm.layouts.base_crm')
 
-@section('title', 'Vehiculos')
+@section('title', 'Obras de Arte')
 
 @section('navbar_content')
     @include('crm.layouts.components.navbar')
@@ -15,7 +15,7 @@
 @section('contenido_inmobiliaria')
    <div class="card">
        <div class="header">
-           <h2><i class="material-icons">add</i>Crear Obras</h2>
+           <h2><i class="material-icons">add</i>Crear Obras de Arte</h2>
        </div>
 
        @if ($errors->any())
@@ -66,57 +66,47 @@
                             </div>
                         </div>
                     </div>
-                   <div class="col-lg-4">
+                    <div class="col-lg-4">
                         <div class="form-group form-float">
-                            <div class="form-line">
-                                <input type="number" class="form-control validate" required name="precio" required >
+                            <div class="form-line focused">
+                                <input type="text" class="form-control validate" required name="codigo_referencia" required >
+                                <label class="form-label">Código Referencia</label>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-sm-4 col-md-2 col-lg-2">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="moneda" id="clase">
+                                    <option value="RD">DOP</option>
+                                    <option value="USD">USD</option>
+                                    <option value="EUR">EUR</option>
+                                </select>
+                                <label class="form-label m-t--5">Moneda</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <input type="number" class="form-control validate" required name="monto" required >
                                 <label class="form-label">Precio</label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group form-float">
-                            <div class="form-line ">
-                                <input type="number" class="form-control validate" required name="precio_usd" required >
-                                <label class="form-label">Precio USD</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group form-float">
-                            <div class="form-line ">
-                                <input type="number" class="form-control validate" required name="precio_eu" required >
-                                <label class="form-label">Precio EU</label>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3 col-md-3">
                         <div class="form-group form-float">
-                            <div class="form-line">
-                                <input type="number" class="form-control validate" required name="precio_oferta" required >
+                            <div class="form-line focused">
+                                <input type="number" class="form-control validate" required name="monto_oferta" required >
                                 <label class="form-label">Precio Oferta</label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input type="number" class="form-control validate" required name="precio_oferta_usd" required >
-                                <label class="form-label">Precio Oferta USD</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <input type="number" class="form-control validate" required name="precio_oferta_eu" required >
-                                <label class="form-label">Precio Oferta EU</label>
-                            </div>
-                        </div>
-                    </div>
          
-                    <div class="col-lg-8">
+                    <div class="col-lg-12">
                         <div class="form-group form-float">
                             <div class="form-line">
                                 <input type="text" class="form-control validate" required name="descripcion" required >

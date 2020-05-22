@@ -24,7 +24,7 @@
             <ul class="header-dropdown">
                 @can('create.users')
                     <li>
-                        <a href="{{route('admin_users_managment_create')}}" data-toggle="tooltip" data-original-title="Create">
+                        <a href="{{route('admin_users_managment_create')}}" data-toggle="tooltip" data-original-title="Crear">
                             <i class="material-icons col-blue">add</i>
                         </a>
                     </li>
@@ -43,6 +43,7 @@
                     <th class="exportar">ID</th>
                     <th class="exportar">Nombre</th>
                     <th class="exportar">Email</th>
+                    <th class="exportar">Notificación Visita</th>
                     <th>Opciones</th>
 
                 </tr>
@@ -99,6 +100,8 @@
                       { data: 'id', name: 'id' },
                       { data: 'nombres', name: 'nombres' },
                       { data: 'email', name: 'email' },
+                      { data: function( data ) {
+                        return ( data.notificacion_visita == 1 ) ? 'Si' : 'No'; } , name: 'notificacion_visita' },
                       {
                         data: function (data) {
                           var buttons = '<div class="btn-group">';

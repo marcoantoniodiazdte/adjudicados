@@ -22,6 +22,9 @@
                 <div class="heading-properties clearfix sidebar-widget">
                     <div class="pull-left">
                         <h3>{{$equipo->titulo}}</h3>
+                        <h4>
+                            <b>Código: </b>{{$equipo->codigo_referencia}}
+                        </h4>
                         {{-- <p>
                             <i class="fa fa-map-marker"></i>{{$vehiculo->titulo}},
                         </p> --}}
@@ -41,9 +44,9 @@
                     </div> --}}
 
                     <div class="pull-right">
-                    <h3>Precio : <span class="price" usd="{{$equipo->precio_usd}}" dop="{{$equipo->precio}}" eur="{{$equipo->precio_eu}}" >RD${{number_format($equipo->precio, 2)}}</span></h3>
+                    <h3>Precio : <span class="price" usd="{{$equipo->precio_usd}}" dop="{{$equipo->precio}}" eur="{{$equipo->precio_eu}}" >{{$equipo->moneda}}${{number_format($equipo->monto, 2)}}</span></h3>
                     @if($equipo->tipo_oferta == 'exclusiva')
-                    <h3>Oferta : <span style="color:red;" class="price" usd="{{$equipo->precio_oferta_usd}}" dop="{{$equipo->precio_oferta}}" eur="{{$equipo->precio_oferta_eu}}">RD${{number_format($equipo->precio_oferta, 2)}}</span></h3>
+                    <h3>Oferta : <span style="color:red;" class="price" usd="{{$equipo->precio_oferta_usd}}" dop="{{$equipo->monto_oferta}}" eur="{{$equipo->precio_oferta_eu}}">{{$equipo->moneda}}${{number_format($equipo->precio_oferta, 2)}}</span></h3>
                     @endif
                         <h5>    
                             <!-- Per Manth -->
@@ -328,7 +331,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group subject">
-                                            <input type="text" name="subject" class="input-text" placeholder="Asusto">
+                                            <input type="text" name="subject" class="input-text" value=" Código de referencia: {{$equipo->codigo_referencia}}" placeholder="Asusto">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -361,7 +364,7 @@
                         <div class="helping-center">
                             <div class="icon"><i class="fa fa-building"></i></div>
                             <h4></h4>
-                            <p><a href="">{{\App\Tema::where('activo',1)->first()->email}}</a> </p>
+                            <p><a href="">{{\App\Company::info()->email}}</a> </p>
                         </div>
 
                         <div class="helping-center">
@@ -426,7 +429,7 @@
                                 <div class="modal-body">
                                     <div class="col-md-12">
                                         <div class="col-md-7">
-                                            <img src="{{\App\Tema::where('activo',1)->first()->logo}}" style="width: 200px!important; margin-top:9px; "  alt="logo">
+                                            <img src="{{\App\Company::info()->logo}}" style="width: 200px!important; margin-top:9px; "  alt="logo">
                                         </div>
                                         <div class="col-md-5">
                                             <p><b>Monto Préstamo:</b> <span id="lblMonto"></span> </p>
@@ -466,8 +469,8 @@
                                     <a href="">{{$obr->titulo}}</a>
                                 </h3>
                                 <p> 27 de Febrero, 2018</p>
-                                <div class="price">
-                                   RD$ {{number_format($obr->precio, 2)}}
+                                <div class="price" usd="{{$obr->precio_usd}}"  dop="{{$obr->precio}}" eur="{{$obr->precio_eu}}">
+                                    {{$obr->moneda}}$ {{number_format($obr->precio, 2)}}
                                 </div>
                             </div>
                         </div>

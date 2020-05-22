@@ -24,7 +24,7 @@
             <ul class="header-dropdown">
                 @can('create.propiedades')
                     <li>
-                        <a href="{{route('tipoEquipos.create')}}" data-toggle="tooltip" data-original-title="Create">
+                        <a href="{{route('tipoEquipos.create')}}" data-toggle="tooltip" data-original-title="Crear">
                             <i class="material-icons col-blue">add</i>
                         </a>
                     </li>

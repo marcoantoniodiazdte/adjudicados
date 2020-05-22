@@ -195,11 +195,14 @@
                                     <div class="panel-box properties-panel-box Property-description">
                                         <ul class="nav nav-tabs " style="display:flex; justify-content:center;">
                                             {{-- <li class="active"><a href="#tab1default" data-toggle="tab" aria-expanded="true">Bienes Raices</a></li> --}}
-                                            <li class="active"><a href="#tab1default" data-toggle="tab" aria-expanded="true">BIENES RAICES</a></li>
-                                            <li class=""><a href="#tab2default" data-toggle="tab" aria-expanded="false">VEHICULOS</a></li>
+                                            <li class="active" data-toggle="tooltip" title="Bienes Raices Adjudicados" ><a href="#tab1default" data-toggle="tab" aria-expanded="true">BIENES RAICES</a></li>
+                                            @if(App\Company::info()->proyectos_financiados)
+                                            <li class="" data-toggle="tooltip" title="Proyectos Financiados Por el Banco" ><a href="#tab5default" data-toggle="tab" aria-expanded="false">PROYECTOS FINANCIADOS</a></li>
+                                            @endif
+                                            <li class="" data-toggle="tooltip" title="Vehiculos Adjudicados" ><a href="#tab2default" data-toggle="tab" aria-expanded="false">VEHICULOS ADJUDICADOS</a></li>
                                             {{-- <li class=""><a href="#tab2default" data-toggle="tab" aria-expanded="false">EQUIPOS</a></li> --}}
-                                            <li class=""><a href="#tab3default" data-toggle="tab" aria-expanded="false">OBRAS DE ARTE</a></li>
-                                            <li class=""><a href="#tab4default" data-toggle="tab" aria-expanded="false">EQUIPOS</a></li>
+                                            <li class="" data-toggle="tooltip" title="Obras de Arte" ><a href="#tab3default" data-toggle="tab" aria-expanded="false">OBRAS DE ARTE</a></li>
+                                            <li class="" data-toggle="tooltip" title="Equipos y Maquinarias" ><a href="#tab4default" data-toggle="tab" aria-expanded="false">EQUIPOS Y MAQUINARIAS</a></li>
                                             {{-- <li class=""><a href="#tab4default" data-toggle="tab" aria-expanded="false">Floor Plans</a></li> --}}
                                             {{-- <li class=""><a href="#tab5default" data-toggle="tab" aria-expanded="false">Video</a></li> --}}
                                         </ul>
@@ -213,7 +216,7 @@
                                               
                                                                 
                                                     
-                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                {{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                                     <div class="form-group">
                                                                         <span class="pull-left">Tipo:</span>
                                                                         <select class="form-control search-fields" style="text-align: left;" style="color:#989898;" id="venta" name="estado_comercial[]" multiple="multiple">
@@ -221,7 +224,7 @@
                                                                             <option style="text-align: left;" value="alquiler">Alquilar</option>
                                                                         </select>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                                     <div class="form-group">
                                                                         <span class="pull-left">Zona:</span>
@@ -319,6 +322,123 @@
                                                             </form>
                                                         </div>
                                                     </div>
+
+                                                    <div class="tab-pane fade features" id="tab5default">
+                                                        <div class="search-contents ">
+                                                            <form method="POST" action="proyectos/buscar">
+                                                            @csrf
+                                              
+                                                                
+                                                    
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group">
+                                                                        <span class="pull-left">Inmobiliaria:</span>
+                                                                        <select class="form-control search-fields" style="text-align: left;" style="color:#989898;" id="inmobiliaria_id" name="inmobiliaria_id[]" multiple="multiple">
+                                                                            @foreach($inmobiliarias as $inmobiliaria)
+                                                                                <option style="text-align: left;" value="{{$inmobiliaria->id}}">{{$inmobiliaria->nombre}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group">
+                                                                        <span class="pull-left">Zona:</span>
+                                                                        <select class="form-control search-fields" style="color:#989898;" name="zona_id[]"  id="zona_proyecto" multiple="multiple"  data-live-search-placeholder="Busqueda">
+                                                                            @foreach($zonas as $zona)
+                                                                                <option class="pull-left" value="{{$zona->id}}">{{$zona->zona}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group">
+                                                                        <span class="pull-left">Provincia:</span>
+                                                                        <select class="form-control search-fields" style="color:#989898;" name="provincia_id[]"  id="provincia_proyecto" multiple="multiple"  data-live-search-placeholder="Busqueda">
+                                                                            {{-- @foreach($provincias as $provincia)
+                                                                                <option class="pull-left" value="{{$provincia->provincia_id}}">{{$provincia->provincia}}</option>
+                                                                            @endforeach --}}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group">
+                                                                        <span class="pull-left">Municipio:</span>
+                                                                        <select class="form-control search-fields" style="color:#989898;" name="municipio_id[]" id="municipio_proyecto"  multiple='multiple' data-live-search-placeholder="Busqueda">  
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group">
+                                                                        <span class="pull-left">Sector:</span>
+                                                                        <select class="form-control search-fields" style="color:#989898;" id="sector_proyecto" name="sector_id[]" multiple="multiple" data-live-search-placeholder="Busqueda">
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group">
+                                                                        <span class="pull-left">Tipo:</span>    
+                                                                        <select class="form-control search-fields" style="color:#989898;" name="tipo_id[]"  multiple="multiple" id="tipo_proyecto"  data-live-search-placeholder="Busqueda">
+                                                                            @foreach($tipo_propiedades as $tipo)
+                                                                                <option class="" style="width:100%;" value="{{$tipo->id}}">{{$tipo->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group">
+                                                                        <span class="pull-left" for="">Habitaciones</span>
+                                                                        <select class="form-control search-fields" style="color:#989898;" name="habitaciones[]"  multiple="multiple" id="bedroom_proyecto"  data-live-search-placeholder="Busqueda" >
+                                                                            <option>1</option>
+                                                                            <option>2</option>
+                                                                            <option>3</option>
+                                                                            <option>4</option>
+                                                                            <option>5</option>
+                                                                            <option>6</option>
+                                                                            <option>7</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group ">
+                                                                        <span class="pull-left" for="">Baños</span>
+                                                                        <select class="form-control search-fields" style="color:#989898;" name="banos[]"  multiple="multiple" id="bathroom_proyecto" data-live-search-placeholder="Busqueda" >
+                                                                            <option>1</option>
+                                                                            <option>2</option>
+                                                                            <option>3</option>
+                                                                            <option>4</option>
+                                                                            <option>5</option>
+                                                                            <option>6</option>
+                                                                            <option>7</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 col-sm-12" style="display: flex; margin-top:5px;">
+                                                                    <div class="checkbox checkbox-theme checkbox-circle">
+                                                                        <input id="checkbox1" type="checkbox" name="oferta" >
+                                                                        <label style="font-size:15px; color: white;" for="checkbox1">
+                                                                            Mostrar Ofertas
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                                                        <!-- <label class="pull-left" for="">Precio</label> -->
+                                                                        <div class="range-slider">
+                                                                            <!-- <input type="text" class="js-range-slider" name="my_range" value="" /> -->
+                                                                            <input type="text" class="js-range-slider" name="my_range" value=""/>
+                                                                        </div>
+                                                                </div>
+                                                               
+                                                                
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                                                    <div class="form-group mb-0">
+                                                                        <button type="submit" class="search-button">Buscar</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="tab-pane fade features" id="tab2default">
                                                         <!-- Properties condition start -->
                                                         <div class="search-contents ">
@@ -538,11 +658,11 @@
                             <div class="property-tag button sale">Venta </div>
                             @if($propiedad->tipo_oferta == 'exclusiva')
                             <div class="property-price">
-                                <p style="color: white;font-size: 18px; background: red;" usd="{{$propiedad->precio_oferta_usd}}" class="price" dop="{{$propiedad->precio_oferta_rd}}" eur="{{$propiedad->precio_oferta_eu}}" > RD${{number_format($propiedad->precio_oferta_rd)}}</p>
+                                <p style="color: white;font-size: 18px; background: red;" usd="{{$propiedad->precio_oferta_usd}}" class="price" dop="{{$propiedad->precio_oferta_rd}}" eur="{{$propiedad->precio_oferta_eu}}" > {{$propiedad->moneda}}${{number_format($propiedad->monto_oferta)}}</p>
                             </div>
                             @else
                             <div class="property-price">
-                                <p style="color: white;font-size: 18px; background: var(--main-color);" usd="{{$propiedad->precio_us}}" class="price" dop="{{$propiedad->precio_rd}}" eur="{{$propiedad->precio_eur}}"> RD${{number_format($propiedad->precio_rd)}}</p>
+                                <p style="color: white;font-size: 18px; background: var(--main-color);" usd="{{$propiedad->precio_us}}" class="price" dop="{{$propiedad->precio_rd}}" eur="{{$propiedad->precio_eur}}"> {{$propiedad->moneda}}${{number_format($propiedad->monto)}}</p>
                             </div>
                             @endif
                             <div class="property-magnify-gallery">
@@ -620,6 +740,15 @@ $('#zona').multipleSelect({
     width: 265,
     dropWidth: 200
 })
+$('#zona_proyecto').multipleSelect({
+    width: 265,
+    dropWidth: 200
+})
+
+$('#inmobiliaria_id').multipleSelect({
+    width: 265,
+    dropWidth: 200
+})
 
 $('#fecha').multipleSelect({
     width: 265,
@@ -641,6 +770,11 @@ $('#provincia').multipleSelect({
     dropWidth: 200
 });
 
+$('#provincia_proyecto').multipleSelect({
+    width: 265,
+    dropWidth: 200
+});
+
 $('#vehiculo').multipleSelect({
     width: 265,
     dropWidth: 200
@@ -650,10 +784,30 @@ $('#municipio').multipleSelect({
     width: 265
 });
 
+$('#municipio_proyecto').multipleSelect({
+    width: 265
+});
+
 $('#sector').multipleSelect({
     width: 265
 });
 
+$('#sector_proyecto').multipleSelect({
+    width: 265
+});
+
+$('#tipo_proyecto').multipleSelect({
+    width: 265
+});
+
+
+$('#bedroom_proyecto').multipleSelect({
+    width: 265
+});
+
+$('#bathroom_proyecto').multipleSelect({
+    width: 265
+});
 $('#zona').on('change',function(){
     $.post( "/provincias",{data:$(this).val(), '_token': $('meta[name="csrf-token"]').attr('content')}, function( data ) {
         $('provincia').empty();

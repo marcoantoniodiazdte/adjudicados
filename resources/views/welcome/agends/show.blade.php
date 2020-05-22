@@ -155,76 +155,7 @@
                             </div>
                             <!-- Property 2 end -->
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <!-- Property 2 start -->
-                            <div class="property-2">
-                                <!-- Property img -->
-                                <div class="property-img">
-                                    <div class="featured">
-                                        Featured
-                                    </div>
-                                    <div class="price-ratings">
-                                        <div class="price"> <p usd="150000" class="price" dop="7,650,000‬" eur="149000"> RD$7,650,000.00</p></div>
-                                        <div class="ratings">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                    </div>
-                                    <img src="http://placehold.it/360x240" alt="rp" class="img-responsive">
-                                    <div class="property-overlay">
-                                        <a href="" class="overlay-link">
-                                            <i class="fa fa-link"></i>
-                                        </a>
-                                        <a class="overlay-link property-video" title="Lexus GS F">
-                                            <i class="fa fa-video-camera"></i>
-                                        </a>
-                                        <div class="property-magnify-gallery">
-                                            <a href="http://placehold.it/750x540" class="overlay-link">
-                                                <i class="fa fa-expand"></i>
-                                            </a>
-                                            <a href="http://placehold.it/750x540" class="hidden"></a>
-                                            <a href="http://placehold.it/750x540" class="hidden"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- content -->
-                                <div class="content">
-                                    <!-- title -->
-                                    <h4 class="title">
-                                        <a href="">Beautiful Single Home</a>
-                                    </h4>
-                                    <!-- Property address -->
-                                    <h3 class="property-address">
-                                        <a href="">
-                                            <i class="fa fa-map-marker"></i>123 Kathal St. Tampa City,
-                                        </a>
-                                    </h3>
-                                </div>
-                                <!-- Facilities List -->
-                                <ul class="facilities-list clearfix">
-                                    <li>
-                                        <i class="flaticon-square-layouting-with-black-square-in-east-area"></i>
-                                        <span>4800 sq ft</span>
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-bed"></i>
-                                        <span>3</span>
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-holidays"></i>
-                                        <span>2</span>
-                                    </li>
-                                    <li>
-                                        <i class="flaticon-vehicle"></i>
-                                        <span>1</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Property 2 end -->
-                        </div>
+
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <!-- Property 2 start -->
                             <div class="property-2">

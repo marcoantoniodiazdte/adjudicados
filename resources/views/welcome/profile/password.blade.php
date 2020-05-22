@@ -8,7 +8,7 @@
             <div class="col-lg-4 col-md-4 col-sm-5">
                 <!-- User account box start -->
                 <div class="user-account-box">
-                    <div class="header clearfix">
+                    {{-- <div class="header clearfix">
                         <div class="edit-profile-photo">
                             <img src="http://placehold.it/150x150" alt="agent-1" class="img-responsive">
                             <div class="change-photo-btn">
@@ -49,7 +49,7 @@
                             </li>
                         </ul>
 
-                    </div>
+                    </div> --}}
                     <div class="content">
                     <ul>
                             <li>
@@ -64,7 +64,7 @@
                             </li>
                             <li>
                                 <a  href="{{route('profile.favorites')}}">
-                                    <i class="fa fa-heart"></i>Propiedades Favoritas
+                                    <i class="fa fa-star"></i>Propiedades Favoritas
                                 </a>
                             </li>
                             <li>

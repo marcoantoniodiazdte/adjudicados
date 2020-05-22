@@ -73,6 +73,5 @@
 @endsection
 
 <div>
-    <label for="">HOla</label>
     <input type="text">
 </div>

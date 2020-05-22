@@ -62,28 +62,52 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-4">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <select class="btn-group bootstrap-select form-control show-tick"  required data-live-search="true" name="role" id="clase">
+                                        <option value="admin" {{($admin->role == 'admin' ? 'selected' : '')}} >Admin</option>
+                                        <option value="analista" {{($admin->role == 'analista' ? 'selected' : '')}}>Analista</option>
+                                </select>
+                                <label class="form-label m-t--5">Rol</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <select class="btn-group bootstrap-select form-control show-tick"  required data-live-search="true" name="notificacion_visita" id="clase">
+                                        <option value="0" {{($admin->notificacion_visita == '0' ? 'selected' : '')}} >No</option>
+                                        <option value="1" {{($admin->notificacion_visita == '1' ? 'selected' : '')}}> Si</option>
+                                </select>
+                                <label class="form-label m-t--5">Notificación Visita</label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         <div class="form-group form-float">
                             <div class="form-line focused">
-                                <input type="password" class="form-control validate" name="password" required>
-                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control validate" name="password" >
+                                <label class="form-label">Contraseña</label>
                             </div>
                         </div>
                     </div>
 
 
                     <div class="col-sm-8 col-md-12">
-                        <h4>Roles</h4>
-                        <select id="roles_suario" name="roles_suario[]" class="ms validate" multiple="multiple">
-                            @foreach($company_roles as $role)
-                                <option value="{{$role->id}}" {{ $admin->roles->contains($role) ?  'selected' : ''  }}>   {{$role->name}}</option>
+                    <h4>Permisos Categoría</h4>
+                        <select id="roles_suario" name="categoria_analista[]" class="ms validate" multiple="multiple">
+                            @foreach($categorias as $categoria)
+                                <option value="{{$categoria->id}}">   {{$categoria->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
 
 
+
+
                     <div class="col-xs-12 align-center">
-                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Uctualizar Usuario</button>
+                        <button type="submit" class="btn btn-primary m-t-15 waves-effect">Guardar</button>
                     </div>
 
                 {!! Form::close() !!}

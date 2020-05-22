@@ -189,7 +189,111 @@ $(function () {
         $(".player").mb_YTPlayer();
     });
 
-    // Multilevel menuus
+
+    $(document).on('click','.fa-star', function() {
+        // this = this
+        if($(this).hasClass('star-checked')) {
+            $(this).removeClass('star-checked')
+            $.post('/dislike', {
+                anuncio_id: $(this).data('id'),
+                tipo: $(this).attr('tipo'),
+                modelo:$(this).attr('modelo'),
+                _token: $('meta[name="csrf-token"]').attr('content')
+            }, function(){
+                // this.attr('title', 'Añadir a Favoritos' )
+            });
+        } else {
+            $(this).addClass('star-checked')
+            $.post('/like', {
+                anuncio_id: $(this).data('id'),
+                tipo: $(this).attr('tipo'),
+                modelo:$(this).attr('modelo'),
+                _token: $('meta[name="csrf-token"]').attr('content')
+            }, function(){
+                // this.attr('title', 'Quidar de favoritos' )
+            });
+        }
+    })
+
+    $(document).on('click', '.ofertar', function(){
+        $("#save-oferta").attr('anuncio-id', $(this).data('id'));
+        $("#save-oferta").attr('tipo', $(this).attr('tipo'));
+        $("#ofertaModal").modal('show');
+    });
+
+
+    $(document).on('click', '.contra-oferta', function(){
+        $("#save-contra-oferta").attr('oferta-id', $(this).attr('oferta-id'));
+        $("#ultima-oferta").text(Number($(this).attr('monto')).toLocaleString());
+
+        $("#contra-oferta").modal('show')
+        // $("#ofertaModal").modal('show');
+    });
+
+
+    $(document).on('click', '#save-oferta', function(){
+        var amount = $("#offer_amount");
+        if(amount.val() != 0 || amount.val() != 1) {
+            $.post('/ofertar', {
+                anuncio_id: $(this).attr('anuncio-id'),
+                tipo: $(this).attr('tipo'),
+                monto: amount.val(),
+                _token: $('meta[name="csrf-token"]').attr('content')
+            }, function(){
+                $("#ofertaModal").modal('hide');
+                swal("Listo", "Oferta enviada correctamente", "success");
+                location.reload();
+            });
+        }
+    });
+
+    $(document).on('click', '#save-contra-oferta', function(){
+        var amount = $("#amount");
+        if(amount.val() != 0 || amount.val() != 1) {
+            console.log(amount.val());
+            console.log(Number($("#ultima-oferta").text()));
+            if( amount.val() > parseFloat($("#ultima-oferta").text().replace(/\,/g,''), 10) )
+            {
+                $.post('/contra-oferta', {
+                    id: $(this).attr('oferta-id'),
+                    monto: amount.val(),
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                }, function(){
+                    $("#contra-oferta").modal('hide')
+                    swal("Listo", "Contra Oferta enviada correctamente", "success");
+                    location.reload();
+                });
+            } else {
+                $("#contra-oferta").modal('hide')
+                swal('Aviso','La contra oferta debe ser mayor al  monto enviado anteriormente')
+            }
+        }
+    });
+
+
+    $(document).on('click', '.cancelar-oferta', function(){
+         var id = $(this).attr('oferta-id');
+        swal({
+            title: "Eliminar",
+            text: "¿Deseas cancelar esta oferta?",
+            type: "warning",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Si",
+            showCancelButton: true,
+            closeOnConfirm: false
+        }, function () {
+            $.post('/cancelar-oferta', {
+                id: id,
+                _token: $('meta[name="csrf-token"]').attr('content')
+            }, function(){
+                swal("Listo", "Oferta cancelada enviada correctamente", "success");
+                location.reload();
+            });
+        });
+           
+    });
+
+    // Multilevel menus
     $('[data-submenu]').submenupicker();
 
     // Expending/Collapsing advance search content

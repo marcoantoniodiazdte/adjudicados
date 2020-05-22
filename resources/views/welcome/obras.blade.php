@@ -41,11 +41,18 @@
                                     @if($obra->tipo_oferta == 'exclusiva')
                                     <div style="background:red;" class="property-tag button alt featured">Oferta</div>
                                 @endif
-                                <div class="property-tag button sale">Venta</div>
-                                @if($obra->tipo_oferta == 'exclusiva')
-                                <div class="property-price"> <p style="background:red; color:white;" usd="{{$obra->precio_oferta_usd}}" class="price"  eur="{{$obra->precio_oferta_eu}}" dop="{{$obra->precio_oferta}}"> RD$ {{number_format($obra->precio_oferta, 2)}}</p></div>
+                                @if( Auth::user() && $obra->isOffer() == false && App\Company::info()->crm && Auth::user()->hasVerifiedEmail() )
+                                <div class="property-tag button sale btn-info ofertar" data-id="{{$obra->id}}" tipo="obra" modelo="Obra" style="background-color:#ff9800;">Hacer Oferta</div>
+                                @elseif ( Auth::user() && $obra->isOffer() == true && App\Company::info()->crm)
+                                <a href="/perfil/propiedades">
+                                    <div data-toggle="tooltip" title="{{$obra->offer->estado->descripcion}}" class="property-tag button sale "   style="background-color:{{$obra->offer->estado->color}}; color:{{$obra->offer->estado->color_letra}}">{{$obra->offer->estado->nombre}}</div>
+                                </a>
                                 @else
-                                <div class="property-price"> <p style="background: var(--main-color); color:white;" usd="{{$obra->precio_usd}}" class="price" dop="{{$obra->precio}}" eur="{{$obra->precio_eu}}"> RD$ {{number_format($obra->precio, 2)}}</p></div>
+                                @endif
+                                @if($obra->tipo_oferta == 'exclusiva')
+                                <div class="property-price button"> <p style="color:white; margin: -5px;" usd="{{$obra->precio_oferta_usd}}" class="price"  eur="{{$obra->precio_oferta_eu}}" dop="{{$obra->precio_oferta}}"> {{$obra->moneda}}$ {{number_format($obra->monto_oferta)}}</p></div>
+                                @else
+                                <div class="property-price button"> <p style="color:white; margin: -5px;" usd="{{$obra->precio_usd}}" class="price" dop="{{$obra->precio}}" eur="{{$obra->precio_eu}}"> {{$obra->moneda}}$ {{number_format($obra->monto)}}</p></div>
                                 @endif
                                     @if(count($obra->archivos) > 0)
                                     <img src="/obra/abrirImagen/{{$obra->archivos[0]->id}}" style="width:350px!important; height: 231px;" alt="fp" class="img-responsive">
@@ -71,10 +78,22 @@
                                 </div>
                                 <!-- Property content -->
                                 <div class="property-content">
-                                    <!-- title -->
-                                    <h1 class="title">
-                                    <a href="/obra/{{$obra->id}}">{{$obra->titulo}}</a>
-                                    </h1>
+                                    <div class="col-md-10"> 
+                                        <!-- title -->
+                                        <h1 class="title">
+                                            <a href="/obra/{{$obra->id}}">{{$obra->titulo}}</a>
+                                        </h1>
+                                    </div>
+                                    <div class="col-md-2">
+                                        @if(Auth::user())
+                                            @if($obra->isFavorite() && App\Company::info()->gestion_usuarios)
+                                                <i  data-id="{{$obra->id}}" tipo="obra" modelo="obra" class="fa fa-star star-checked" style="font-size: x-large;"></i>
+                                            @else
+                                                <i data-id="{{$obra->id}}" tipo="obra" modelo="obra" class="fa fa-star" style="color:darkgrey; font-size: x-large;"></i>
+                                            @endif
+                                        @endif
+                                    </div>
+
                                 </div>
                             </div>
                             <!-- Property end -->
@@ -175,8 +194,8 @@
                                     <a href="">{{$obr->titulo}}</a>
                                 </h3>
                                 <p> 27 de Febrero, 2018</p>
-                                <div class="price">
-                                   RD$ {{number_format($obr->precio, 2)}}
+                                <div class="price" usd="{{$obr->precio_usd}}"  dop="{{$obr->precio}}" eur="{{$obr->precio_eu}}" >
+                                    {{$obr->moneda}}$ {{number_format($obr->monto, 2)}}
                                 </div>
                             </div>
                         </div>

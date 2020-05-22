@@ -4,51 +4,9 @@
 <div class="content-area my-profile">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="col-lg-3 col-md-3 col-sm-12">
                 <!-- User account box start -->
                 <div class="user-account-box">
-                    <div class="header clearfix">
-                        <div class="edit-profile-photo">
-                            <img src="http://placehold.it/150x150" alt="agent-1" class="img-responsive">
-                            <div class="change-photo-btn">
-                                <div class="photoUpload">
-                                    <span><i class="fa fa-upload"></i> Subir foto</span>
-                                    <input type="file" class="upload">
-                                </div>
-                            </div>
-                        </div>
-                        <h3>{{Auth::user()->name}}</h3>
-                        <p>{{Auth::user()->email}}</p>
-
-                        <ul class="social-list clearfix">
-                            <li>
-                                <a href="#" class="facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="linkedin">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="google">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="rss">
-                                    <i class="fa fa-rss"></i>
-                                </a>
-                            </li>
-                        </ul>
-
-                    </div>
                     <div class="content">
                         <ul>
                             <li>
@@ -58,12 +16,12 @@
                             </li>
                             <li>
                                 <a href="{{route('profile.properties')}}">
-                                    <i class="flaticon-apartment"></i>Mis Propiedades
+                                    <i class="flaticon-apartment"></i>Mis Ofertas
                                 </a>
                             </li>
                             <li>
                                 <a href="{{route('profile.favorites')}}">
-                                    <i class="fa fa-heart"></i>Propiedades Favoritas
+                                    <i class="fa fa-star"></i>Mis Favoritos
                                 </a>
                             </li>
                             <li>
@@ -111,10 +69,6 @@
                         <div class="form-group">
                             <label>Nombre</label>
                             <input type="text" class="input-text" name="name" value="{{Auth::user()->name}}" placeholder="John Antony">
-                        </div>
-                        <div class="form-group">
-                            <label>Telefono</label>
-                            <input type="text" class="input-text" name="phone" placeholder="+55 4XX-634-7071">
                         </div>
                         <div class="form-group">
                             <label>Correo Electronico</label>

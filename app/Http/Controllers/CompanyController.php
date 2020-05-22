@@ -20,7 +20,7 @@ class CompanyController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:admin',['except' => ['company_access']]);
         $this->middleware('role:Super-Administrador');
     }
 
@@ -129,6 +129,30 @@ class CompanyController extends Controller
           "password" => "superadmin_3@gmail.com"*/
 
 
+
+    }
+
+    function company_access() {
+
+        $code = 1001;
+
+        $ch     = curl_init();
+		$fields = http_build_query(['codigo' => $code]);
+		curl_setopt($ch, CURLOPT_URL, 'http://roommeeting.dtehost.com/api/adjudicados/company');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		    'Accept: application/json',
+		    'authorization:sdf541gs6df51gsd1bsb16etb16teg1etr1ge61g' 
+	    ));
+	    curl_setopt($ch,CURLOPT_POSTFIELDS,$fields);
+		$output = curl_exec($ch);
+		curl_close($ch);
+		// $json = json_decode($output);
+		// if($json){
+		// 	return $json;
+        // }
+		echo $output;
 
     }
 

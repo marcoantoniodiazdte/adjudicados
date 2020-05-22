@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use App\Helpers\CurrencyExchangeHelper;
 use Response;
 
 class VehiculoController extends Controller
@@ -46,6 +47,9 @@ class VehiculoController extends Controller
 
     public function create(Request $request)
     {
+        
+
+
         $marcas = Marca::all();
         return view('crm.vehiculos.create',[
             'marcas' => $marcas
@@ -54,8 +58,37 @@ class VehiculoController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+
+        switch ($request->moneda)
+        {
+            case 'RD':
+                $precio  = CurrencyExchangeHelper::convertPeso($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertPeso($request->monto_oferta);
+                break;
+            case 'USD':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+            case 'EUR':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+        }
+
+        $request->merge([
+            "precio"            => $precio['peso'],
+            "precio_eu"         => $precio['euro'],
+            "precio_usd"        => $precio['dollar'],
+            "precio_oferta"     => $oferta['peso'],
+            "precio_oferta_usd" => $oferta['dollar'],
+            "precio_oferta_eu"  => $oferta['euro']
+        ]);
+
+        
         $vehiculo = Vehiculo::create($request->all());
+
+
+
 
         if($request->has('path')){
             if(count($request->path) > 0)
@@ -77,11 +110,17 @@ class VehiculoController extends Controller
 
     public function show($id)
     {
+        $offer = [];
         $vehiculo = Vehiculo::find($id);
+        if($vehiculo->offer)
+        {
+            $offer = $vehiculo->offer;
+        }
         $recientes = Vehiculo::orderBy('id', 'desc')->take(3)->get();
         return view('crm.vehiculos.view',[
             'vehiculo'  => $vehiculo,
-            'recientes' => $recientes
+            'recientes' => $recientes,
+            'offer' => $offer
         ]);
     }
 
@@ -108,6 +147,33 @@ class VehiculoController extends Controller
 
     public function update(Request $request,Vehiculo $vehiculo)
     {
+
+        switch ($request->moneda)
+        {
+            case 'RD':
+                $precio  = CurrencyExchangeHelper::convertPeso($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertPeso($request->monto_oferta);
+                break;
+            case 'USD':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+            case 'EUR':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+        }
+
+        $request->merge([
+            "precio"            => $precio['peso'],
+            "precio_eu"         => $precio['euro'],
+            "precio_usd"        => $precio['dollar'],
+            "precio_oferta"     => $oferta['peso'],
+            "precio_oferta_usd" => $oferta['dollar'],
+            "precio_oferta_eu"  => $oferta['euro']
+        ]);
+
+        
         $vehiculo->update($request->all());
         if($request->has('path')){
             if(count($request->path) > 0)

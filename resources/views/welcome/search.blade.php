@@ -41,11 +41,18 @@
                                 @if($propiedad->tipo_oferta == 'exclusiva')
                                     <div style="background:red;" class="property-tag button alt featured">Oferta </div>
                                 @endif
-                                <div class="property-tag button sale">{{$propiedad->estado_comercial}}</div>
-                                @if($propiedad->tipo_oferta == 'exclusiva')
-                                <div class="property-price"> <p style="background:red; color:white;" class="price" usd="{{$propiedad->precio_oferta_usd}}"  dop="{{$propiedad->precio_oferta_rd}}" eur="{{$propiedad->precio_oferta_eu}}"> RD$ {{number_format($propiedad->precio_rd, 2)}}</p></div>
+                                @if( Auth::user() && $propiedad->isOffer() == false && App\Company::info()->crm && Auth::user()->hasVerifiedEmail()) 
+                                    <div class="property-tag button sale btn-info ofertar" data-id="{{$propiedad->id}}" tipo="propiedad" modelo="Obra" style="background-color:#ff9800;">Hacer Oferta</div>
+                                @elseif ( Auth::user() && $propiedad->isOffer() == true && App\Company::info()->crm)
+                                    <a href="/perfil/propiedades">
+                                        <div data-toggle="tooltip" title="{{$propiedad->offer->estado->descripcion}}" class="property-tag button sale "    style="background-color:{{$propiedad->offer->estado->color}}; color:{{$propiedad->offer->estado->color_letra}}">{{$propiedad->offer->estado->nombre}}</div>
+                                    </a>
                                 @else
-                                <div class="property-price"> <p style="background:var(--main-color); color:white;" class="price" usd="{{$propiedad->precio_us}}"  dop="{{$propiedad->precio_rd}}" eur="{{$propiedad->precio_eur}}"> RD$ {{number_format($propiedad->precio_rd, 2)}}</p></div>
+                                @endif
+                                @if($propiedad->tipo_oferta == 'exclusiva')
+                                <div class="property-price button"> <p style="color:white; margin: -5px;" class="price" usd="{{$propiedad->precio_oferta_usd}}"  dop="{{$propiedad->precio_oferta_rd}}" eur="{{$propiedad->precio_oferta_eu}}"> {{$propiedad->moneda}}$ {{number_format($propiedad->monto_oferta, 2)}}</p></div>
+                                @else
+                                <div class="property-price button"> <p style="color:white; margin: -5px;" class="price" usd="{{$propiedad->precio_us}}"  dop="{{$propiedad->precio_rd}}" eur="{{$propiedad->precio_eur}}"> {{$propiedad->moneda}}$ {{number_format($propiedad->monto, 2)}}</p></div>
                                 @endif
                                 @if(count($propiedad->archivos) > 0)
                                 <img src="/abrirImagen/{{$propiedad->archivos[0]->id}}" style="width:350px!important; height: 231px;" alt="fp" class="img-responsive">
@@ -72,9 +79,22 @@
                                 <!-- Property content -->
                                 <div class="property-content">
                                     <!-- title -->
-                                    <h1 class="title">
-                                    <a href="/propiedad/{{$propiedad->id}}">{{$propiedad->name}}</a>
-                                    </h1>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h1 class="title">
+                                                <a href="/propiedad/{{$propiedad->id}}">{{$propiedad->name}}</a>
+                                            </h1>
+                                        </div>
+                                        <div class="col-md-2">
+                                            @if(Auth::user() && App\Company::info()->gestion_usuarios)
+                                                @if($propiedad->isFavorite() && App\Company::info()->gestion_usuarios)
+                                                    <i  data-id="{{$propiedad->id}}" tipo="propiedad" modelo="propiedad" class="fa fa-star star-checked" style="font-size: x-large;"></i>
+                                                @else
+                                                    <i data-id="{{$propiedad->id}}" tipo="propiedad" modelo="propiedad" class="fa fa-star" style="color:darkgrey; font-size: x-large;"></i>
+                                                @endif
+                                            @endif
+                                        </div>
+                                    </div>
                                     <!-- Property address -->
                                     <h3 class="property-address">
                                         <a href="">
@@ -293,7 +313,7 @@
                                 <p> 27 de Febrero, 2018</p>
                                 <div class="">
                                     <p class="price" usd="{{$prop->precio_oferta_usd}}"  dop="{{$prop->precio_oferta_rd}}" eur="{{$prop->precio_oferta_eu}}">
-                                        {{number_format($prop->precio_rd, 2)}}
+                                        {{$prop->moneda}}$ {{number_format($prop->monto, 2)}}
                                     </p>
                                 </div>
                             </div>

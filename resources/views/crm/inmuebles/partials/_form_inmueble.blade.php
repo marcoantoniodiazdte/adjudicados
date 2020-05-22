@@ -112,71 +112,37 @@
     
 </div>
 <div class="row">
-    <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="form-group form-float m-b-0  m-t-5">
-            <div class="form-line focused">
-                <input type="number" class="form-control " name="precio_us" value="{{ old('precio_us')}}" maxlength="100" />
-                <label class="form-label  m-t--5">Precio USD</label>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="form-group form-float m-b-0  m-t-5">
-            <div class="form-line focused" >
-                <input type="number" class="form-control" name="precio_rd" value="{{ old('precio_rd')}}"  maxlength="100" />
-                <label class="form-label  m-t--5">Precio DOP</label>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="form-group form-float m-b-0  m-t-5">
-            <div class="form-line focused" >
-                <input type="number" class="form-control" name="precio_eur" value="{{ old('precio_rd')}}"  maxlength="100" />
-                <label class="form-label  m-t--5">Precio EUR</label>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-4 col-md-3 col-lg-3">
+    <div class="col-sm-4 col-md-2 col-lg-2">
         <div class="form-group form-float">
             <div class="form-line focused">
-                <select class="btn-group bootstrap-select form-control show-tick" data-live-search="true" name="mostrar_precio" id="clase">
+                <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="moneda" id="clase">
+                    <option value="RD">DOP</option>
                     <option value="USD">USD</option>
-                    <option value="DOP">DOP</option>
-                    <option value="EUR">DOP</option>
+                    <option value="EUR">EUR</option>
                 </select>
-                <label class="form-label m-t--5">Precio a Mostrar</label>
+                <label class="form-label m-t--5">Moneda</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-3">
+        <div class="form-group form-float">
+            <div class="form-line focused">
+                <input type="number" class="form-control validate" required name="monto" required >
+                <label class="form-label">Precio</label>
             </div>
         </div>
     </div>
 
-</div>
-<div class="row">
-    <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="form-group form-float m-b-0  m-t-5">
-            <div class="form-line focused" >
-                <input type="number" class="form-control" name="precio_oferta_rd" required value="{{ old('precio_oferta_rd')}}"  maxlength="100" />
-                <label class="form-label  m-t--5">Precio Oferta DOP</label>
-            </div>
-        </div>
-    </div> 
-    <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="form-group form-float m-b-0  m-t-5">
-            <div class="form-line focused" >
-                <input type="number" class="form-control" name="precio_oferta_usd" required value="{{ old('precio_oferta_usd')}}"  maxlength="100" />
-                <label class="form-label  m-t--5">Precio Oferta USD</label>
+    <div class="col-lg-3 col-md-3">
+        <div class="form-group form-float">
+            <div class="form-line focused">
+                <input type="number" class="form-control validate" required name="monto_oferta" required >
+                <label class="form-label">Precio Oferta</label>
             </div>
         </div>
     </div>
-    <div class="col-sm-4 col-md-3 col-lg-3">
-        <div class="form-group form-float m-b-0  m-t-5">
-            <div class="form-line focused" >
-                <input type="number" class="form-control" name="precio_oferta_eu" required value="{{ old('precio_oferta_eu')}}"  maxlength="100" />
-                <label class="form-label  m-t--5">Precio Oferta EUR</label>
-            </div>
-        </div>
-    </div>     
+
 </div>
 
 <div class="row">

@@ -7,6 +7,10 @@ a:hover {
     text-decoration: none;
 }
 
+.star-checked {
+    color:#ffc107!important;
+  }
+
 .button-theme {
     background: var(--main-color);
     border: 2px solid var(--main-color);
@@ -592,4 +596,28 @@ table.manage-table td.action a:hover{
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
         background: #eee;
     }
+}
+
+.disponible {
+  background-color: #4CAF50!important;
+}
+
+.vendido {
+    background-color: #f44336!important;
+}
+
+.construccion {
+    background-color: #ff9800!important;
+}
+
+.enviada {
+    background-color: #4CAF50!important;  
+}
+
+.analisis {
+    background-color: #ff9800!important;  
+}
+
+.cancelada {
+    background-color: #f44336!important;
 }

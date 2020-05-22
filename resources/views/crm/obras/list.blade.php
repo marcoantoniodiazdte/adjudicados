@@ -24,7 +24,7 @@
             <ul class="header-dropdown">
                 @can('create.propiedades')
                     <li>
-                        <a href="{{route('obras.create')}}" data-toggle="tooltip" data-original-title="Create">
+                        <a href="{{route('obras.create')}}" data-toggle="tooltip" data-original-title="Crear">
                             <i class="material-icons col-blue">add</i>
                         </a>
                     </li>
@@ -46,6 +46,7 @@
                     <th class="exportar">ID</th>
                     <th class="exportar">Nombre</th>
                     <th class="exportar">Precio</th>
+                    <th class="exportar">Código de Referencia</th>
                     <th>Opciones</th>
 
                 </tr>
@@ -97,8 +98,9 @@
                         searchable: false
                     },
                     { data: 'id', name: 'id' },
-                    { data: 'descripcion', name: 'descipcion' },
-                    { data: 'precio', name: 'precio' },
+                    { data: 'titulo', name: 'titulo' },
+                    { data: 'monto', name: 'monto' },
+                    { data: 'codigo_referencia', name: 'codigo_referencia' },
                     {
                         data: function (data) {
                             var buttons = '<div class="btn-group">';

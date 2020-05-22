@@ -16,7 +16,11 @@ class Contacto extends Mailable
      *
      * @return void
      */
-    public function __construct($data, $email,$nombre)
+
+    public $email;
+    public $nombre;
+
+    public function __construct($data,$email,$nombre)
     {
         $this->data = $data;
         $this->email = $email;
@@ -27,7 +31,9 @@ class Contacto extends Mailable
     {
         $this->to($this->data['email']);
         $this->bcc('marcos@dte-online.com');
-        $this->subject('Contacto');
-        return $this->from($address = 'notificaciones@adjudicados.com', $name = $this->nombre)->view('mails.contacto');
+        $this->subject('Notificación Formulario Contacto Sistema Adjudicados');
+        return $this->from($address = 'notificaciones@adjudicados.com', $name = 'Sistema Adjudicados')->view('mails.contacto',[
+            'data' => $this->data
+        ]);
     }
 }

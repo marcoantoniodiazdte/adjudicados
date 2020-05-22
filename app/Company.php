@@ -1,7 +1,6 @@
 <?php
 
 namespace App;
-
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -9,8 +8,7 @@ class Company extends Model
 {
     use HasRoles;
 
-    protected $fillable = ['name','RNC','razon_social','direccion','correo_company',
-        'telefono_company','active','description','company_type'];
+    protected $fillable = ['codigo'];
     protected $guard_name = 'admin';
 
 
@@ -74,6 +72,25 @@ class Company extends Model
 
     public function createAdministrador($arguments){
         return $this->admin()->create($arguments);
+    }
+
+
+    public static function info()
+    {
+        $code = Company::find(1)->codigo;
+        $ch     = curl_init();
+		$fields = http_build_query(['codigo' => $code]);
+		curl_setopt($ch, CURLOPT_URL, 'http://roommeeting.dtehost.com/api/adjudicados/company');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+		    'Accept: application/json',
+		    'authorization:sdf541gs6df51gsd1bsb16etb16teg1etr1ge61g' 
+	    ));
+	    curl_setopt($ch,CURLOPT_POSTFIELDS,$fields);
+		$output = curl_exec($ch);
+		curl_close($ch);
+		return json_decode($output)->company;
     }
 
 

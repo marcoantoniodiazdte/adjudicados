@@ -14,7 +14,7 @@
                                 <span class="heading-icon">
                                     <i class="fa fa-th-large"></i>
                                 </span>
-                                <span class="hidden-xs">Lista de Vehiculos</span>
+                                <span class="hidden-xs">Lista de Vehiculos </span>
                             </h4>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10 ">
@@ -40,12 +40,22 @@
                                 <div class="property-img">
                                     @if($vehiculo->tipo_oferta == 'exclusiva')
                                     <div style="background:red;" class="property-tag button alt featured">Oferta</div>
+                                    
                                 @endif
-                                <div class="property-tag button sale">Venta</div>
-                                @if($vehiculo->tipo_oferta == 'exclusiva')
-                                    <div class="property-price"> <p style="background:red; color:white;"  class="price hola"  usd="{{$vehiculo->precio_oferta_usd}}" dop="{{$vehiculo->precio_oferta}}" eur="{{$vehiculo->precio_eu}}"> RD$ {{number_format($vehiculo->precio_oferta, 2)}}</p></div>
+                                
+                                @if( Auth::user() && $vehiculo->isOffer() == false && App\Company::info()->crm && Auth::user()->hasVerifiedEmail() && Auth::user()->hasVerifiedEmail())
+                                <div class="property-tag button sale btn-info ofertar" data-id="{{$vehiculo->id}}" tipo="vehiculo" modelo="Vehiculo" style="background-color:#ff9800;">Hacer Oferta</div>
+                                @elseif ( Auth::user() && $vehiculo->isOffer() == true && App\Company::info()->crm)
+                                <a href="/perfil/propiedades">
+                                    <div class="property-tag button sale " data-toggle="tooltip" title="{{$vehiculo->offer->estado->descripcion}}"   style="background-color:{{$vehiculo->offer->estado->color}}; color:{{$vehiculo->offer->estado->color_letra}}">{{$vehiculo->offer->estado->nombre}}</div>
+                                </a>
                                 @else
-                                <div class="property-price"> <p style="background: var(--main-color); color:white;" class="price" usd="{{$vehiculo->precio_usd}}"  dop="{{$vehiculo->precio}}" eur="{{$vehiculo->precio_eu}}"> RD$ {{number_format($vehiculo->precio, 2)}}</p></div>
+                                
+                                @endif
+                                @if($vehiculo->tipo_oferta == 'exclusiva')
+                                    <div class="property-price button"> <p style="color:white; margin: -5px;"  class="price hola"  usd="{{$vehiculo->precio_oferta_usd}}" dop="{{$vehiculo->precio_oferta}}" eur="{{$vehiculo->precio_eu}}"> {{$vehiculo->moneda}}$ {{number_format($vehiculo->monto_oferta)}}</p></div>
+                                @else
+                                <div class="property-price button"> <p style="color:white; margin: -5px;" class="price" usd="{{$vehiculo->precio_usd}}"  dop="{{$vehiculo->precio}}" eur="{{$vehiculo->precio_eu}}"> {{$vehiculo->moneda}} {{number_format($vehiculo->monto)}}</p></div>
                                 @endif
                                
                                     @if(count($vehiculo->archivos) > 0)
@@ -72,10 +82,27 @@
                                 </div>
                                 <!-- Property content -->
                                 <div class="property-content">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-10">
+                                                <h1 class="title">
+                                                    <div class="icon">
+                                                        <a href="/vehiculo/{{$vehiculo->id}}">{{$vehiculo->titulo}}</a>  
+                                                    </div>
+                                                </h1>
+                                            </div>
+                                            <div class="col-md-2">
+                                                @if(Auth::user() && App\Company::info()->gestion_usuarios)
+                                                    @if($vehiculo->isFavorite() && App\Company::info()->gestion_usuarios)
+                                                        <i  data-id="{{$vehiculo->id}}" tipo="vehiculo" modelo="Vehiculo" class="fa fa-star star-checked" style="font-size: x-large;"></i>
+                                                    @else
+                                                        <i data-id="{{$vehiculo->id}}" tipo="vehiculo" modelo="Vehiculo" class="fa fa-star" style="color:darkgrey; font-size: x-large;"></i>
+                                                    @endif
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!-- title -->
-                                    <h1 class="title">
-                                    <a href="/vehiculo/{{$vehiculo->id}}">{{$vehiculo->titulo}}</a>
-                                    </h1>
                                 </div>
                             </div>
                             <!-- Property end -->
@@ -189,8 +216,8 @@
                                     <a href="">{{$car->titulo}}</a>
                                 </h3>
                                 <p> 27 de Febrero, 2018</p>
-                                <div class="price">
-                                    {{number_format($car->precio, 2)}}
+                                <div class="price" usd="{{$car->precio_usd}}"  dop="{{$car->precio}}" eur="{{$car->precio_eu}}">
+                                    {{$car->moneda}}$ {{number_format($car->monto, 2)}}
                                 </div>
                             </div>
                         </div>
@@ -229,5 +256,10 @@
         location.href = 'buscar?sort='+$(this).val();
     })
 </script>
+<style>
+    .checked {
+  color: orange;
+}
+</style>
 <!-- Properties section end -->
 @endsection

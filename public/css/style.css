@@ -614,7 +614,7 @@ input[type=checkbox]:checked + label:before {
 .main-header .navbar-default .nav > li > a {
     position: relative;
     display: block;
-    padding: 20px 20px 26px;
+    padding: 20px 10px 26px;
     font-size: 14px;
     border-top: solid 5px transparent;
     line-height: 27px;

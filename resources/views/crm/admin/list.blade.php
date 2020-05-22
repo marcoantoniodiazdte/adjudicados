@@ -23,7 +23,7 @@
             <h2><i class="material-icons">list</i> Usuarios</h2>
             <ul class="header-dropdown">
                 <li>
-                    <a href="{{route('companies.create')}}" data-toggle="tooltip" data-original-title="Create">
+                    <a href="{{route('companies.create')}}" data-toggle="tooltip" data-original-title="Crear">
                         <i class="material-icons col-blue">add</i>
                     </a>
                 </li>

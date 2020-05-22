@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use App\Helpers\CurrencyExchangeHelper;
 use Response;
 
 class ObraController extends Controller
@@ -19,7 +20,7 @@ class ObraController extends Controller
     public function __construct()
     {
         // $this->middleware('auth:admin');
-        $this->middleware('auth:admin',['except' => ['abrirImagenes','show']]);;
+        $this->middleware('auth:admin',['except' => ['abrirImagenes','show']]);
         $this->middleware('permission:list.propiedades')->only('index');
         $this->middleware('permission:create.propiedades')->only(['create','store']);
         // $this->middleware('permission:show.propiedades')->only('show');
@@ -63,6 +64,31 @@ class ObraController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        switch ($request->moneda)
+        {
+            case 'RD':
+                $precio  = CurrencyExchangeHelper::convertPeso($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertPeso($request->monto_oferta);
+                break;
+            case 'USD':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+            case 'EUR':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+        }
+
+        $request->merge([
+            "precio"            => $precio['peso'],
+            "precio_eu"         => $precio['euro'],
+            "precio_usd"        => $precio['dollar'],
+            "precio_oferta"     => $oferta['peso'],
+            "precio_oferta_usd" => $oferta['dollar'],
+            "precio_oferta_eu"  => $oferta['euro']
+        ]);
+
         $obra = Obra::create($request->all());
 
         if($request->has('path')){
@@ -91,6 +117,52 @@ class ObraController extends Controller
             'obra' => $obra,
             'recientes' => $recientes
         ]);
+    }
+
+    public function update(Request $request,Obra $obra)
+    {
+        switch ($request->moneda)
+        {
+            case 'RD':
+                $precio  = CurrencyExchangeHelper::convertPeso($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertPeso($request->monto_oferta);
+                break;
+            case 'USD':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+            case 'EUR':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+        }
+
+        $request->merge([
+            "precio"            => $precio['peso'],
+            "precio_eu"         => $precio['euro'],
+            "precio_usd"        => $precio['dollar'],
+            "precio_oferta"     => $oferta['peso'],
+            "precio_oferta_usd" => $oferta['dollar'],
+            "precio_oferta_eu"  => $oferta['euro']
+        ]);
+        
+        $obra->update($request->all());
+        if($request->has('path')){
+            if(count($request->path) > 0)
+            {
+                foreach( $request->path as $key => $value) {
+                    $path = $request->file('path')[$key]->store('obras');
+                    $path = $request->file('path')[$key]->store($obra->name .'/obras');
+
+                    $archivo = ArchivosObra::create([
+                        'nombre_archivo' => 'archivo',
+                        'obra_id' => $obra->id,
+                        'ubicacion' => $path,
+                    ]);
+                }
+            }
+        }
+        return redirect()->action('ObraController@index');
     }
 
     public function abrirImagenes($id)

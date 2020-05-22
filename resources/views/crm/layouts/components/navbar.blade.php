@@ -7,7 +7,7 @@
             <a href="javascript:void(0);" class="bars"></a>
             <div class="">
                 <a class="navbar-brand" href="{{route('admin.dashboard')}}">
-                    <img src="{{\App\Tema::where('activo',1)->first()->logo}}" alt="Inmobiliaria RD" style="max-width: 125px;">
+                    <img src="{{\App\Company::info()->logo}}" alt="Inmobiliaria RD" style="max-width: 125px;">
                 </a>
             </div>
         </div>

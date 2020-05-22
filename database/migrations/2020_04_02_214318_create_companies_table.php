@@ -15,17 +15,7 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->string('name')->unique()->nullable();
-            $table->string('RNC')->unique()->nullable();
-            $table->string('razon_social')->unique()->nullable();
-            $table->string('direccion')->unique()->nullable();
-            $table->string('correo_company')->unique()->nullable();
-            $table->string('telefono_company')->unique()->nullable();
-            $table->enum('active',['true','false'])->default('true');
-            $table->enum('company_type',['inmobiliaria','agencia'])->nullable();
-            $table->string('description');
-
+            $table->bigInteger('codigo');
             $table->timestamps();
         });
 
@@ -51,3 +41,4 @@ class CreateCompaniesTable extends Migration
         Schema::dropIfExists('company_module');
     }
 }
+

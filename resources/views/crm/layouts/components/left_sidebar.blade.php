@@ -32,7 +32,7 @@
                 </li>
             @endif --}}
 
-            @if($modulos->contains('clase','propiedad_management') )
+            @if($modulos->contains('clase','propiedad_management') && Auth::user()->role == 'admin' )
                 <li class="header">Opciones</li>
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
@@ -54,8 +54,86 @@
                     </ul>
                 </li>
             @endif
+            @if($modulos->contains('clase','propiedad_management') && App\Company::info()->proyectos_financiados  && Auth::user()->role == 'admin')
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                        <i class="material-icons">view_quilt</i>
+                        <span > Inmobiliarias </span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="{{route('inmobiliarias.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Inmobiliarias</span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{route('contactos.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Contactos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+       
+            @if($modulos->contains('clase','propiedad_management') && App\Company::info()->proyectos_financiados)
+            <li>
+                <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                    <i class="material-icons">view_quilt</i>
+                    <span > Oportunidades </span>
+                </a>
+                <ul class="ml-menu">
+                    <li class="">
+                        <a href="{{route('oportunidades.index')}}">
+                            <i class="material-icons col-blue">view_quilt</i>
+                            <span>Oportunidades</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{route('eventos.index')}}">
+                            <i class="material-icons col-blue">view_quilt</i>
+                            <span>Eventos</span>
+                        </a>
+                    </li>
+                    @if(Auth::user()->role == 'admin')
+                        <li class="">
+                            <a href="{{route('estados.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Estados Oportunidades</span>
+                            </a>
+                        </li>
+                    @endif
+                    @if(Auth::user()->role == 'admin')
+                        <li class="">
+                            <a href="{{route('estado_eventos.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Estado Eventos</span>
+                            </a>
+                        </li>
+                    @endif
+                    
+                </ul>
+            </li>
+            @endif
+            @if($modulos->contains('clase','propiedad_management') && App\Company::info()->proyectos_financiados  && Auth::user()->role == 'admin')
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                        <i class="material-icons">view_quilt</i>
+                        <span > Proyectos Financiados </span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="{{route('proyectosFinanciados.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Proyectos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
             {{-- <li class="header">Vehiculos</li> --}}
-            @if($modulos->contains('clase','user_management') )
+            @if($modulos->contains('clase','user_management')  && Auth::user()->role == 'admin' )
                   {{--  <li class="header">User Managment</li>--}}
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
@@ -79,7 +157,7 @@
                     </li>
             @endif
             {{-- <li class="header">Obras de arte</li> --}}
-            @if($modulos->contains('clase','user_management') )
+            @if($modulos->contains('clase','user_management')  && Auth::user()->role == 'admin' )
             {{--  <li class="header">User Managment</li>--}}
               <li>
                   <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
@@ -102,7 +180,7 @@
                 </ul>
               </li>
             @endif
-            @if($modulos->contains('clase','user_management') )
+            @if($modulos->contains('clase','user_management')  && Auth::user()->role == 'admin' )
             {{--  <li class="header">User Managment</li>--}}
               <li>
                   <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
@@ -132,7 +210,7 @@
               </li>
             @endif
             {{-- <li class="header">Usuarios</li> --}}
-            @if($modulos->contains('clase','user_management') )
+            @if($modulos->contains('clase','user_management')  && Auth::user()->role == 'admin' )
                   {{--  <li class="header">User Managment</li>--}}
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
@@ -150,6 +228,42 @@
                             </li>
                         </ul>
                     </li>
+            @endif
+
+            @if($modulos->contains('clase','propiedad_management') && App\Company::info()->proyectos_financiados  && Auth::user()->role == 'admin')
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                        <i class="material-icons">view_quilt</i>
+                        <span > Categorias </span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="{{route('categorias.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Categorias</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+
+
+            @if($modulos->contains('clase','propiedad_management') && App\Company::info()->proyectos_financiados  && Auth::user()->role == 'admin')
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle waves-effect waves-block">
+                        <i class="material-icons">view_quilt</i>
+                        <span > Requisitos </span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li class="">
+                            <a href="{{route('requisitos.index')}}">
+                                <i class="material-icons col-blue">view_quilt</i>
+                                <span>Requisitos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             @endif
 
             {{-- @if($modulos->contains('clase','banco_management') )

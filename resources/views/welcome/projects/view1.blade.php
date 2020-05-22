@@ -25,6 +25,9 @@
                         <p>
                             <i class="fa fa-map-marker"></i>{{$propiedad->direccion}},
                         </p>
+                        <h4>
+                            <b>Código: </b>{{$propiedad->codigo_referencia}}
+                        </h4>
                     </div>
                     <div class="pull-left" style="margin-left: 20px;">
                         <span>Estado:</span>
@@ -41,9 +44,9 @@
                     </div> --}}
 
                     <div class="pull-right">
-                    <h3> Precio : <span class="price" usd="{{$propiedad->precio_us}}" dop="{{$propiedad->precio_rd}}" eur="{{$propiedad->precio_eur}}" >RD${{number_format($propiedad->precio_rd, 2)}}</span></h3>
+                    <h3> Precio : <span class="price" usd="{{$propiedad->precio_us}}" dop="{{$propiedad->precio_rd}}" eur="{{$propiedad->precio_eur}}" >{{$propiedad->moneda}}${{number_format($propiedad->monto, 2)}}</span></h3>
                     @if($propiedad->tipo_oferta == 'exclusiva')
-                    <h3>Oferta : <span class="price" style="color:red;" usd="{{$propiedad->precio_oferta_usd}}" dop="{{$propiedad->precio_oferta_rd}}" eur="{{$propiedad->precio_oferta_eu}}">RD$ {{number_format($propiedad->precio_oferta_rd, 2)}}</span></h3>
+                    <h3>Oferta : <span class="price" style="color:red;" usd="{{$propiedad->precio_oferta_usd}}" dop="{{$propiedad->precio_oferta_rd}}" eur="{{$propiedad->precio_oferta_eu}}">{{$propiedad->moneda}}$ {{number_format($propiedad->monto_oferta, 2)}}</span></h3>
                     @endif
                         <h5>    
                             <!-- Per Manth -->
@@ -359,7 +362,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group subject">
-                                            <input type="text" required name="codigo" class="input-text" placeholder="Código de Referencia">
+                                            <input type="text" required name="codigo" class="input-text" value=" Código de referencia: {{$propiedad->codigo_referencia}}" placeholder="Código de Referencia">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -392,7 +395,7 @@
                         <div class="helping-center">
                             <div class="icon"><i class="fa fa-building"></i></div>
                             <h4></h4>
-                            <p><a href="">{{\App\Tema::where('activo',1)->first()->logo}}</a> </p>
+                            <p><a href="">{{\App\Company::info()->logo}}</a> </p>
                         </div>
                         <div class="helping-center">
                             <div class="icon"><i class="fa fa-map-marker"></i></div>
@@ -461,7 +464,7 @@
                         <div class="modal-body">
                             <div class="col-md-12">
                                 <div class="col-md-7">
-                                    <img src="{{\App\Tema::where('activo',1)->first()->logo}}" style="width: 200px!important; margin-top:9px; "  alt="logo">
+                                    <img src="{{\App\Company::info()->logo}}" style="width: 200px!important; margin-top:9px; "  alt="logo">
                                 </div>
                                 <div class="col-md-5">
                                     <p><b>Monto Préstamo:</b> <span id="lblMonto"></span> </p>
@@ -504,7 +507,7 @@
                                 <p> 27 de Febrero, 2018</p>
                                 <div class="">
                                     <p class="price" usd="{{$prop->precio_oferta_usd}}"  dop="{{$prop->precio_oferta_rd}}" eur="{{$prop->precio_oferta_eu}}">
-                                        {{number_format($prop->precio_rd, 2)}}
+                                        {{$prop->moneda}}$ {{number_format($prop->monto, 2)}}
                                     </p>
                                 </div>
                             </div>

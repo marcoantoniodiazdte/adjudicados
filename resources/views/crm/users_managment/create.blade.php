@@ -19,7 +19,7 @@
 @section('contenido_inmobiliaria')
    <div class="card">
        <div class="header">
-           <h2><i class="material-icons">add</i>Create Usuario</h2>
+           <h2><i class="material-icons">add</i>Crear Usuario</h2>
        </div>
 
        @if ($errors->any())
@@ -72,23 +72,48 @@
                            </div>
                        </div>
                    </div>
+                   <div class="col-lg-4">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <select class="btn-group bootstrap-select form-control show-tick"  required data-live-search="true" name="role" id="clase">
+                                        <option value="admin">Admin</option>
+                                        <option value="analista">Analista</option>
+                                </select>
+                                <label class="form-label m-t--5">Rol</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <select class="btn-group bootstrap-select form-control show-tick"  required data-live-search="true" name="notificacion_visita" id="clase">
+                                        <option value="0">No</option>
+                                        <option value="1">Si</option>
+                                </select>
+                                <label class="form-label m-t--5">Notificación Visita</label>
+                            </div>
+                        </div>
+                    </div>
                    <div class="col-xs-12 col-sm-12 col-md-4">
                        <div class="form-group form-float">
                            <div class="form-line">
                                <input type="password" class="form-control validate" name="password" required>
-                               <label class="form-label">Password</label>
+                               <label class="form-label">Contraseña</label>
                            </div>
                        </div>
                    </div>
 
+
                    <div class="col-sm-8 col-md-12">
-                       <h4>Roles</h4>
-                       <select id="roles_suario" name="roles_suario[]" class="ms validate" multiple="multiple">
-                           @foreach($roles as $role)
-                               <option value="{{$role->name}}">   {{$role->name}}</option>
-                           @endforeach
-                       </select>
-                   </div>
+                    <h4>Permisos Categoría</h4>
+                        <select id="roles_suario" name="categoria_analista[]" class="ms validate" multiple="multiple">
+                            @foreach($categorias as $categoria)
+                                <option value="{{$categoria->id}}">   {{$categoria->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                 
 
 
                    <div class="col-xs-12 align-center">

@@ -32,14 +32,14 @@
 
        <div class="body">
 
-               {!! Form::open(['route' => 'propiedades.store', 'method' => 'post' , 'id' => 'inmueble_form','enctype' => 'multipart/form-data']) !!}
+               {!! Form::open(['route' => ['propiedades.update', $propiedad->id], 'method' => 'put' , 'id' => 'inmueble_form','enctype' => 'multipart/form-data']) !!}
                     <div class="row m-t-10">
 
                         <div class="col-sm-8 col-md-6 col-lg-6">
                             <div class="form-group form-float m-b-0">
                                 <div class="form-line focused">
                                     <input type="text" class="form-control m-t-5 " name="name"  value="{{$propiedad->name}}" required oninvalid="El" maxlength="100" />
-                                    <input type="hidden" class="form-control " name="clase" value=""  maxlength="100" />
+                                    <input type="hidden" class="form-control " name="clase" value="propiedad"  maxlength="100" />
                                     <input type="hidden" class="form-control " name="slug" value="empty"  maxlength="100" />
                                     <label class="form-label m-t--5">Nombre</label>
                                 </div>
@@ -50,11 +50,11 @@
                             <div class="form-group form-float">
                                 <div class="form-line focused">
                                     <select  class="form-control  btn-group bootstrap-select show-tick m-t-5" data-live-search="true"   value="{{  old('estado') }}" name="estado" id="estado">
-                                        <option value="" selected disabled>Elija una ppción</option>
-                                        <option value="disponible">Disponible</option>
-                                        <option value="contruccion">Construcción</option>
-                                        <option value="contrato">Contrato</option>
-                                        <option value="vendido">Vendido</option>
+                                        <option value="" selected disabled>Elija una opción</option>
+                                        <option value="disponible" {{$propiedad->estado == 'disponible' ? 'selected' : ''}}>Disponible</option>
+                                        <option value="contruccion" {{$propiedad->estado == 'construccion' ? 'selected' : ''}}>Construcción</option>
+                                        <option value="contrato" {{$propiedad->estado == 'contrato' ? 'selected' : ''}} >Contrato</option>
+                                        <option value="vendido" {{$propiedad->estado == 'vendido' ? 'selected' : ''}} >Vendido</option>
                                     </select>
                                     <label class="form-label m-t--5">Estado</label>
                                 </div>
@@ -66,8 +66,8 @@
                                     <select class="btn-group bootstrap-select form-control show-tick m-t-5"
                                             data-live-search="true" name="estado_comercial" id="clase">
                                         <option value="" selected disabled>Elija una opción</option>
-                                        <option value="venta">Venta</option>
-                                        <option value="alquiler">Alquiler</option>
+                                        <option value="venta" {{$propiedad->estado_comercial == 'venta' ? 'selected' : ''}}>Venta</option>
+                                        <option value="alquiler" {{$propiedad->estado_comercial == 'alquiler' ? 'selected' : ''}}>Alquiler</option>
                                     </select>
                                     <label class="form-label m-t--5">Estado Comercial</label>
                                 </div>
@@ -79,16 +79,16 @@
                                     <select class="btn-group bootstrap-select form-control show-tick m-t-5"
                                             data-live-search="true" name="habitaciones" id="clase">
                                         <option value="" selected disabled>Elija una opción</option>
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
+                                        <option value="0" {{$propiedad->habitaciones == '0' ? 'selected' : ''}}>0</option>
+                                        <option value="1" {{$propiedad->habitaciones == '1' ? 'selected' : ''}}>1</option>
+                                        <option value="2" {{$propiedad->habitaciones == '2' ? 'selected' : ''}}>2</option>
+                                        <option value="3" {{$propiedad->habitaciones == '3' ? 'selected' : ''}}>3</option>
+                                        <option value="4" {{$propiedad->habitaciones == '4' ? 'selected' : ''}}>4</option>
+                                        <option value="5" {{$propiedad->habitaciones == '5' ? 'selected' : ''}}>5</option>
+                                        <option value="6" {{$propiedad->habitaciones == '6' ? 'selected' : ''}}>6</option>
+                                        <option value="7" {{$propiedad->habitaciones == '7' ? 'selected' : ''}}>7</option>
+                                        <option value="8" {{$propiedad->habitaciones == '8' ? 'selected' : ''}}>8</option>
+                                        <option value="9" {{$propiedad->habitaciones == '9' ? 'selected' : ''}}>9</option>
                                     </select>
                                     <label class="form-label m-t--5">Habitaciones</label>
                                 </div>
@@ -100,16 +100,16 @@
                                     <select class="btn-group bootstrap-select form-control show-tick m-t-5"
                                             data-live-search="true" name="banos" id="clase">
                                         <option value="" selected disabled>Elija una opción</option>
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
+                                        <option value="0" {{$propiedad->banos == '0' ? 'selected' : ''}}>0</option>
+                                        <option value="1" {{$propiedad->banos == '0' ? 'selected' : ''}}>1</option>
+                                        <option value="2" {{$propiedad->banos == '0' ? 'selected' : ''}}>2</option>
+                                        <option value="3" {{$propiedad->banos == '0' ? 'selected' : ''}}>3</option>
+                                        <option value="4" {{$propiedad->banos == '0' ? 'selected' : ''}}>4</option>
+                                        <option value="5" {{$propiedad->banos == '0' ? 'selected' : ''}}>5</option>
+                                        <option value="6" {{$propiedad->banos == '0' ? 'selected' : ''}}>6</option>
+                                        <option value="7" {{$propiedad->banos == '0' ? 'selected' : ''}}>7</option>
+                                        <option value="8" {{$propiedad->banos == '0' ? 'selected' : ''}}>8</option>
+                                        <option value="9" {{$propiedad->banos == '0' ? 'selected' : ''}}>9</option>
                                     </select>
                                     <label class="form-label m-t--5">Baños</label>
                                 </div>
@@ -131,73 +131,40 @@
                                 </div>
                             </div>
                         </div>
+
+                    
                     </div>
                     <div class="row">
-                        <div class="col-sm-4 col-md-3 col-lg-3">
-                            <div class="form-group form-float m-b-0  m-t-5">
-                                <div class="form-line focused">
-                                    <input type="number" class="form-control " name="precio_us" value="{{$propiedad->precio_us}}" maxlength="100" />
-                                    <label class="form-label  m-t--5">Precio USD</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4 col-md-3 col-lg-3">
-                            <div class="form-group form-float m-b-0  m-t-5">
-                                <div class="form-line focused" >
-                                    <input type="number" class="form-control" name="precio_rd" value="{{$propiedad->precio_rd}}"  maxlength="100" />
-                                    <label class="form-label  m-t--5">Precio DOP</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 col-md-3 col-lg-3">
-                            <div class="form-group form-float m-b-0  m-t-5">
-                                <div class="form-line focused" >
-                                    <input type="number" class="form-control" name="precio_eu" value="{{$propiedad->precio_eur}}"  maxlength="100" />
-                                    <label class="form-label  m-t--5">Precio EUR</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4 col-md-3 col-lg-3">
+                        <div class="col-sm-4 col-md-2 col-lg-2">
                             <div class="form-group form-float">
                                 <div class="form-line focused">
-                                    <select class="btn-group bootstrap-select form-control show-tick" data-live-search="true" name="mostrar_precio" id="clase">
-                                        <option value="USD">USD</option>
-                                        <option value="DOP">DOP</option>
-                                        <option value="EUR">DOP</option>
+                                    <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="moneda" id="clase">
+                                        <option value="RD" {{$propiedad->moneda == 'RD' ? 'selected' : ''}} >DOP</option>
+                                        <option value="USD" {{$propiedad->moneda == 'USD' ? 'selected' : ''}} >USD</option>
+                                        <option value="EUR" {{$propiedad->moneda == 'EUR' ? 'selected' : ''}}>EUR</option>
                                     </select>
-                                    <label class="form-label m-t--5">Precio a Mostrar</label>
+                                    <label class="form-label m-t--5">Moneda</label>
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4 col-md-3 col-lg-3">
-                            <div class="form-group form-float m-b-0  m-t-5">
-                                <div class="form-line focused" >
-                                    <input type="number" class="form-control" value="" name="precio_oferta_rd" required value="{{$propiedad->precio_oferta_rd}}"  maxlength="100" />
-                                    <label class="form-label  m-t--5">Precio Oferta DOP</label>
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-sm-4 col-md-3 col-lg-3">
-                            <div class="form-group form-float m-b-0  m-t-5">
-                                <div class="form-line focused" >
-                                    <input type="number" class="form-control" name="precio_oferta_usd" required value="{{$propiedad->precio_oferta_usd}}"  maxlength="100" />
-                                    <label class="form-label  m-t--5">Precio Oferta USD</label>
+                        
+                        <div class="col-lg-3 col-md-3">
+                            <div class="form-group form-float">
+                                <div class="form-line focused">
+                                    <input type="number" class="form-control validate" required name="monto" value="{{$propiedad->monto}}" required >
+                                    <label class="form-label">Precio</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 col-md-3 col-lg-3">
-                            <div class="form-group form-float m-b-0  m-t-5">
-                                <div class="form-line focused" >
-                                    <input type="number" class="form-control" name="precio_oferta_eu" required value="{{$propiedad->precio_oferta_eu}}"  maxlength="100" />
-                                    <label class="form-label  m-t--5">Precio Oferta EUR</label>
+    
+                        <div class="col-lg-3 col-md-3">
+                            <div class="form-group form-float">
+                                <div class="form-line focused">
+                                    <input type="number" class="form-control validate" required name="monto_oferta" value="{{$propiedad->monto_oferta}}" required >
+                                    <label class="form-label">Precio Oferta</label>
                                 </div>
                             </div>
-                        </div>     
+                        </div>
                     </div>
 
                     <div class="row">
@@ -212,6 +179,19 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-sm-12 col-md-2 col-lg-2">
+                            <div class="form-group form-float">
+                                <div class="form-line focused">
+                                    <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="vendido" id="vendido">
+                                        <option value="0" {{($propiedad->vendido == '0') ? 'selected' : ''}} >No</option>
+                                        <option value="1" {{($propiedad->vendido == '1') ? 'selected' : ''}}>Si</option>
+                                    </select>
+                                    <label class="form-label m-t--5">Vendido</label>
+                                </div>
+                            </div>
+                        </div>
+                    
 
                         {{-- <div class="col-sm-4 col-md-4 col-lg-3">
                             <div class="form-group form-float">
@@ -230,7 +210,7 @@
                                 <label class="form-label">Descripción</label>
                                 <div class="form-line {{ old('descripcion') ? 'focused':'' }}">
                                     {{--<input type="text" class="form-control" name="descripcion" value="{{ old('descripcion')}}"  maxlength="100" />--}}
-                                    <textarea rows="1" name="descripcion" id="annotations" class="form-control no-resize auto-growth" required placeholder="Escribe una descripción">{{ old('descripcion')}}</textarea>
+                                    <textarea rows="1" name="descripcion" id="annotations" class="form-control no-resize auto-growth" required placeholder="Escribe una descripción">{{$propiedad->descripcion}}</textarea>
 
 
                                 </div>

@@ -20,7 +20,7 @@
 @section('contenido_inmobiliaria')
    <div class="card">
        <div class="header">
-           <h2><i class="material-icons">add</i>Crear Proyecto</h2>
+           <h2><i class="material-icons">add</i>Crear Propiedad</h2>
        </div>
 
        @if ($errors->any())

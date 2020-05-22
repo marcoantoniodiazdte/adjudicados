@@ -18,7 +18,7 @@
             <ul class="header-dropdown">
                 @can('create.bancos')
                     <li>
-                        <a href="{{route('admin_mis_bancos_managment_create')}}" data-toggle="tooltip" data-original-title="Create">
+                        <a href="{{route('admin_mis_bancos_managment_create')}}" data-toggle="tooltip" data-original-title="Crear">
                             <i class="material-icons col-blue">add</i>
                         </a>
                     </li>

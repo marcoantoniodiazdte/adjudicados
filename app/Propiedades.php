@@ -18,7 +18,8 @@ class Propiedades extends Model
                             'direccion','tipo_oferta','precio_us','precio_rd',
                             'mostrar_precio','slug','estado','estado_comercial','company_id',
                             'provincia_id','municipio_id','sector_id','estado_publicacion','precio_eur','precio_oferta_rd',
-                            'precio_oferta_usd', 'precio_oferta_eu', 'codigo_referencia','mapa_url','habitaciones','banos', 'area','tipo_id'];
+                            'precio_oferta_usd', 'precio_oferta_eu', 'codigo_referencia','mapa_url','habitaciones','banos', 
+                            'area','tipo_id', 'vendido', 'monto', 'monto_oferta', 'moneda'];
 
 
 
@@ -67,6 +68,35 @@ class Propiedades extends Model
 
     public function sector(){
         return $this->belongsTo(Sector::class,'sector_id','sector_id');
+    }
+
+
+    
+    public function favorite(){
+        $id = \Auth::id();
+        return $this->hasOne(Oportunidad::class,"anuncio_id","id")
+                ->where("usuario_id",$id)
+                ->where("tipo","propiedad")
+                ->where("favorito", 1);
+    }
+
+
+    public function offer() {
+        $id = \Auth::id();
+        return $this->hasOne(Oportunidad::class,"anuncio_id","id")
+                ->where("usuario_id",$id)
+                ->where("tipo","propiedad")
+                ->where("favorito",0);
+    }
+
+
+    public function isFavorite(){
+        return $this->favorite != null ? true : false;
+    }
+
+
+    public function isOffer() {
+        return $this->offer != null ? true : false;
     }
 
 

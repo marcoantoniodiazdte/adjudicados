@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css"  href="{{ asset('css/jquery.mCustomScrollbar.css')}}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('css/dropzone.css')}}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('css/multiselect.css')}}">
+    <link href="{{ asset('plugins/sweetalert/sweetalert.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css"  href="{{ asset('css/magnific-popup.css')}}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('plugins\ion-rangeslider\css\ion.rangeSlider.css')}}">
     <link rel="stylesheet" type="text/css"  href="{{ asset('plugins\ion-rangeslider\css\ion.rangeSlider.skinHTML5.css')}}">
@@ -50,6 +51,7 @@
     <script src="{{ asset('plugins/ion-rangeslider/js/ion.rangeSlider.js')}}"></script>
     <script src="{{ asset('js/welcome/jquery.mb.YTPlayer.js')}}"></script>
     <script src="{{ asset('js/welcome/wow.min.js')}}"></script>
+    <script src="{{ asset('plugins/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/welcome/bootstrap-select.min.js')}}"></script>
     <script src="{{ asset('js/welcome/jquery.easing.1.3.js')}}"></script>
     <script src="{{ asset('js/welcome/jquery.scrollUp.js')}}"></script>
@@ -90,7 +92,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a href="/" class="">
-                    <img src="{{\App\Tema::where('activo',1)->first()->logo}}" style="width: 125px!important; margin-top:9px;" alt="logo">
+                    <img src="{{\App\Company::info()->logo}}" style="width: 175px!important; margin-top:17px;" alt="logo">
                     </a>
                 </div>
 
@@ -103,22 +105,27 @@
                                 Comprar
                             </a>
                         </li>-->
-                        <li class="dropdown {{ request()->is('propiedades/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
+                        <li data-toggle="tooltip" title="Bienes Raices Adjudicados" class="dropdown {{ request()->is('propiedades/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
                             <a  href="/propiedades/buscar"  >
                                 Bienes Raices
                             </a>
                         </li>
-                        <li class="dropdown {{ request()->is('vehiculos/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
+                        <li data-toggle="tooltip" title="Proyectos Financiados Por el Banco" class="dropdown {{ request()->is('propiedades/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
+                            <a  href="/proyectos/buscar"  >
+                                Proyectos
+                            </a>
+                        </li>
+                        <li data-toggle="tooltip" title="Vehiculos Adjudicados" class="dropdown {{ request()->is('vehiculos/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
                             <a  href="/vehiculos/buscar"  >
                                 Vehiculos
                             </a>
                         </li>
-                        <li class="dropdown {{ request()->is('obras/buscar') ? 'active' : '' }} " href="/obras/buscar">
+                        <li  data-toggle="tooltip" title="Obras de Arte" class="dropdown {{ request()->is('obras/buscar') ? 'active' : '' }} " href="/obras/buscar">
                             <a  href="/obras/buscar"  >
-                                Obras de Arte
+                                Obras
                             </a>
                         </li>
-                        <li class="dropdown {{ request()->is('equipos/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
+                        <li data-toggle="tooltip" title="Equipos y Maquinarias" class="dropdown {{ request()->is('equipos/buscar') ? 'active' : '' }}" href="{{route('inmobiliarias')}}">
                             <a  href="/equipos/buscar"  >
                                 Equipos
                             </a>
@@ -136,28 +143,34 @@
                         <li>
                             <img src="https://brolik.com/blog/wp-content/uploads/2013/05/BRO_ResponsiveDesign_Main2.png" width="95" alt="">
                         </li>
-                        <!-- <li class=" dropdown {{ request()->is('perfil*') ? 'active' : '' }}">
-                        @if(Auth::user())
-                            <a  >{{Auth::user()->name}} <span class="caret"></span></a>
-                        @else
-                                    <li ><a class="dropdown-item" href="{{route('ingresa')}}" >Ingrésa</a></li>
-                                    <li><a  class="dropdown-item" href="{{route('registro')}}">Regístrate</a></li>
+                        {{-- @if( App\Company::info()) --}}
+                        
+                        @if(App\Company::info()->gestion_usuarios)
+                            <li class=" dropdown {{ request()->is('perfil*') ? 'active' : '' }}">
+
+                            @if(Auth::user())
+                                <a  >{{substr(Auth::user()->name, 0 , 11)}} <span class="caret"></span></a>
+                            @else
+                                        <li ><a class="dropdown-item" href="{{route('ingresa')}}" >Ingrésa</a></li>
+                                        {{-- <li><a  class="dropdown-item" href="{{route('registro')}}">Regístrate</a></li> --}}
+                            @endif
+                                <ul class="dropdown-menu">
+                                    @if(Auth::user())
+                                        <li ><a class="dropdown-item" href="{{route('profile')}}">Mi Perfil</a></li>
+                                        <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                                document.getElementById('logout-form').submit();">
+                                                Cerrar Sesion</a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                                </form>
+                                        </li>
+                                        
+                                    @endif
+                                </ul>
+                            </li> 
                         @endif
-                            <ul class="dropdown-menu">
-                                @if(Auth::user())
-                                    <li ><a class="dropdown-item" href="{{route('profile')}}">Mi Perfil</a></li>
-                                    <li> <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                            Cerrar Sesion</a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                            </form>
-                                    </li>
-                                    
-                                @endif
-                            </ul>
-                        </li> -->
+                        {{-- @endif --}}
                         <li class="dropdown">
                             {{-- @if(Auth::user())
                                 <a tabindex="0" data-toggle="dropdown" data-submenu="" aria-expanded="false">
@@ -271,7 +284,9 @@
                 </div>
             </div> -->
 
-            <div class="modal property-modal animated bounceInDown" id="registerModal" style="z-index: 999999;" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
+            
+
+            <div class="modal property-modal animated bounceInDown" id="ofertaModal" style="z-index: 999999;" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -285,49 +300,50 @@
                             <div class="details">
                                 <!-- Main title -->
                                 <div class="main-title">
-                                    <h1><span>Regístrate</span></h1>
+                                    <h1><span>Ofertar</span></h1>
                                 </div>
                                 <!-- Form start-->
-                                <form action="{{ route('register') }}" method="POST">
-                                    @csrf
                                     <div class="form-group">
-                                        <input type="text" name="name" class="input-text" placeholder="Nombre">
+                                        <input type="number" name="offer_amount" id="offer_amount" class="input-text" placeholder="Monto">
                                     </div>
-                                    @if ($errors->has('name'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                    @endif
+                                 
                                     <div class="form-group">
-                                        <input type="email" name="email" class="input-text" placeholder="Correo Electronico">
+                                        <button type="button" id="save-oferta" anuncio-id="" tipo="" class="button-md button-theme btn-block">Enviar</button>
                                     </div>
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                    <div class="form-group">
-                                        <input type="password" name="password" class="input-text" placeholder="Contraseña">
-                                    </div>
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                    <div class="form-group">
-                                        <input type="password" name="confirm_Password" class="input-text" placeholder="Confirmar contraseña">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="button-md button-theme btn-block">Regístrate</button>
-                                    </div>
-                                </form>
                                 <!-- Form end-->
                             </div>
-                            <!-- Footer -->
-                            <div class="footer">
-                                <span>
-                                     <a data-toggle="modal" href="{{route('ingresa')}}">Volver al inicio de sesión.</a>
-                                </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal property-modal animated bounceInDown" id="contra-oferta" style="z-index: 999999;" tabindex="-1" role="dialog" aria-labelledby="carModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                        <div>
+                            <button type="button" style="font-size:38px;" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="form-content-box">
+                            <!-- details -->
+                            <div class="details">
+                                <!-- Main title -->
+                                <div class="main-title">
+                                    <h1><span>Contra Oferta</span></h1>
+                                </div>
+                                <!-- Form start-->
+                                    <div class="form-group">
+                                        <h3>Ultima Oferta: RD$<span id="ultima-oferta"></span> </h3>
+                                        <input type="number" name="offer_amount" id="amount" class="input-text" placeholder="Nuevo Monto">
+                                    </div>
+                                 
+                                    <div class="form-group">
+                                        <button type="button" id="save-contra-oferta" oferta-id="" monto="" class="button-md button-theme btn-block">Enviar</button>
+                                    </div>
+                                <!-- Form end-->
                             </div>
                         </div>
                         </div>
@@ -365,7 +381,11 @@
         </div>
     </footer> --}}
     <!-- Footer final -->
-    <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'f5cb0f1e-2915-4b61-b327-664a30ac0d4e', f: true }); done = true; } }; })();</script>
+    <script>
+        var code_pure_chat = '{{\App\Company::info()->pure_chat}}';
+    </script>
+
+    <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: code_pure_chat, f: true }); done = true; } }; })();</script>
 
     <script>
     $(".js-range-slider").ionRangeSlider({
@@ -482,8 +502,8 @@
 }
 
     :root {
-        --main-color: {{\App\Tema::where('activo',1)->first()->color}};
-        --main-hover: {{\App\Tema::where('activo',1)->first()->hover}};
+        --main-color: {{\App\Company::info()->color}};
+        --main-hover: {{\App\Company::info()->hover}};
 
 
        

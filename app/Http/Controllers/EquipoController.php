@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use App\Helpers\CurrencyExchangeHelper;
 use Response;
 
 class EquipoController extends Controller
@@ -62,7 +63,34 @@ class EquipoController extends Controller
 
     public function store(Request $request)
     {
+
         // dd($request->all());
+        switch ($request->moneda)
+        {
+            case 'RD':
+                $precio  = CurrencyExchangeHelper::convertPeso($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertPeso($request->monto_oferta);
+                break;
+            case 'USD':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+            case 'EUR':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+        }
+
+        $request->merge([
+            "precio"            => $precio['peso'],
+            "precio_eu"         => $precio['euro'],
+            "precio_usd"        => $precio['dollar'],
+            "precio_oferta"     => $oferta['peso'],
+            "precio_oferta_usd" => $oferta['dollar'],
+            "precio_oferta_eu"  => $oferta['euro']
+        ]);
+
+
         $equipo = Equipo::create($request->all());
 
         if($request->has('path')){
@@ -96,6 +124,31 @@ class EquipoController extends Controller
 
     public function update(Request $request,Equipo $equipo)
     {
+        switch ($request->moneda)
+        {
+            case 'RD':
+                $precio  = CurrencyExchangeHelper::convertPeso($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertPeso($request->monto_oferta);
+                break;
+            case 'USD':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+            case 'EUR':
+                $precio  = CurrencyExchangeHelper::convertDollar($request->monto);
+                $oferta  = CurrencyExchangeHelper::convertDollar($request->monto_oferta);
+                break;
+        }
+
+        $request->merge([
+            "precio"            => $precio['peso'],
+            "precio_eu"         => $precio['euro'],
+            "precio_usd"        => $precio['dollar'],
+            "precio_oferta"     => $oferta['peso'],
+            "precio_oferta_usd" => $oferta['dollar'],
+            "precio_oferta_eu"  => $oferta['euro']
+        ]);
+        
         $equipo->update($request->all());
         if($request->has('path')){
             if(count($request->path) > 0)

@@ -15,10 +15,20 @@
 Route::get('/','WelcomeController@index');
 Route::get('/home','WelcomeController@index');
 
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
-Auth::routes();
+
+Auth::routes(['verify' => true]);
 
 Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('company_access', 'WelcomeController@company_access');
+Route::post('/dislike', 'OportunidadController@dislike');
+Route::post('/like', 'OportunidadController@like');
+Route::post('/ofertar', 'OportunidadController@ofertar');
+Route::post('/contra-oferta', 'OportunidadController@contraOferta');
+Route::post('/cancelar-oferta', 'OportunidadController@cancelarOferta');
 
 
 Route::prefix('admin')->group(function (){
@@ -43,32 +53,66 @@ Route::prefix('admin')->group(function (){
     Route::patch('/roles_managment/role/{role}', 'RoleController@update')->name('admin_roles_managment_update');
     Route::get('/roles_managment/role/{role}/edit', 'RoleController@edit')->name('admin_roles_managment_edit');
     Route::resource('/modules','ModuleController');
+    Route::resource('/oportunidades','OportunidadController');
+    Route::get('/oportunidades/pivot/table','OportunidadController@pivot');
+    Route::resource('/contactos','ContactoController');
+    Route::resource('/categorias','CategoriaController');
+    Route::resource('/requisitos','RequisitoController');
+
     //Agencias
     Route::resource('/agencias','AgenciaController', ['parameters' => [
         'agencias' => 'company',
     ]]);
-    //Inmobiliarias
-    Route::resource('inmobiliarias', 'InmobiliariaController', ['parameters' => [
-        'inmobiliarias' => 'company',
-    ]]);
 
-        //Propiedades
-        Route::resource('/tipos_caracteristicas','TipoCaracteristicaController');
-        Route::resource('/tipos_atributos','TipoAtributoController');
+    //Inmobiliarias
+    // Route::resource('inmobiliarias', 'InmobiliariaController', ['parameters' => [
+    //     'inmobiliarias' => 'company',
+    // ]]);
+
+    Route::resource('inmobiliarias', 'InmoController');
+
+    //Propiedades
+    Route::resource('/tipos_caracteristicas','TipoCaracteristicaController');
+
+    Route::resource('/tipos_atributos','TipoAtributoController');
+
     Route::resource('/propiedades.atributos','AtributosPropiedadesController');
     //Proyectos
     Route::resource('/proyectos','ProyectosController');
+
     Route::resource('/vehiculos','VehiculoController');
+
+    Route::resource('/proyectosFinanciados', 'ProyectoFinanciadoController');
+
     Route::resource('/obras','ObraController');
+
     Route::resource('/marcas','MarcaController');
+
+    Route::resource('/estados','EstadoController');
+    Route::post('/estados/delete/{id}','EstadoController@delete');
+
+    Route::resource('/eventos','EventoController');
+
+    Route::resource('/estado_eventos','EstadoEventoController');
+
+    Route::get('/eventos/datatable/{id}','EventoController@datatable_id');
+
     Route::resource('/tipoObras','TipoObraController');
+    
     Route::resource('/tipoEquipos','TipoEquipoController');
+    
     Route::resource('/tipoPropiedades','TiposPropiedadesController');
+    
     Route::get('/bancos/mis_bancos','BancoController@mis_bancos_managment')->name('admin_mis_bancos_managment');
+    
     Route::get('/bancos/mis_bancos/create','BancoController@mis_bancos_managment_create')->name('admin_mis_bancos_managment_create');
+    
     Route::post('/bancos/mis_bancos/store','BancoController@mis_bancos_managment_store')->name('admin_mis_bancos_managment_store');
+    
     Route::get('/bancos/mis_bancos/{id}/edit', 'BancoController@mis_bancos_managment_edit')->name('admin_mis_bancos_managment_edit');
+    
     Route::patch('/bancos/mis_bancos/{banco}', 'BancoController@mis_bancos_managment_update')->name('admin_mis_bancos_managment_update');
+    
     Route::resource('/bancos','BancoController');
     
     /*//Bancos
@@ -87,7 +131,7 @@ Route::prefix('admin')->group(function (){
 });
 
 
-Route::get('/login','WelcomeController@index')->name('login');
+Route::get('/login','WelcomeController@login')->name('login');
 Route::get('/','WelcomeController@index')->name('inicio');
 Route::post('/municipios','WelcomeController@minicipalities');
 Route::post('/provincias','WelcomeController@provincia');
@@ -108,8 +152,11 @@ Route::get('equipos/buscar','WelcomeController@searchEquipos');
 Route::get('equipo/abrirImagen/{id}','EquipoController@abrirImagenes');
 Route::get('equipos/{id}','EquipoController@show');
 Route::get('obras/buscar','WelcomeController@searchObras');
+Route::post('proyectos/buscar', 'WelcomeController@searchProyectos');
+Route::get('proyectos/buscar', 'WelcomeController@searchProyectos');
 Route::post('obras/buscar','WelcomeController@searchObras');
 Route::post('contact','WelcomeController@contact')->name('contact');
+Route::get('proyecto/abrirImagen/{id}','ProyectoFinanciadoController@abrirImagenes');
 Route::resource('/propiedades','PropiedadesController',['parameters' => ['propiedades' => 'propiedades']]);
 
 
@@ -130,8 +177,13 @@ Route::get('/vehiculo/{id}','VehiculoController@show');
 //VEHICULO  //
 
 
-// PROYECTO //
+// Propiedad //
 Route::get('/propiedad/{id}','PropiedadesController@show');
+
+
+// PROYECTO
+Route::get('/proyecto/{id}','ProyectoFinanciadoController@show');
+
 
 Route::get('/registro', function(){
     return view('welcome.register');
@@ -170,19 +222,18 @@ Route::get('/contacto',function(){
 
 Route::get('/perfil', function () {
     return view('welcome.profile.show');
-})->middleware('auth')->name('profile');
+})->middleware('auth')->name('profile')->middleware('verified');
 
-Route::get('/perfil/propiedades', function () {
-    return view('welcome.profile.properties');
-})->name('profile.properties');
+Route::get('/perfil/propiedades', 'UserController@ofertas' )->name('profile.properties')->middleware('verified');
 
-Route::get('/perfil/propiedades/favoritas', function () {
-    return view('welcome.profile.favorities');
-})->name('profile.favorites');
+Route::get('/perfil/propiedades/favoritas', 'UserController@favoritos')->name('profile.favorites')->middleware('verified');
+Route::get('/confirmar', function() {
+    return view('welcome.verify');
+})->name('verificar.email');
 
 Route::get('/perfil/credenciales', function () {
     return view('welcome.profile.password');
-})->name('credenciales');
+})->name('credenciales')->middleware('verified');
 
 
 

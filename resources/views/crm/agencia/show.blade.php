@@ -23,7 +23,7 @@
             <h2><i class="material-icons">search</i>Consulta Inmobiliaria</h2>
             <ul class="header-dropdown">
                 <li>
-                    <a href="{{route('companies.edit',$inmobiliaria->id)}}" data-toggle="tooltip" data-original-title="Create">
+                    <a href="{{route('companies.edit',$inmobiliaria->id)}}" data-toggle="tooltip" data-original-title="Crear">
                         <i class="material-icons col-blue">edit</i>
                     </a>
                 </li>

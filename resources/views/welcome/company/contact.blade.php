@@ -17,7 +17,7 @@
                     <ul class="contact-list">
                         {{-- <li><i class="fa fa-map-marker"></i> 20/F Green Road, Dhaka</li> --}}
                         <li><i class="fa fa-phone"></i> 809-243-5198 / 809-243-3609</li>
-                        <li><i class="mr-3 fa fa-envelope"></i> {{\App\Tema::where('activo',1)->first()->email}}</li>
+                        <li><i class="mr-3 fa fa-envelope"></i> {{\App\Company::info()->email}}</li>
                     </ul>
                     <div class="main-title mb-60">
                         <h1>Síguenos</h1>

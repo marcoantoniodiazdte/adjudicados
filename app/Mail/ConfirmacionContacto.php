@@ -16,8 +16,11 @@ class ConfirmacionContacto extends Mailable
      *
      * @return void
      */
+
+    public $email;
+    public $nombre;
     
-    public function __construct($data, $email,$nombre)
+    public function __construct($data,$email,$nombre)
     {
         $this->data = $data;
         $this->email = $email;
@@ -31,9 +34,11 @@ class ConfirmacionContacto extends Mailable
      */
     public function build()
     {
-        $this->to('cristian.almanzar@dte-online.com');
+        $str1 = 'notificaciones@adjudicados.com';
+        $str2 = 'Sistema Adjudicados';
+        $this->to($this->data['email']);
         $this->bcc('marcos@dte-online.com');
         $this->subject('Confirmación');
-        return $this->from($address = 'notificaciones@adjudicados.com',$name = $this->nombre)->view('mails.confirmacion_contacto');
+        return $this->from($address = 'notificaciones@adjudicados.com', $name = 'Sistema Adjudicados')->view('mails.confirmacion_contacto');
     }
 }

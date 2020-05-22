@@ -16,6 +16,7 @@ $(document).ready(function () {
                     },
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
+                    { data: 'codigo_referencia', name: 'codigo_referencia' },
                     {
                         data: function (data) {
                             var buttons = '<div class="btn-group">';

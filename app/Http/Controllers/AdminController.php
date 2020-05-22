@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Categoria;
+use App\Module;
+use App\AnalistaCategoria;
 use App\Http\Requests\AdminFormRequest;
-use App\Role;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -16,7 +20,6 @@ class AdminController extends Controller
     {
 
         $this->middleware('auth:admin');
-
         //  $this->middleware('permission:list.users')->only('index');
         $this->middleware('permission:create.users')->only(['create','store']);
         $this->middleware('permission:show.users')->only('show');
@@ -47,20 +50,42 @@ class AdminController extends Controller
 
     public function create()
     {
-        $roles = Role::all();
-        return view('crm.users_managment.create',compact('roles'));
+        $categorias = Categoria::all();
+        return view('crm.users_managment.create',compact('categorias'));
     }
 
-    public function store(AdminFormRequest $request)
-    {
+    public function store(Request $request)
+    {   
+        
 
 
         $admin = Admin::create([
             'company_id'    => Auth::user()->company_id,
-            'name'          => $request->name,
+            'nombres'            => $request->nombres,
+            'apellidos'          => $request->apellidos,
+            'telefono_principal' => $request->telefono_principal,
             'email'         => $request->email,
             'password'      => $request->password,
+            'role'          => $request->role,
         ]);
+
+
+
+        if($admin){
+            $admin->assignRole('Administrador Inmobiliaria');    
+            if($request->has('categoria_analista')){
+                foreach( $request->categoria_analista as $categoria ) {
+                    AnalistaCategoria::create([
+                        'analista_id' => $admin->id,
+                        'categoria_id' => $categoria
+                    ]);
+                }
+            }
+            return redirect(route('admin_users_managment'));
+        }
+
+
+        return redirect()->action('AdminController@index');
 
 
         /*$admin = Admin::create([
@@ -76,13 +101,7 @@ class AdminController extends Controller
         $admin->company_id = Auth::user()->company_id;
         $admin->save();*/
 
-        if($admin){
-            if($request->has('roles_suario')){
-                $admin->assignRole($request->input('roles_suario'));
-                $admin->syncPermissions($admin->getPermissionsViaRoles()->unique('id'));
-            }
-            return redirect(route('admin_users_managment'));
-        }
+    
     }
 
     public function show(Admin $admin)
@@ -90,11 +109,12 @@ class AdminController extends Controller
         dd($admin);
     }
 
-    public function edit(Admin $admin)
+    public function edit($id)
     {
-        $admin->load('roles');
-        $company_roles = Role::all();
-        return view('crm.users_managment.edit',compact(['admin','company_roles']));
+        $admin = Admin::find($id);
+        $misCategorias = AnalistaCategoria::where('analista_id',$id)->get();   
+        $categorias = Categoria::whereNotIn('id',$misCategorias->pluck('categoria_id'))->get();
+        return view('crm.users_managment.edit',compact(['categorias','admin']));
     }
 
     public function update(Request $request, Admin $admin)
@@ -102,10 +122,22 @@ class AdminController extends Controller
 
         $admin->update($request->all());
 
-        if($request->has('roles_suario')){
+        if($admin){
+            if($request->has('categoria_analista')){
+                foreach( $request->categoria_analista as $categoria ) {
+                    AnalistaCategoria::create([
+                        'analista_id' => $admin->id,
+                        'categoria_id' => $categoria
+                    ]);
+                }
+            }
+            return redirect(route('admin_users_managment'));
+        }
 
-            $admin->syncRoles($request->input('roles_suario'));
-            $admin->syncPermissions($admin->getPermissionsViaRoles()->unique('id'));
+        // if($request->has('roles_suario')){
+
+        //     $admin->syncRoles($request->input('roles_suario'));
+        //     $admin->syncPermissions($admin->getPermissionsViaRoles()->unique('id'));
 //            $unique = $admin->getPermissionsViaRoles()->unique('id');
 //
 //            $unique->values()->all();
@@ -118,7 +150,7 @@ class AdminController extends Controller
 //            }
             //$admin->syncPermissions($role->permissions);
             //$admin->givePermissionTo($role->permissions);
-        }
+        // }
         return redirect(route('admin_users_managment'));
 
     }

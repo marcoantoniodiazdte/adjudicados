@@ -27,8 +27,7 @@
         </div>
         <div class="body" style="display:flex; justify-content:center;">
             <div class="center">
-                <img src="{{\App\Tema::where('activo',1)->first()->logo}}" alt="">
-
+                <img src="{{\App\Company::info()->logo}}" alt="">
             </div>
            {{-- <div class="row">
                 <div class="col-sm-4 m-b-10">

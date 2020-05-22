@@ -4,7 +4,8 @@
     <div class="title">¡Confirmación!</div>
     <br>
     <div class="body-text">
-        <p>Hemos recibido tu correo.</p>
+        <p>Estimado Cliente,</p>
+        <p>Hemos recibido su solicitud de contacto, pronto nos comunicaremos con usted.</p>
         <p>Atentamente,</p>
     </div>
 @endsection

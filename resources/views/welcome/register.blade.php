@@ -66,7 +66,7 @@
         <div class="details">
             <!-- Main title -->
             <div class="main-title">
-                <img src="{{asset('img/logos/logo.png')}}" href="{{route('home')}}" style="height: 56px!important;" alt="logo">
+                <img src="{{\App\Company::info()->logo}}" href="{{route('home')}}" style="height: 56px!important;" alt="logo">
                 <h1 style="margin-top: 15px;"><span>Regístrate</span></h1>
             </div>
             <!-- Form start-->

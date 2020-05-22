@@ -26,8 +26,10 @@
     <link href="{{ asset('plugins/animate-css/animate.css') }}" rel="stylesheet"/>
     <!-- SweetAlert -->
     <link href="{{ asset('plugins/sweetalert/sweetalert.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+
     <!-- Datepicker -->
-    <link href="{{ asset('plugins/jquery-datepicker/datepicker.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/jquery-datepicker/daterangepicker.css') }}" rel="stylesheet">
     <!-- Custom Css -->
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
@@ -35,6 +37,15 @@
 
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    
+    <link href="{{ asset('js/src/pivot/pivot.css') }}" rel="stylesheet">
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.js')}}"></script>
+    <script src="{{  asset('plugins/ploty/plotly-latest.js')}}"></script>
+    {{-- <script src="{{ asset('plugins/pivot/jqueryui.js') }}"></script> --}}
+    {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script> --}}
+    <script src="{{ asset('js/src/pivot/pivot.js') }}"></script>
+    <script src="{{ asset('js/src/pivot/export_renderers.js') }}"></script>
+    <script src="{{ asset('js/src/pivot/plotly_renderers.js') }}"></script>
 
     @yield('pages_css_files')
 </head>
@@ -103,7 +114,10 @@
     <script src="{{ asset('js/demo.js') }}"></script>
 
     <!-- Datepicker -->
-    <script src="{{ asset('plugins/jquery-datepicker/datepicker.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-datepicker/daterangepicker.js') }}"></script>
+
+
+    {{-- <script src="{{ asset('css/pivot.css') }}"></script> --}}
 
     <script src="{{ asset('js/src/app.js') }}"></script>
 

@@ -45,7 +45,7 @@
         <div class="login-page" style="overflow-x: visible">
             <div class="login-box" style="background: white;">
                 <div class="logo">
-                    <img src="{{\App\Tema::where('activo',1)->first()->logo}}" href="{{route('home')}}" style="height: 56px!important;" alt="logo">
+                    <img src="{{\App\Company::info()->logo}}" href="{{route('home')}}" style="height: 56px!important;" alt="logo">
                     {{-- <a href="javascript:void(0);"><b>BHD LEON</b></a> --}}
 
                 </div>

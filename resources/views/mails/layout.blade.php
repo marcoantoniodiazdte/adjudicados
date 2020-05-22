@@ -210,7 +210,7 @@
             <table border="0" width="600" cellpadding="0" cellspacing="0" class="container">
                 <tr>
                     <td class="container-padding content" align="left">
-                        <img src="{{\App\Tema::where('activo',1)->first()->logo}}" alt="Adjudicados" style="max-width: 180px;">
+                        <img src="{{\App\Company::info()->logo}}" alt="Adjudicados" style="max-width: 180px;">
                     </td>
                 </tr>
                 <tr>

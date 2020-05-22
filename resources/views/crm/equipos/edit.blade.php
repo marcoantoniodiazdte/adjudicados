@@ -79,63 +79,62 @@
                             </div>
                         </div>
                     </div>
-                   <div class="col-lg-4">
+                    <div class="col-lg-4">
                         <div class="form-group form-float">
                             <div class="form-line focused">
-                                <input type="number" class="form-control validate" value="{{$equipo->precio}}" required name="precio" required >
+                                <input type="text" class="form-control validate" value="{{$equipo->codigo_referencia}}" required name="codigo_referencia" required >
+                                <label class="form-label">Código Referencia</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-md-2 col-lg-2">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="moneda" id="clase">
+                                    <option value="RD" {{$equipo->moneda == 'RD' ? 'selected' : ''}} >DOP</option>
+                                    <option value="USD" {{$equipo->moneda == 'USD' ? 'selected' : ''}} >USD</option>
+                                    <option value="EUR" {{$equipo->moneda == 'EUR' ? 'selected' : ''}}>EUR</option>
+                                </select>
+                                <label class="form-label m-t--5">Moneda</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <input type="number" class="form-control validate" required name="monto" value="{{$equipo->monto}}" required >
                                 <label class="form-label">Precio</label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3 col-md-3">
                         <div class="form-group form-float">
                             <div class="form-line focused">
-                                <input type="number" class="form-control validate" value="{{$equipo->precio}}" required name="precio_usd" required >
-                                <label class="form-label">Precio USD</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="form-group form-float">
-                            <div class="form-line focused">
-                                <input type="number" class="form-control validate" value="{{$equipo->precio}}" required name="precio_eu">
-                                <label class="form-label">Precio EU</label>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    <div class="col-lg-4">
-                        <div class="form-group form-float">
-                            <div class="form-line focused">
-                                <input type="number" class="form-control validate" value="{{$equipo->precio_oferta}}" required name="precio_oferta" required >
+                                <input type="number" class="form-control validate" required name="monto_oferta" value="{{$equipo->monto_oferta}}" required >
                                 <label class="form-label">Precio Oferta</label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group form-float">
-                            <div class="form-line focused">
-                                <input type="number" class="form-control validate" value="{{$equipo->precio_oferta_usd}}" required name="precio_oferta_usd" required >
-                                <label class="form-label">Precio Oferta USD</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group form-float">
-                            <div class="form-line focused">
-                                <input type="number" class="form-control validate" value="{{$equipo->precio_oferta_eu}}" required name="precio_oferta_eu" required >
-                                <label class="form-label">Precio Oferta EU</label>
-                            </div>
-                        </div>
-                    </div>
-         
+
                     <div class="col-lg-8">
                         <div class="form-group form-float">
                             <div class="form-line focused">
                                 <input type="text" class="form-control validate" value="{{$equipo->descripcion}}" required name="descripcion" required >
                                 <label class="form-label">Descripción</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-2 col-lg-2">
+                        <div class="form-group form-float">
+                            <div class="form-line focused">
+                                <select class="btn-group bootstrap-select form-control show-tick" required data-live-search="true" name="vendido" id="vendido">
+                                    <option value="0" {{($equipo->vendido == '0') ? 'selected' : ''}} >No</option>
+                                    <option value="1" {{($equipo->vendido == '1') ? 'selected' : ''}}>Si</option>
+                                </select>
+                                <label class="form-label m-t--5">Vendido</label>
                             </div>
                         </div>
                     </div>

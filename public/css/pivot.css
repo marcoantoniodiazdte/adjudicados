@@ -1,5 +1,3 @@
-.pvtUi { color: #333; }
-
 
 table.pvtTable {
     font-size: 8pt;
@@ -12,6 +10,8 @@ table.pvtTable thead tr th, table.pvtTable tbody tr th {
     font-size: 8pt;
     padding: 5px;
 }
+
+.pvtUi { color: #333;}
 
 table.pvtTable .pvtColLabel {text-align: center;}
 table.pvtTable .pvtTotalLabel {text-align: right;}

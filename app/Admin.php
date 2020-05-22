@@ -16,13 +16,15 @@ class Admin extends Authenticatable
 
     protected $guard_name = 'admin';
 
+    protected $table = 'admins';
+
     protected $fillable = [
         'nombres', 'apellidos', 'telefono_principal',
-        'email', 'password','company_id'
+        'email', 'password','company_id', 'role', 'notificacion_visita'
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token',
     ];
 
     protected $casts = [

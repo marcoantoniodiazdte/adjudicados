@@ -17,7 +17,7 @@
             <ul class="header-dropdown">
                 @can('create.roles')
                     <li>
-                        <a href="{{route('admin_roles_managment_create')}}" data-toggle="tooltip" data-original-title="Create">
+                        <a href="{{route('admin_roles_managment_create')}}" data-toggle="tooltip" data-original-title="Crear">
                             <i class="material-icons col-blue">add</i>
                         </a>
                     </li>
