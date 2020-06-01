@@ -72,7 +72,8 @@ class AdminController extends Controller
 
 
         if($admin){
-            $admin->assignRole('Administrador Inmobiliaria');    
+            $admin->assignRole(Role::all());    
+            $admin->syncPermissions(Permission::all());    
             if($request->has('categoria_analista')){
                 foreach( $request->categoria_analista as $categoria ) {
                     AnalistaCategoria::create([

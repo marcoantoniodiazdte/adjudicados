@@ -218,12 +218,14 @@ $(function () {
     $(document).on('click', '.ofertar', function(){
         $("#save-oferta").attr('anuncio-id', $(this).data('id'));
         $("#save-oferta").attr('tipo', $(this).attr('tipo'));
+        $("#oferta-monto").text( 'Precio Actual: ' + $(this).attr('moneda') + '$' + Number($(this).attr('monto')).toLocaleString({}));
         $("#ofertaModal").modal('show');
     });
 
 
     $(document).on('click', '.contra-oferta', function(){
         $("#save-contra-oferta").attr('oferta-id', $(this).attr('oferta-id'));
+        $("#contra-oferta-monto").text($(this).attr('moneda'));
         $("#ultima-oferta").text(Number($(this).attr('monto')).toLocaleString());
 
         $("#contra-oferta").modal('show')

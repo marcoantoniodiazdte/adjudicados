@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                        <h4>Monto Ofertado</h4>
-                       <p>{{$oportunidad->moneda}}${{number_format($oportunidad->monto)}}</p>
+                       <p>{{$anuncio->moneda}}${{number_format($oportunidad->monto)}}</p>
                     </div>
 
                     <div class="col-sm-4 col-md-4 col-lg-4 mt-5">
@@ -116,7 +116,7 @@
 
                     <div class="col-lg-4">
                         <h4>Precio Anuncio</h4>
-                        <p>{{($anuncio->precio) ? number_format($anuncio->precio) : number_format($anuncio->precio_rd)}}</p>
+                        <p>{{$anuncio->moneda}}${{number_format($anuncio->monto)}}</p>
                     </div>
 
                     <div class="col-lg-4">

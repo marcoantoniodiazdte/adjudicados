@@ -65,6 +65,7 @@
                     </th>
                     <th class="exportar">ID</th>
                     <th class="exportar">Nombre</th>
+                    <th class="exportar">Moneda</th>
                     <th class="exportar">Monto</th>
                     <th class="exportar">Fecha</th>
                     <th class="exportar">Estado</th>
@@ -248,13 +249,14 @@
                         searchable: false
                     },
                     { data: 'id', name: 'id' },
-                    { data: 'titulo', name: 'titulo' },
+                    { data: 'titulo', name: 'vista_anuncios.nombre' },
+                    { data: 'moneda', name: 'vista_anuncios.moneda'},
                     { data: function(data) {
                         return `<p style="text-align: end;">
                            ${Number(data.monto).toLocaleString(undefined, { minimumFractionDigits: 2,
                             maximumFractionDigits: 2})}
                         </p>`;
-                    }, name:'monto' },
+                    }, name:'monto', },
                     { data: function(data) {
                         fecha = data.fecha.split('-');
                         return `${fecha[2].split(" ")[0]}/${fecha[1]}/${fecha[0]}`

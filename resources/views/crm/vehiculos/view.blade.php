@@ -65,7 +65,7 @@
                         @if($vehiculo->isOffer())
                     <h3 style="float: right;">Enviado : <span class="price" style="color: #4CAF50;">{{$vehiculo->moneda}}${{number_format($vehiculo->offer->monto)}}</span> </h3>
                         @else
-                        <div class=" btn ofertar" data-id="{{$vehiculo->id}}" tipo="vehiculo" modelo="Vehiculo" style="background-color:#ff9800;">Hacer Oferta</div>
+                        <div class=" btn ofertar" data-id="{{$vehiculo->id}}" tipo="vehiculo" moneda="{{$vehiculo->moneda}}" monto="{{$vehiculo->monto_oferta}}" modelo="Vehiculo" style="background-color:#ff9800;">Hacer Oferta</div>
                         @endif
                     @endif
                   

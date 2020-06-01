@@ -1228,6 +1228,7 @@ input[type=checkbox]:checked + label:before {
 
 .property-tag {
     position: absolute;
+    cursor: pointer;
 }
 
 .property-tag.sale {

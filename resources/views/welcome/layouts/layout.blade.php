@@ -301,6 +301,7 @@
                                 <!-- Main title -->
                                 <div class="main-title">
                                     <h1><span>Ofertar</span></h1>
+                                    <h3 id="oferta-monto"></h3>
                                 </div>
                                 <!-- Form start-->
                                     <div class="form-group">
@@ -336,7 +337,7 @@
                                 </div>
                                 <!-- Form start-->
                                     <div class="form-group">
-                                        <h3>Ultima Oferta: RD$<span id="ultima-oferta"></span> </h3>
+                                        <h3>Ultima Oferta: <span id="contra-oferta-monto"></span>$<span id="ultima-oferta"></span> </h3>
                                         <input type="number" name="offer_amount" id="amount" class="input-text" placeholder="Nuevo Monto">
                                     </div>
                                  

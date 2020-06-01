@@ -773,6 +773,10 @@ table.pvtTable tbody tr td {
 
 }
 
+.btn-info {
+  cursor: pointer!important;  
+}
+
 
 
 .pvtTotal, .pvtGrandTotal { font-weight: bold; }

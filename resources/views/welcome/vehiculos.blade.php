@@ -44,7 +44,7 @@
                                 @endif
                                 
                                 @if( Auth::user() && $vehiculo->isOffer() == false && App\Company::info()->crm && Auth::user()->hasVerifiedEmail() && Auth::user()->hasVerifiedEmail())
-                                <div class="property-tag button sale btn-info ofertar" data-id="{{$vehiculo->id}}" tipo="vehiculo" modelo="Vehiculo" style="background-color:#ff9800;">Hacer Oferta</div>
+                                <div class="property-tag button sale btn-info ofertar" data-id="{{$vehiculo->id}}" tipo="vehiculo" moneda="{{$vehiculo->moneda}}" monto="{{$vehiculo->monto_oferta}}" modelo="Vehiculo" style="background-color:#ff9800;">Hacer Oferta</div>
                                 @elseif ( Auth::user() && $vehiculo->isOffer() == true && App\Company::info()->crm)
                                 <a href="/perfil/propiedades">
                                     <div class="property-tag button sale " data-toggle="tooltip" title="{{$vehiculo->offer->estado->descripcion}}"   style="background-color:{{$vehiculo->offer->estado->color}}; color:{{$vehiculo->offer->estado->color_letra}}">{{$vehiculo->offer->estado->nombre}}</div>

@@ -134,8 +134,9 @@
                         </td>
                         <td class="action">
                             <p>
-                                {{ date("d/m/Y", strtotime($favorito['fecha']))       }}
+                                {{ date("d/m/Y", strtotime($favorito['fecha'])) }}
                             </p>
+                            
                             @if($favorito)
                                 <a data-toggle="tooltip" title="{{$favorito['estado']->descripcion}}"  href="/perfil/propiedades" style="color:{{$favorito['estado']->color_letra}};  background:{{$favorito['estado']->color}}; margin-left:0;" class="badge ">{{ucfirst($favorito['estado']->nombre)}}</a>
                             @endif

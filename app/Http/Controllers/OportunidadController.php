@@ -72,7 +72,7 @@ class OportunidadController extends Controller
 
 
         if($request->ajax()){
-            return  DataTables::eloquent(Oportunidad::query()->with(['estado'])->where('favorito',0)->whereIn('tipo',$categorias) ->where('oportunidades.fecha' , '>=', $_GET['start_date']. ' 00:00:00')
+            return  DataTables::eloquent(Oportunidad::query()->select('oportunidades.*', 'vista_anuncios.moneda as moneda', 'vista_anuncios.nombre as titulo')->with(['estado'])->where('oportunidades.favorito',0)->whereIn('oportunidades.tipo',$categorias) ->where('oportunidades.fecha' , '>=', $_GET['start_date']. ' 00:00:00')
             ->where('oportunidades.fecha' , '>=', $_GET['start_date']. ' 00:00:00')
             ->where('oportunidades.fecha' , '<=', $_GET['end_date']. ' 23:59:59' )
             ->whereHas('estado', function($q)
@@ -81,6 +81,10 @@ class OportunidadController extends Controller
                 $q->whereIn('id', $_GET['estado_id']);
 
             })
+            ->join('vista_anuncios', function($q){
+                $q->on('vista_anuncios.id_aux', '=', 'oportunidades.anuncio_id');
+                $q->on('vista_anuncios.tipo', '=', 'oportunidades.tipo');
+            })
             )
                 ->addColumn('edit', function($row){
                     return Auth::user()->can('update.roles');
@@ -88,27 +92,27 @@ class OportunidadController extends Controller
                 ->addColumn('view', function($row){
                     return Auth::user()->can('show.roles');
                 })
-                ->addColumn('titulo', function($row) {
-                    if($row->tipo == 'propiedad') {
-                         return  Propiedades::find($row->anuncio_id)->name;
-                    }
+                // ->addColumn('anuncio', function($row) {
+                //     if($row->tipo == 'propiedad') {
+                //          return  Propiedades::find($row->anuncio_id)->toArray();
+                //     }
             
-                    if($row->tipo == 'proyecto') {
-                        return ProyectoFinanciado::find($row->anuncio_id)->name;
-                    }
+                //     if($row->tipo == 'proyecto') {
+                //         return ProyectoFinanciado::find($row->anuncio_id)->toArray();
+                //     }
             
-                    if($row->tipo == 'vehiculo') {
-                        return Vehiculo::find($row->anuncio_id)->titulo;
-                    }
+                //     if($row->tipo == 'vehiculo') {
+                //         return Vehiculo::find($row->anuncio_id)->toArray();
+                //     }
             
-                    if($row->tipo == 'obra') {
-                        return Obra::find($row->anuncio_id)->titulo;
-                    }
+                //     if($row->tipo == 'obra') {
+                //         return Obra::find($row->anuncio_id)->toArray();
+                //     }
             
-                    if($row->tipo == 'equipos') {
-                        return Equipo::find($row->anuncio_id)->titulo;
-                    }
-                })
+                //     if($row->tipo == 'equipos') {
+                //         return Equipo::find($row->anuncio_id)->toArray();
+                //     }
+                // })
                 ->rawColumns(['edit','view','titulo'])
                 ->make(true);
         }
@@ -293,11 +297,11 @@ class OportunidadController extends Controller
         
         $sql = "SELECT
         oportunidades.id AS ID_Oportunidad, 
-        Vista_Anuncios.nombre AS Nombre,
-        Vista_Anuncios.referencia AS Referencia,
+        vista_anuncios.nombre AS Nombre,
+        vista_anuncios.referencia AS Referencia,
         oportunidades.monto AS Monto_Ofertado, 
-        FORMAT(Vista_Anuncios.monto,2) as Monto_Original,
-        Vista_Anuncios.moneda as Moneda,
+        FORMAT(vista_anuncios.monto,2) as Monto_Original,
+        vista_anuncios.moneda as Moneda,
         DATE_FORMAT(DATE(oportunidades.fecha), '%d/%m/%Y') AS Fecha, 
         MONTH(oportunidades.fecha) AS Mes, 
         YEAR(oportunidades.fecha) AS Año, 
@@ -305,12 +309,12 @@ class OportunidadController extends Controller
         UCASE(oportunidades.tipo) AS Categoria, 
         users.name AS Cliente 
         
-        FROM oportunidades, Vista_Anuncios, estados, users
+        FROM oportunidades, vista_anuncios, estados, users
         
         WHERE oportunidades.estado_id = estados.id AND
          oportunidades.usuario_id = users.id AND
-         oportunidades.anuncio_id = Vista_Anuncios.id_aux  AND 
-         oportunidades.tipo = Vista_Anuncios.tipo AND
+         oportunidades.anuncio_id = vista_anuncios.id_aux  AND 
+         oportunidades.tipo = vista_anuncios.tipo AND
          oportunidades.fecha >= '{$_GET['start_date']} 00:00:00' AND 
          oportunidades.fecha <= '{$_GET['end_date']} 23:59:59'";
 
@@ -323,7 +327,7 @@ class OportunidadController extends Controller
 
         // ->where('oportunidades.fecha' , '>=', $_GET['start_date']. ' 00:00:00')
         // ->where('oportunidades.fecha' , '<=', $_GET['end_date']. ' 23:59:59' )
-        // // ->join('Vista_Anuncios', 'Vista_Anuncios.id_aux', '=', 'oportunidades.anuncio_id and Vista_Anuncios.tipo = oportunidades.tipo') 
+        // // ->join('vista_anuncios', 'vista_anuncios.id_aux', '=', 'oportunidades.anuncio_id and vista_anuncios.tipo = oportunidades.tipo') 
         // ->join('estados', 'oportunidades.estado_id', '=', 'estados.id')
         // ->join('users',  'oportunidades.usuario_id', '=', 'users.id')->get();
 

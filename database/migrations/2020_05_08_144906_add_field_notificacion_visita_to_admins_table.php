@@ -14,7 +14,7 @@ class AddFieldNotificacionVisitaToAdminsTable extends Migration
     public function up()
     {
         Schema::table('admins', function (Blueprint $table) {
-            $table->boolean('notificacion_visita');
+            $table->boolean('notificacion_visita')->default(0);
         });
     }
 

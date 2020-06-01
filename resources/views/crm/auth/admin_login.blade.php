@@ -51,6 +51,11 @@
                 </div>
                 <div class="card">
                     <div class="body">
+                        @if ($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                        @endif
                         {!! Form::open(['route' => 'admin.login.submit', 'method' => 'post']) !!}
                         {{-- <div class="msg">Ingrése sus credenciales para iniciar sesión</div> --}}
                         <div class="input-group">
@@ -67,6 +72,11 @@
                                             </span>
                             <div class="form-line">
                                 <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                                @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                                @endif
                             </div>
                         </div>
                         <div class="row">

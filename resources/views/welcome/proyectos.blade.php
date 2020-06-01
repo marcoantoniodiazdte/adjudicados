@@ -42,7 +42,7 @@
                                     <div style="background:red;" class="property-tag button alt featured">Oferta </div>
                                 @endif
                                 @if( Auth::user() && $propiedad->isOffer() == false && App\Company::info()->crm && Auth::user()->hasVerifiedEmail()) 
-                                <div class="property-tag button sale btn-info ofertar" data-id="{{$propiedad->id}}" tipo="proyecto" modelo="proyecto" style="background-color:#ff9800;">Hacer Oferta</div>
+                                <div class="property-tag button sale btn-info ofertar" data-id="{{$propiedad->id}}" tipo="proyecto"  moneda="{{$propiedad->moneda}}" monto="{{$propiedad->monto_oferta}}" modelo="proyecto" style="background-color:#ff9800;">Hacer Oferta</div>
                                 @elseif ( Auth::user() && $propiedad->isOffer() == true && App\Company::info()->crm)
                                 <a href="/perfil/propiedades">
                                     <div data-toggle="tooltip" title="{{$propiedad->offer->estado->descripcion}}"  class="property-tag button sale "    style="background-color:{{$propiedad->offer->estado->color}}; color:{{$propiedad->offer->estado->color_letra}}">{{$propiedad->offer->estado->nombre}}</div>

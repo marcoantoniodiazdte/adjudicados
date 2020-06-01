@@ -113,7 +113,7 @@
                             </p>
                             @if($oferta['estado']->id != 3)
                             <p>
-                            <button class="btn contra-oferta "  monto="{{$oferta['precio']}}" oferta-id="{{$oferta['oportunidad']}}"  style="font-size: 11px; background-color: #ff9800; color: white; font-weight: 500; ">Contra Oferta</button>
+                            <button class="btn contra-oferta "  monto="{{$oferta['precio']}}" moneda="{{$oferta['moneda']}}" oferta-id="{{$oferta['oportunidad']}}"  style="font-size: 11px; background-color: #ff9800; color: white; font-weight: 500; ">Contra Oferta</button>
                             </p>
                             <p>
                                 <button class="btn btn-danger cancelar-oferta " oferta-id="{{$oferta['oportunidad']}}" style="font-size: 11px;  color: white; font-weight: 500; ">Cancelar Oferta</button>
