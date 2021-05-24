@@ -306,7 +306,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="">{{$prop->name}}</a>
+                                    <a href="/proyecto/{{$prop->id}}">{{$prop->name}}</a>
                                 </h3>
                                 <p> 27 de Febrero, 2018</p>
                                 <div class="">

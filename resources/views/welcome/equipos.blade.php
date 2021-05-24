@@ -204,7 +204,7 @@
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a href="">{{$obr->titulo}}</a>
+                                    <a href="/equipos/{{$obr->id}}">{{$obr->titulo}}</a>
                                 </h3>
                                 <p> 27 de Febrero, 2018</p>
                                 <div class="price" usd="{{$obr->precio_usd}}"  dop="{{$obr->precio}}" eur="{{$obr->precio_eu}}">

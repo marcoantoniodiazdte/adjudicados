@@ -24,9 +24,10 @@ class CreatePropiedadesTable extends Migration
             $table->text('direccion');
             $table->text('descripcion');
             $table->enum('tipo_oferta',['exclusiva','normal']);
-            $table->double('precio_us');
-            $table->double('precio_rd');
-            $table->enum('mostrar_precio',['us','do']);
+            $table->decimal('precio_us',13,2);
+            $table->decimal('precio_rd',13,2);
+            $table->decimal('precio_eur',13,2);
+            $table->enum('mostrar_precio', ['DOP','USD','EUR']);
             $table->enum('estado_publicacion',['activo','inactivo'])->default('inactivo');
             $table->string('slug');
             $table->unsignedBigInteger('company_id');

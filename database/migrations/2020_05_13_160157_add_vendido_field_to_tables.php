@@ -51,7 +51,7 @@ class AddVendidoFieldToTables extends Migration
         });
 
         Schema::table('equipos', function (Blueprint $table) {
-            $table->dropColumn('equipos');
+            $table->dropColumn('vendido');
         });
 
         Schema::table('propiedades', function (Blueprint $table) {

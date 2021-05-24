@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class AddVistaAnunciosViews extends Migration
 {
@@ -25,6 +26,6 @@ class AddVistaAnunciosViews extends Migration
      */
     public function down()
     {
-        //
+        DB::statement("DELETE VIEW vista_anuncios");
     }
 }
